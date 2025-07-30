@@ -11,5 +11,15 @@ config_version=5
 [application]
 
 config/name="GMTK25-Game"
+run/main_scene="uid://c1g5er1n1n01"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="GMTK25-Game"
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
