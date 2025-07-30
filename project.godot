@@ -15,11 +15,16 @@ run/main_scene="uid://c1g5er1n1n01"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*res://Globals/SceneManager.gd"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
-[dotnet]
+[editor]
 
-project/assembly_name="GMTK25-Game"
+naming/scene_name_casing=1
+naming/script_name_casing=1
