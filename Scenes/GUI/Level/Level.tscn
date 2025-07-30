@@ -1,5 +1,10 @@
-[gd_scene format=3 uid="uid://cooltcrctjjn8"]
+[gd_scene load_steps=2 format=3 uid="uid://cooltcrctjjn8"]
+
+[ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/GUI/SessionMenu/SessionMenu.tscn" id="1_jvg4h"]
 
 [node name="Level" type="Node3D"]
+
+[node name="SessionMenu" parent="." instance=ExtResource("1_jvg4h")]
+visible = false
 
 [node name="Node3D" type="Node3D" parent="."]
