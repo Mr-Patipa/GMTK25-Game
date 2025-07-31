@@ -57,7 +57,7 @@ shape = SubResource("BoxShape3D_31m54")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.328, 2.5)
 projection = 1
 fov = 60.0
-size = 3.0
+size = 15.0
 far = 100.0
 script = ExtResource("4_k75jd")
 
