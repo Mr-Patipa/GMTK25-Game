@@ -1,6 +1,6 @@
 extends Camera3D
 
-var y_lock: int
+var y_lock: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	y_lock = self.global_position.y
