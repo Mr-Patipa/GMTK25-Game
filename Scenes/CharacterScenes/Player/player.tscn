@@ -7,11 +7,12 @@
 [ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
 [ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="6_hmrng"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_laggs"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmrng"]
+size = Vector3(1, 1.6, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2o5yx"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera") groups=["Player"]]
 script = ExtResource("1_46n4p")
 WalkSpeed = 10.0
 JumpHieght = 25.0
@@ -26,8 +27,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 texture = ExtResource("6_hmrng")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_laggs")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_hmrng")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -53,3 +54,6 @@ Airborne = NodePath("../Airborne")
 [node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle")]
 script = ExtResource("5_8ht00")
 Idle = NodePath("../Idle")
+
+[node name="Handle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1, 0)

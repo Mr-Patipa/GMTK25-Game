@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy88niwngfhy5"]
+
+[ext_resource type="Script" uid="uid://bw18fitn5tmu4" path="res://Scenes/Assets/Keys/key.gd" id="1_7556s"]
+
+[node name="Key" type="RigidBody3D" groups=["Player"]]
+collision_layer = 0
+script = ExtResource("1_7556s")

@@ -1,4 +1,4 @@
 extends Node
 
-const LEVEL: String = "res://Scenes/GUI/Level/Level.tscn"
-const MAIN_MENU: String = "res://Scenes/GUI/MainMenu/MainMenu.tscn"
+const LEVEL: String = "res://Scenes/PlayerGUI/Level/Level.tscn"
+const MAIN_MENU: String = "res://Scenes/PlayerGUI/MainMenu/MainMenu.tscn"

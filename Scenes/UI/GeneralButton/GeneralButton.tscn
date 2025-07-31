@@ -8,3 +8,5 @@ offset_bottom = 8.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_agb0k")
 text = "Unknown"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

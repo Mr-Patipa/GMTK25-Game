@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://cooltcrctjjn8"]
+
+[ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="1_inj1o"]
+[ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="2_jrnlp"]
+[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="3_d0ycl"]
+[ext_resource type="PackedScene" uid="uid://nbov7vuqy6gf" path="res://Scenes/Assets/Doors/door.tscn" id="3_m5qtu"]
+[ext_resource type="PackedScene" uid="uid://75j34cg8udnl" path="res://Scenes/Assets/Block And Preasure/movable_block.tscn" id="4_d0ycl"]
+[ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Block And Preasure/preasure_plates.tscn" id="5_m5qtu"]
+[ext_resource type="PackedScene" uid="uid://cy88niwngfhy5" path="res://Scenes/Assets/Keys/key.tscn" id="6_uuo8s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jrnlp"]
+radius = 4.6181
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uuo8s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m5qtu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brbg3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uuo8s"]
+radius = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_brbg3"]
+radius = 2.77051
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugdyg"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_rl1ky"]
+sky_material = SubResource("ProceduralSkyMaterial_ugdyg")
+
+[sub_resource type="Environment" id="Environment_uu6jn"]
+background_mode = 2
+sky = SubResource("Sky_rl1ky")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Root" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Bean" parent="World" instance=ExtResource("2_jrnlp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38419e-07, 4.76837e-07)
+collision_layer = 2
+
+[node name="Floor" type="CSGBox3D" parent="World"]
+transform = Transform3D(-11, -1.50996e-07, 0, 1.66095e-06, -1, 0, 0, 0, 10, 0, -0.5, 0)
+use_collision = true
+size = Vector3(5, 1, 5)
+
+[node name="Door" parent="World" instance=ExtResource("3_m5qtu")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 7, 0, 0)
+
+[node name="ArialUI" parent="World/Door" node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("3_d0ycl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4271, 0.404989)
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="World/Door/ArialUI"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door/ArialUI/Area3D"]
+shape = SubResource("SphereShape3D_jrnlp")
+
+[node name="Door2" parent="World" instance=ExtResource("3_m5qtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0222, 0.0148022, 1.2936)
+
+[node name="MovableBlock" parent="World/Door2" instance=ExtResource("4_d0ycl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97765, 0.985197, -2.41547)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" parent="World/Door2/MovableBlock" index="0"]
+shape = SubResource("BoxShape3D_uuo8s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Door2/MovableBlock"]
+
+[node name="PreasurePlate" parent="World/Door2" node_paths=PackedStringArray("Target", "Detector") instance=ExtResource("5_m5qtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80424, 0, -2.58964)
+Target = NodePath("..")
+Detector = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="World/Door2/PreasurePlate"]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door2/PreasurePlate/Area3D"]
+transform = Transform3D(1.05, 0, 0, 0, 0.21, 0, 0, 0, 1.05, 0, 0, 0)
+shape = SubResource("BoxShape3D_m5qtu")
+
+[node name="Door3" parent="World" instance=ExtResource("3_m5qtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.344, 4.17233e-07, 9.13026)
+
+[node name="Key" parent="World/Door3" instance=ExtResource("6_uuo8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.31381, 0.327778, 0.865097)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Door3/Key"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Key"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_brbg3")
+
+[node name="ArialUI" parent="World/Door3/Key" node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("3_d0ycl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78528, 0)
+SelfDestruct = true
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="World/Door3/Key/ArialUI"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Key/ArialUI/Area3D"]
+shape = SubResource("SphereShape3D_uuo8s")
+
+[node name="Accepter" parent="World/Door3" node_paths=PackedStringArray("Require", "AreaDetector", "Target") instance=ExtResource("3_d0ycl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55752, 0.986282)
+SelfDestruct = true
+Require = NodePath("../Key")
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="World/Door3/Accepter"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Accepter/Area3D"]
+shape = SubResource("SphereShape3D_brbg3")
+
+[node name="Lighting" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_uu6jn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("1_inj1o")]
+visible = false
+World = NodePath("../World")
+
+[editable path="World/Door2/MovableBlock"]

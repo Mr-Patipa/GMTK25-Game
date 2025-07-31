@@ -29,6 +29,18 @@ window/size/viewport_height=1080
 naming/scene_name_casing=1
 naming/script_name_casing=1
 
+[file_customization]
+
+folder_colors={
+"res://Scenes/Assets/": "green",
+"res://Scenes/CharacterScenes/": "teal"
+}
+
+[global_group]
+
+Block="Can be detected by pressure plates"
+Player=""
+
 [input]
 
 pause={
@@ -67,6 +79,9 @@ Interact={
 ]
 }
 
-[rendering]
+[layer_names]
 
-textures/canvas_textures/default_texture_filter=0
+3d_physics/layer_1="Global"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Block"
+3d_physics/layer_4="Pi"
