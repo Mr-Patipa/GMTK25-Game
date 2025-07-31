@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://b178g6tq0aewc"]
+
+[ext_resource type="Texture2D" uid="uid://skiccybgephi" path="res://Resources/Graphics/Testing/Red Tile Test.png" id="1_xkty1"]
+[ext_resource type="Script" uid="uid://ceeik6uxvuky6" path="res://Scenes/Testing/Character.gd" id="2_k75jd"]
+[ext_resource type="Texture2D" uid="uid://8wdgjx6el6id" path="res://Resources/Graphics/Testing/Test Character.png" id="2_s084k"]
+[ext_resource type="Script" uid="uid://cubqd5kklfv4l" path="res://Scenes/Testing/Camera3d.gd" id="4_k75jd"]
+[ext_resource type="Texture2D" uid="uid://bmmgsm68ul7tu" path="res://Resources/Graphics/Testing/White Tile Test.png" id="5_31m54"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k75jd"]
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31m54"]
+size = Vector3(0.35, 0.876, 0.00488281)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k75jd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q1hu0"]
+size = Vector3(0.366, 0.467, 0.1)
+
+[node name="Testing" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_k75jd")
+
+[node name="Sprite3D" type="Sprite3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0)
+shaded = true
+alpha_cut = 1
+texture = ExtResource("1_xkty1")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_k75jd")
+
+[node name="Sprite3D" type="Sprite3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_s084k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 0.005, 0)
+shape = SubResource("BoxShape3D_31m54")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.328, 2.5)
+projection = 1
+fov = 60.0
+size = 3.0
+far = 100.0
+script = ExtResource("4_k75jd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+light_energy = 2.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0.849449, -2.68609)
+light_energy = 0.5
+shadow_enabled = true
+spot_range = 2.872
+spot_angle = 47.0
+
+[node name="Shadow" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.190875, 0, 0, 0, 0.022186, 0, 0, 0, 0.218658, 0, -0.498663, 0)
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_k75jd")
+
+[node name="Tile" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.141, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tile"]
+shape = SubResource("BoxShape3D_q1hu0")
+
+[node name="Sprite3D" type="Sprite3D" parent="Tile"]
+cast_shadow = 0
+shaded = true
+alpha_cut = 1
+texture = ExtResource("5_31m54")
