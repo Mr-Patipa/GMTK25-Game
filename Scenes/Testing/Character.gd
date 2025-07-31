@@ -1,9 +1,14 @@
 extends CharacterBody3D
+class_name PlayerTest
 
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var Player_Inventory: Array[String]
+
+func _ready() -> void:
+	self.Player_Inventory = []
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -26,3 +31,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_item_collected_signal(n: String, a: int) -> void:
+	# Triggered when collecting an item.
+	# Hook up via signal from Item.gd's collectedSignal
+	for i in range(a):
+		self.Player_Inventory.append(n)
