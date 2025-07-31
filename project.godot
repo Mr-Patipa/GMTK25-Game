@@ -28,6 +28,10 @@ window/size/viewport_height=1080
 
 naming/scene_name_casing=1
 naming/script_name_casing=1
+"<<<<<<<Updatedupstream[file_customization]folder_colors"={
+"res://Scenes/Assets/": "green",
+"res://Scenes/CharacterScenes/": "teal"
+}
 
 [file_customization]
 

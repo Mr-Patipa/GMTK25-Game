@@ -13,6 +13,7 @@ size = Vector3(1, 1.6, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2o5yx"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera") groups=["Player"]]
+collision_layer = 2
 script = ExtResource("1_46n4p")
 WalkSpeed = 10.0
 JumpHieght = 25.0
