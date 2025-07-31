@@ -12,7 +12,7 @@ size = Vector3(1, 1.6, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2o5yx"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera") groups=["Block", "Player"]]
 collision_layer = 2
 script = ExtResource("1_46n4p")
 WalkSpeed = 10.0
@@ -55,6 +55,8 @@ Airborne = NodePath("../Airborne")
 [node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle")]
 script = ExtResource("5_8ht00")
 Idle = NodePath("../Idle")
+
+[node name="Dash" type="Node" parent="StateMachine"]
 
 [node name="Handle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1, 0)

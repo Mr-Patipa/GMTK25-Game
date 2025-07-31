@@ -1,21 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://cofnkihdrskxa"]
+[gd_scene load_steps=5 format=3 uid="uid://cofnkihdrskxa"]
+
+[ext_resource type="Script" uid="uid://bpu1sgwd1eqbt" path="res://Scenes/Assets/WheelOfHope/wheel_of_hope.gd" id="1_p1lns"]
+[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="2_0wmru"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_bkewf"]
 
-[node name="WheelOfHope" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_kgscm"]
+radius = 3.49348
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-axis_lock_linear_y = true
-angular_velocity = Vector3(0, 0.174533, 0)
+[node name="WheelOfHope" type="Node3D" node_paths=PackedStringArray("WheelBase", "CoolTimer")]
+script = ExtResource("1_p1lns")
+WheelBase = NodePath("Wheel")
+CoolTimer = NodePath("CoolTimer")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83745, 0.632816, 0)
-use_collision = true
+[node name="Wheel" type="Marker3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel"]
 transform = Transform3D(4, 0, 0, 0, 0.0618965, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("CylinderMesh_bkewf")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.817135, 0.576447, 0, -0.576447, 0.817135, 0, 1.54996, 3.21969)
+[node name="CSGBox3D" type="CSGBox3D" parent="Wheel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83745, 0.632816, 0)
+use_collision = true
+
+[node name="ArialUI" parent="." node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("2_0wmru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39993, 0)
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="ArialUI"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArialUI/Area3D"]
+shape = SubResource("SphereShape3D_kgscm")
+
+[node name="CoolTimer" type="Timer" parent="."]
+one_shot = true
