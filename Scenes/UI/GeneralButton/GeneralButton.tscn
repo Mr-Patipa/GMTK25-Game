@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg56bjdidficu"]
+
+[ext_resource type="Theme" uid="uid://bjcaeykkf4nf0" path="res://Resources/Themes/ButtonTheme.tres" id="1_agb0k"]
+
+[node name="GeneralButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_agb0k")
+text = "Unknown"
