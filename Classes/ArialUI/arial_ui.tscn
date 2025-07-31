@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://gwm75adidk0x"]
 
-[ext_resource type="Script" uid="uid://r0t2cqun760j" path="res://Classes/Interactables/billboard.gd" id="1_rrk15"]
-[ext_resource type="PackedScene" uid="uid://bw4bar4rfpjuw" path="res://Classes/Interactables/frame.tscn" id="2_3aawp"]
+[ext_resource type="Script" uid="uid://r0t2cqun760j" path="res://Classes/ArialUI/arial_ui.gd" id="1_01c8s"]
+[ext_resource type="PackedScene" uid="uid://bw4bar4rfpjuw" path="res://Classes/ArialUI/base_frame.tscn" id="2_jpcvu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3aawp"]
 viewport_path = NodePath("SubViewport")
@@ -13,13 +13,15 @@ billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_3aawp"]
 
-[node name="Billboard" type="Node3D"]
-script = ExtResource("1_rrk15")
+[node name="ArialUI" type="Node3D" node_paths=PackedStringArray("Screen")]
+script = ExtResource("1_01c8s")
+Screen = NodePath("SpriteScreen")
 
 [node name="SpriteScreen" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_rrk15")
 mesh = SubResource("QuadMesh_3aawp")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 
-[node name="Button" parent="SubViewport" instance=ExtResource("2_3aawp")]
+[node name="Button" parent="SubViewport" instance=ExtResource("2_jpcvu")]

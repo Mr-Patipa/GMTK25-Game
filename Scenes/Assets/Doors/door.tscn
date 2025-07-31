@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://nbov7vuqy6gf"]
+
+[ext_resource type="Script" uid="uid://ctuxbdsycc17b" path="res://Scenes/Assets/Doors/door.gd" id="1_50ltd"]
+
+[node name="Door" type="Node3D" node_paths=PackedStringArray("Hinge")]
+script = ExtResource("1_50ltd")
+Hinge = NodePath("Hinge")
+
+[node name="Hinge" type="Marker3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Hinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 1, 0.75)
+size = Vector3(0.1, 2, 1.5)

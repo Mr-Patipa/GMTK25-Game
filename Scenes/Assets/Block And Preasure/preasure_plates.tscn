@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj55hxbfqn7n2"]
+
+[ext_resource type="Script" uid="uid://dgp6fcets4umt" path="res://Scenes/Assets/Block And Preasure/preasure_plates.gd" id="1_ng15k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihb6n"]
+albedo_color = Color(1, 0.792157, 0.215686, 1)
+
+[node name="PreasurePlate" type="Node3D" node_paths=PackedStringArray("Detector")]
+script = ExtResource("1_ng15k")
+Detector = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.0205911, 0)
+size = Vector3(1, 0.001, 1)
+material = SubResource("StandardMaterial3D_ihb6n")
