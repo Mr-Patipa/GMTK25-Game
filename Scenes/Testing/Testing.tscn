@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b178g6tq0aewc"]
+
+[ext_resource type="Texture2D" uid="uid://skiccybgephi" path="res://Resources/Graphics/Testing/Red Tile Test.png" id="1_xkty1"]
+[ext_resource type="Script" uid="uid://ceeik6uxvuky6" path="res://Scenes/Testing/Character.gd" id="2_k75jd"]
+[ext_resource type="Texture2D" uid="uid://8wdgjx6el6id" path="res://Resources/Graphics/Testing/Test Character.png" id="2_s084k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k75jd"]
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31m54"]
+size = Vector3(0.348792, 0.1, 0.111816)
+
+[node name="Testing" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_k75jd")
+
+[node name="Sprite3D" type="Sprite3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0)
+alpha_cut = 1
+texture = ExtResource("1_xkty1")
+
+[node name="Character" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_k75jd")
+
+[node name="Sprite3D" type="Sprite3D" parent="Character"]
+alpha_cut = 1
+texture = ExtResource("2_s084k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00541382, -0.239017, 0.010498)
+shape = SubResource("BoxShape3D_31m54")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.656, 5.5)
+fov = 22.8
