@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddqkulaxxsn8j"]
+
+[ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
+[ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
+[ext_resource type="Script" uid="uid://ccl1hetvxpdlh" path="res://Scenes/CharacterScenes/Player/States/idle_state.gd" id="2_qijfs"]
+[ext_resource type="Script" uid="uid://bt7rpu4f1fqm4" path="res://Scenes/CharacterScenes/Player/States/walk_state.gd" id="4_2o5yx"]
+[ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_laggs"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2o5yx"]
+
+[node name="Bean" type="CharacterBody3D" node_paths=PackedStringArray("Camera")]
+script = ExtResource("1_46n4p")
+WalkSpeed = 10.0
+JumpHieght = 25.0
+Gravity = 100.0
+Camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 8, 12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_laggs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_2o5yx")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Parent", "InitialState")]
+script = ExtResource("1_lg7rm")
+Active = true
+Parent = NodePath("..")
+InitialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne")]
+script = ExtResource("2_qijfs")
+Walk = NodePath("../Walk")
+Airborne = NodePath("../Airborne")
+
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne")]
+script = ExtResource("4_2o5yx")
+Idle = NodePath("../Idle")
+Airborne = NodePath("../Airborne")
+
+[node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle")]
+script = ExtResource("5_8ht00")
+Idle = NodePath("../Idle")
