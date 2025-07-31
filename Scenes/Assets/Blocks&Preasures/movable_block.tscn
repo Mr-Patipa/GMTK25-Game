@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://75j34cg8udnl"]
 
 [node name="MovableBlock" type="RigidBody3D" groups=["Block"]]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="onBodyEntered"]
