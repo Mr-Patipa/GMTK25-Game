@@ -35,6 +35,7 @@ script = ExtResource("2_k75jd")
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
 shaded = true
 alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("2_s084k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
@@ -43,7 +44,10 @@ shape = SubResource("BoxShape3D_31m54")
 
 [node name="Camera3D" type="Camera3D" parent="Character"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.328, 2.5)
+projection = 1
 fov = 60.0
+size = 3.0
+far = 100.0
 script = ExtResource("4_k75jd")
 
 [node name="OmniLight3D" type="DirectionalLight3D" parent="Character/Camera3D"]
