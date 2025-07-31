@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bg56bjdidficu" path="res://Scenes/UI/GeneralButton/GeneralButton.tscn" id="1_ytcdc"]
 
 [node name="SessionMenu" type="CanvasLayer"]
+process_mode = 4
 script = ExtResource("1_62h2g")
 
 [node name="Control" type="Control" parent="."]

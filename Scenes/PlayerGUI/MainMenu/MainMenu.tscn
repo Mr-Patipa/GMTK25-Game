@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1g5er1n1n01"]
 
-[ext_resource type="Script" uid="uid://c8mgg4h5y8dty" path="res://Scenes/GUI/MainMenu/MainMenu.gd" id="1_n85i1"]
+[ext_resource type="Script" uid="uid://c8mgg4h5y8dty" path="res://Scenes/PlayerGUI/MainMenu/MainMenu.gd" id="1_n85i1"]
 [ext_resource type="LabelSettings" uid="uid://ynxxsd1i33c1" path="res://Resources/Label/LableTitle.tres" id="1_stcdf"]
 [ext_resource type="PackedScene" uid="uid://bg56bjdidficu" path="res://Scenes/UI/GeneralButton/GeneralButton.tscn" id="3_g3xlg"]
 
