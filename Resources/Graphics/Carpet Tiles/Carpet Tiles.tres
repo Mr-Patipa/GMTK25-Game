@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d2h0ejmqboyf4" path="res://Resources/Graphics/Carpet Tiles/Tile D3.png" id="10_qhqpn"]
 [ext_resource type="Texture2D" uid="uid://c2aj2rjvkdt30" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 1.png" id="11_flhou"]
 [ext_resource type="Texture2D" uid="uid://ct6r03ewju8xy" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 2.png" id="12_eljfo"]
-[ext_resource type="Texture2D" uid="uid://cibwfquv1a1jw" path="res://Resources/Graphics/Carpet Tiles/Tile Plain.png" id="13_ibeh4"]
+[ext_resource type="Texture2D" uid="uid://ceeg5gu78ut63" path="res://Resources/Graphics/Carpet Tiles/Tile Plain.png" id="13_ibeh4"]
 [ext_resource type="Texture2D" uid="uid://cgvdd3ss4jr4h" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 3.png" id="14_f2fes"]
 [ext_resource type="Texture2D" uid="uid://bcctnd07uoji3" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 4.png" id="15_b588s"]
 [ext_resource type="Texture2D" uid="uid://sedc5y5q86qa" path="res://Resources/Graphics/Carpet Tiles/Tile Small Gap.png" id="16_hnkm4"]
