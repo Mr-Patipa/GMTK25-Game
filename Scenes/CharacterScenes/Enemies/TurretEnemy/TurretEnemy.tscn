@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjd1nqxjjfm2o"]
+
+[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_1lu1b"]
+[ext_resource type="Script" uid="uid://dgkyjtah7j1l8" path="res://Scenes/CharacterScenes/Enemies/TurretEnemy/TurretEnemy.gd" id="1_2nbbg"]
+[ext_resource type="PackedScene" uid="uid://dujih1lyp6fhe" path="res://Scenes/CharacterScenes/Components/AttackComponent/AttackComponent.tscn" id="2_rphlu"]
+[ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="3_auu8x"]
+[ext_resource type="Script" uid="uid://cwgbwgscmg45p" path="res://Scenes/CharacterScenes/Enemies/States/Searching.gd" id="6_2nbbg"]
+[ext_resource type="Script" uid="uid://2aew1208cpl0" path="res://Scenes/CharacterScenes/Enemies/States/RangeAttacking.gd" id="7_w5s3i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1lu1b"]
+size = Vector3(1.30493, 1.28442, 0.328735)
+
+[node name="TurretEnemy" type="StaticBody3D"]
+script = ExtResource("1_2nbbg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_1lu1b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00354004, -0.00695801, -0.003479)
+shape = SubResource("BoxShape3D_1lu1b")
+
+[node name="AttackComponent" parent="." instance=ExtResource("2_rphlu")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Parent", "InitialState")]
+script = ExtResource("3_auu8x")
+Active = true
+Parent = NodePath("..")
+InitialState = NodePath("Searching")
+
+[node name="Searching" type="Node" parent="StateMachine" node_paths=PackedStringArray("RangeAttacking")]
+script = ExtResource("6_2nbbg")
+RangeAttacking = NodePath("../RangeAttacking")
+
+[node name="RangeAttacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("Searching", "AttackComponentNode")]
+script = ExtResource("7_w5s3i")
+Searching = NodePath("../Searching")
+AttackComponentNode = NodePath("../../AttackComponent")

@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcp1e5mn1rk67"]
+[gd_scene load_steps=8 format=3 uid="uid://bcp1e5mn1rk67"]
 
-[ext_resource type="Script" uid="uid://pr13mgo6vkqx" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryMonster.gd" id="1_dh63o"]
+[ext_resource type="Script" uid="uid://pr13mgo6vkqx" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.gd" id="1_dh63o"]
 [ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_vurqo"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="3_s3ra4"]
+[ext_resource type="PackedScene" uid="uid://dujih1lyp6fhe" path="res://Scenes/CharacterScenes/Components/AttackComponent/AttackComponent.tscn" id="3_y5ma2"]
+[ext_resource type="Script" uid="uid://dhjdi07fycq1y" path="res://Scenes/CharacterScenes/Enemies/States/Attacking.gd" id="5_o722m"]
 [ext_resource type="Script" uid="uid://khralxc2b406" path="res://Scenes/CharacterScenes/Enemies/States/Chasing.gd" id="6_0ks3a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh63o"]
-size = Vector3(1.29785, 1.26752, 0.197144)
+size = Vector3(0.43341, 1.26752, 0.197144)
 
 [node name="AngryEnemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_dh63o")
@@ -16,7 +18,7 @@ WalkSpeed = 5.0
 texture = ExtResource("1_vurqo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00244141, 0.00772095, -0.0140991)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436708, 0.00772095, -0.0140991)
 shape = SubResource("BoxShape3D_dh63o")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
@@ -29,6 +31,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25835, 0)
 text = "Unknown"
 font_size = 96
 
+[node name="AttackComponent" parent="." instance=ExtResource("3_y5ma2")]
+
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
@@ -39,7 +43,13 @@ Active = true
 Parent = NodePath("..")
 InitialState = NodePath("Chasing")
 
-[node name="Chasing" type="Node" parent="StateMachine"]
+[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("Attacking")]
 script = ExtResource("6_0ks3a")
+Attacking = NodePath("../Attacking")
+
+[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("Chasing", "AttackComponentNode")]
+script = ExtResource("5_o722m")
+Chasing = NodePath("../Chasing")
+AttackComponentNode = NodePath("../../AttackComponent")
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7yc42r4yy8kr"]
+
+[ext_resource type="Script" uid="uid://bjyn4tlrh1qpi" path="res://Scenes/CharacterScenes/Components/BulletMaker/BulletMaker.gd" id="1_wexwf"]
+[ext_resource type="PackedScene" uid="uid://l53nsohdvdbl" path="res://Scenes/CharacterScenes/Components/Bullet/Bullet.tscn" id="2_i3xs0"]
+
+[node name="BulletMaker" type="Node"]
+script = ExtResource("1_wexwf")
+BulletScene = ExtResource("2_i3xs0")

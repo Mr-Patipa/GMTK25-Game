@@ -26,11 +26,10 @@ func renderStepped(_delta : float): ## physics_process()
 		Parent.NavigationAgent.target_position = Parent.Waypoints[Parent.CurrentWaypoint]
 		Parent.CurrentWaypoint = (Parent.CurrentWaypoint + 1) % Parent.Waypoints.size()
 	
-	#print("[at]")
 	Parent.update_movement()
 	Parent.move_and_slide()
 	
-	if Parent.can_see_player():
+	if Parent.can_see_player(Parent.DetectionRange):
 		return Chasing
 		
 func handleInputs(_event : InputEvent): ## unhandled_input()
