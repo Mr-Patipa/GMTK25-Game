@@ -11,6 +11,7 @@ func _ready() -> void:
 			if group == "Block":
 				Target.activate(null)
 		)
+	
 	Detector.body_exited.connect(func(body : Node3D) -> void:
 		for group in body.get_groups():
 			if group == "Block":

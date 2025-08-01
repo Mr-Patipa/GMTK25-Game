@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GMTK25-Game"
+config/name="Ludomania"
 run/main_scene="uid://c1g5er1n1n01"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneManager="*res://Globals/SceneManager.gd"
+GameManager="*res://Globals/game_manager.gd"
 
 [display]
 

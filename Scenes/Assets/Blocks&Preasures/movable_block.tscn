@@ -1,9 +1,14 @@
-[gd_scene format=3 uid="uid://75j34cg8udnl"]
+[gd_scene load_steps=2 format=3 uid="uid://75j34cg8udnl"]
 
-[node name="MovableBlock" type="RigidBody3D" groups=["Block"]]
-collision_layer = 4
-collision_mask = 3
+[ext_resource type="Script" uid="uid://7a8o8r64oq25" path="res://Scenes/Assets/Blocks&Preasures/movable_block.gd" id="1_kocd1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="MovableBlock" type="Node3D" node_paths=PackedStringArray("Block", "SpawnPos")]
+script = ExtResource("1_kocd1")
+Block = NodePath("Block")
+SpawnPos = NodePath("SpawnPos")
 
-[connection signal="body_entered" from="." to="." method="onBodyEntered"]
+[node name="SpawnPos" type="Marker3D" parent="."]
+
+[node name="Block" type="RigidBody3D" parent="." groups=["Block"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block"]
