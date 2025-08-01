@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cek0cytyponfk"]
+
+[ext_resource type="PlaneMesh" uid="uid://ddhsuwbifblg7" path="res://Resources/Graphics/Testing/Meshes.tres" id="1_xcqin"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="White Tile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xcqin")
