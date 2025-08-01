@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmmgsm68ul7tu"
-path.s3tc="res://.godot/imported/White Tile Test.png-3ee6437f6f4a327f52c9d2fa913f4be1.s3tc.ctex"
+uid="uid://co6c8knmcfy0j"
+path.s3tc="res://.godot/imported/Tile A2.png-18c63b2809c7c5667da053f26389e380.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Graphics/Testing/White Tile Test.png"
-dest_files=["res://.godot/imported/White Tile Test.png-3ee6437f6f4a327f52c9d2fa913f4be1.s3tc.ctex"]
+source_file="res://Resources/Graphics/Carpet Tiles/Tile A2.png"
+dest_files=["res://.godot/imported/Tile A2.png-18c63b2809c7c5667da053f26389e380.s3tc.ctex"]
 
 [params]
 

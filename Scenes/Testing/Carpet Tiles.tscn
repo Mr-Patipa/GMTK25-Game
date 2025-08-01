@@ -1,0 +1,466 @@
+[gd_scene load_steps=79 format=3 uid="uid://cgydfam71jxr0"]
+
+[ext_resource type="Texture2D" uid="uid://bmmgsm68ul7tu" path="res://Resources/Graphics/Carpet Tiles/White Tile Test.png" id="1_y6ohg"]
+[ext_resource type="Texture2D" uid="uid://skiccybgephi" path="res://Resources/Graphics/Carpet Tiles/Red Tile Test.png" id="2_nv703"]
+[ext_resource type="Texture2D" uid="uid://cibwfquv1a1jw" path="res://Resources/Graphics/Carpet Tiles/Tile Plain.png" id="3_pwleo"]
+[ext_resource type="Texture2D" uid="uid://c8j0many474y" path="res://Resources/Graphics/Carpet Tiles/Tile A1.png" id="4_yqm5c"]
+[ext_resource type="Texture2D" uid="uid://co6c8knmcfy0j" path="res://Resources/Graphics/Carpet Tiles/Tile A2.png" id="5_qhgvn"]
+[ext_resource type="Texture2D" uid="uid://456mhqmxup45" path="res://Resources/Graphics/Carpet Tiles/Tile A3.png" id="6_yxdyy"]
+[ext_resource type="Texture2D" uid="uid://bdfiefgqljtle" path="res://Resources/Graphics/Carpet Tiles/Tile A4.png" id="7_3tfla"]
+[ext_resource type="Texture2D" uid="uid://chtgmq3jg20l4" path="res://Resources/Graphics/Carpet Tiles/Tile A5.png" id="8_t5nqp"]
+[ext_resource type="Texture2D" uid="uid://brv1v102tlv1g" path="res://Resources/Graphics/Carpet Tiles/Tile A6.png" id="9_i4j5s"]
+[ext_resource type="Texture2D" uid="uid://ckfhvwb7woqrp" path="res://Resources/Graphics/Carpet Tiles/Tile A7.png" id="10_qcwfb"]
+[ext_resource type="Texture2D" uid="uid://11bvkni2nxy3" path="res://Resources/Graphics/Carpet Tiles/Tile A8.png" id="11_4m7se"]
+[ext_resource type="Texture2D" uid="uid://crmmvmyyysc87" path="res://Resources/Graphics/Carpet Tiles/Tile A9.png" id="12_11t60"]
+[ext_resource type="Texture2D" uid="uid://dead4elovqh7v" path="res://Resources/Graphics/Carpet Tiles/Tile B.png" id="13_3vgjx"]
+[ext_resource type="Texture2D" uid="uid://catc4rq6hgn2s" path="res://Resources/Graphics/Carpet Tiles/Tile C1.png" id="14_pfa1t"]
+[ext_resource type="Texture2D" uid="uid://c525r324l45nj" path="res://Resources/Graphics/Carpet Tiles/Tile C2.png" id="15_gbq5y"]
+[ext_resource type="Texture2D" uid="uid://bsqeq7spgwi3r" path="res://Resources/Graphics/Carpet Tiles/Tile D1.png" id="16_wk8r0"]
+[ext_resource type="Texture2D" uid="uid://dyh10ulgmwkq6" path="res://Resources/Graphics/Carpet Tiles/Tile D2.png" id="17_k65n8"]
+[ext_resource type="Texture2D" uid="uid://d2h0ejmqboyf4" path="res://Resources/Graphics/Carpet Tiles/Tile D3.png" id="18_7ak0v"]
+[ext_resource type="Texture2D" uid="uid://c2aj2rjvkdt30" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 1.png" id="19_5cd5l"]
+[ext_resource type="Texture2D" uid="uid://ct6r03ewju8xy" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 2.png" id="20_3jkd5"]
+[ext_resource type="Texture2D" uid="uid://cgvdd3ss4jr4h" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 3.png" id="21_km3ep"]
+[ext_resource type="Texture2D" uid="uid://bcctnd07uoji3" path="res://Resources/Graphics/Carpet Tiles/Tile Big Gap 4.png" id="22_gcxi8"]
+[ext_resource type="Texture2D" uid="uid://sedc5y5q86qa" path="res://Resources/Graphics/Carpet Tiles/Tile Small Gap.png" id="23_r3ml7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8m43"]
+albedo_texture = ExtResource("1_y6ohg")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xcqin"]
+material = SubResource("StandardMaterial3D_b8m43")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqqwl"]
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mntb3"]
+albedo_texture = ExtResource("2_nv703")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_14dt0"]
+material = SubResource("StandardMaterial3D_mntb3")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2gcr"]
+albedo_texture = ExtResource("3_pwleo")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a2waw"]
+material = SubResource("StandardMaterial3D_t2gcr")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyujx"]
+albedo_texture = ExtResource("4_yqm5c")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hcvrs"]
+material = SubResource("StandardMaterial3D_jyujx")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g0pu"]
+albedo_texture = ExtResource("5_qhgvn")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b5lv6"]
+material = SubResource("StandardMaterial3D_6g0pu")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bexb5"]
+albedo_texture = ExtResource("6_yxdyy")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kgh81"]
+material = SubResource("StandardMaterial3D_bexb5")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14ahp"]
+albedo_texture = ExtResource("7_3tfla")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_akfsi"]
+material = SubResource("StandardMaterial3D_14ahp")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j30sh"]
+albedo_texture = ExtResource("8_t5nqp")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j47n5"]
+material = SubResource("StandardMaterial3D_j30sh")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjl7d"]
+albedo_texture = ExtResource("9_i4j5s")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o5ig2"]
+material = SubResource("StandardMaterial3D_pjl7d")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yr0ob"]
+albedo_texture = ExtResource("10_qcwfb")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iv13m"]
+material = SubResource("StandardMaterial3D_yr0ob")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4n3gu"]
+albedo_texture = ExtResource("11_4m7se")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2ksxw"]
+material = SubResource("StandardMaterial3D_4n3gu")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tojjj"]
+albedo_texture = ExtResource("12_11t60")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ubssb"]
+material = SubResource("StandardMaterial3D_tojjj")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvy3v"]
+albedo_texture = ExtResource("13_3vgjx")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a6sbq"]
+material = SubResource("StandardMaterial3D_pvy3v")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s1s0"]
+albedo_texture = ExtResource("14_pfa1t")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lthay"]
+material = SubResource("StandardMaterial3D_7s1s0")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r34xm"]
+albedo_texture = ExtResource("15_gbq5y")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_43ghf"]
+material = SubResource("StandardMaterial3D_r34xm")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moogd"]
+albedo_texture = ExtResource("16_wk8r0")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gp2r2"]
+material = SubResource("StandardMaterial3D_moogd")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5gbd"]
+albedo_texture = ExtResource("17_k65n8")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_27di3"]
+material = SubResource("StandardMaterial3D_i5gbd")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxe0l"]
+albedo_texture = ExtResource("18_7ak0v")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3qvoy"]
+material = SubResource("StandardMaterial3D_uxe0l")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i64ap"]
+transparency = 1
+albedo_texture = ExtResource("19_5cd5l")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gm86v"]
+material = SubResource("StandardMaterial3D_i64ap")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w32wg"]
+size = Vector3(0.895264, 0.05, 0.1698)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rb0hc"]
+size = Vector3(0.163574, 0.05, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2mjf"]
+transparency = 1
+albedo_texture = ExtResource("20_3jkd5")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f5vuq"]
+material = SubResource("StandardMaterial3D_y2mjf")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0j0s"]
+size = Vector3(0.942261, 0.05, 0.1698)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71uju"]
+size = Vector3(0.169617, 0.05, 0.967224)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8rig"]
+transparency = 1
+albedo_texture = ExtResource("21_km3ep")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_msdpk"]
+material = SubResource("StandardMaterial3D_h8rig")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c5wma"]
+size = Vector3(0.171722, 0.05, 0.979553)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25yur"]
+size = Vector3(0.924316, 0.05, 0.122284)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4k65"]
+transparency = 1
+albedo_texture = ExtResource("22_gcxi8")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_asw83"]
+material = SubResource("StandardMaterial3D_l4k65")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7sof2"]
+size = Vector3(0.937378, 0.05, 0.130402)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4u7ng"]
+size = Vector3(0.198242, 0.05, 0.997986)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhuyn"]
+transparency = 1
+albedo_texture = ExtResource("23_r3ml7")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ow22d"]
+material = SubResource("StandardMaterial3D_lhuyn")
+size = Vector2(1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="White Tile" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xcqin")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="White Tile"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="White Tile/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Red Tile" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_14dt0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Red Tile"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Red Tile/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet Plain" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_a2waw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet Plain"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet Plain/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A1" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_hcvrs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_b5lv6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A3" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_kgh81")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A4" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_akfsi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A5" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_j47n5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A6" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_o5ig2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A7" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_iv13m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A8" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2ksxw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet A9" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ubssb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet A9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet A9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet B" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_a6sbq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet B"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet B/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet C1" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_lthay")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet C1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet C1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet C2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_43ghf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet C2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet C2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet D1" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_gp2r2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet D1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet D1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_27di3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet D2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet D3" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3qvoy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet D3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
+
+[node name="Carpet Big Gap 1" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_gm86v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet Big Gap 1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet Big Gap 1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, -0.4151)
+shape = SubResource("BoxShape3D_w32wg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Carpet Big Gap 1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418213, -0.025, 0)
+shape = SubResource("BoxShape3D_rb0hc")
+
+[node name="Carpet Big Gap 2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_f5vuq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet Big Gap 2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet Big Gap 2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0234985, -0.025, -0.4151)
+shape = SubResource("BoxShape3D_s0j0s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Carpet Big Gap 2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.415192, -0.025, -0.00604945)
+shape = SubResource("BoxShape3D_71uju")
+
+[node name="Carpet Big Gap 3" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_msdpk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet Big Gap 3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet Big Gap 3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.406754, -0.025, -0.0102234)
+shape = SubResource("BoxShape3D_c5wma")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Carpet Big Gap 3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145264, -0.025, 0.439285)
+shape = SubResource("BoxShape3D_25yur")
+
+[node name="Carpet Big Gap 4" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_asw83")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet Big Gap 4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet Big Gap 4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0210571, -0.025, 0.439499)
+shape = SubResource("BoxShape3D_7sof2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Carpet Big Gap 4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.401978, -0.025, -0.00100708)
+shape = SubResource("BoxShape3D_4u7ng")
+
+[node name="Carpet Small Gap" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ow22d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Carpet Small Gap"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carpet Small Gap/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_iqqwl")
