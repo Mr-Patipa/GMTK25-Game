@@ -132,6 +132,15 @@ offset_bottom = 136.0
 theme_override_font_sizes/font_size = 20
 text = "Something Yaddi Yadda, I am a placeholder..."
 
+[node name="F" type="Label" parent="DialogueMenu/Panel"]
+layout_mode = 0
+offset_left = 1165.0
+offset_top = 106.0
+offset_right = 1182.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 25
+text = "F"
+
 [node name="GameOver" type="Control" parent="."]
 visible = false
 layout_mode = 3

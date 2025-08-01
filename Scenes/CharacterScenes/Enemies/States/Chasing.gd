@@ -1,6 +1,7 @@
 extends State
 
-@export var Searching: State
+@export var Attacking: State
+@export var Patrolling: State
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -19,14 +20,17 @@ func stepped(_delta : float): ## process()
 
 
 func renderStepped(_delta : float): ## physics_process()
-	Parent.NavigationAgent.target_position = Parent.PlayerRef.global_position
-	Parent.update_movement()
-	
+	if Parent is AngryEnemy:
+		Parent.NavigationAgent.target_position = Parent.PlayerRef.global_position
+		Parent.update_movement()
 
-	if not Parent.can_see_player():
-		return Searching
+		if (Patrolling != null) and (not Parent.can_see_player(Parent.DetectionRange)):
+			return Patrolling
 		
-	Parent.move_and_slide()
+		if Parent.can_see_player(Parent.AttackRange):
+			return Attacking
+			
+		Parent.move_and_slide()
 	
 
 func handleInputs(_event : InputEvent): ## unhandled_input()

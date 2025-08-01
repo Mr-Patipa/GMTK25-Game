@@ -20,3 +20,5 @@ signal game_ended
 signal dialogue_triggered
 @warning_ignore("unused_signal")
 signal dialogue_sent
+@warning_ignore("unused_signal")
+signal dialogue_name_sent

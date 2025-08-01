@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://xbndsemtrf27"]
+[gd_scene load_steps=12 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
-[ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="2_ckb5c"]
 [ext_resource type="PackedScene" uid="uid://brl8gw21ys46l" path="res://Scenes/Assets/Card Table/CardTable.tscn" id="3_fq3gs"]
 [ext_resource type="MeshLibrary" uid="uid://cv5cf6j2cb7vo" path="res://Resources/Graphics/Wall Tiles/Wall Tiles.tres" id="4_8n5ol"]
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="5_8n5ol"]
@@ -30,10 +29,6 @@ size = Vector3(1.00781, 8.3999, 1)
 
 [node name="Casino" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164878, 0.0169313, -0.100613)
-
-[node name="Player" parent="." instance=ExtResource("2_ckb5c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
 
 [node name="Amnesty Zone" type="Area3D" parent="."]
 
@@ -71,7 +66,7 @@ data = {
 metadata/_editor_floor_ = Vector3(-16, 0, 0)
 
 [node name="Walls" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5292, -0.0169298, 56.0667)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5872, -0.0169298, 56.0671)
 mesh_library = ExtResource("4_8n5ol")
 cell_size = Vector3(1, 1, 1)
 cell_center_x = false

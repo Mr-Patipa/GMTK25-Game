@@ -34,8 +34,9 @@ func _ready() -> void:
 	GameManager.player_saved.connect(playerSaved)
 	GameManager.player_readyed.connect(playerReadyed)
 	GameManager.game_ended.connect(startEnding)
-	GameManager.dialogue_triggered.connect(showDialogue)
-	GameManager.dialogue_sent.connect(changeDialogueText)
+	GameManager.dialogue_triggered.connect(triggerVisibility)
+	GameManager.dialogue_sent.connect(dialogueTextChange)
+	GameManager.dialogue_name_sent.connect(dialogueNameChange)
 	
 	MenuBtn.pressed.connect(func() -> void:
 		get_tree().change_scene_to_file(SceneManager.MAIN_MENU)
@@ -122,10 +123,18 @@ func startEnding() -> void:
 
 
 #region Villain Dialogue Box Related
-func showDialogue() -> void:
-	DialogueMenu.visible = true
+func triggerVisibility() -> void:
+	if DialogueMenu.visible == false:
+		DialogueMenu.visible = true
+	
+	else:
+		DialogueMenu.visible = false
 
-func changeDialogueText(string : String) -> void:
-	Text.text = string
+
+func dialogueTextChange(text : String) -> void:
+	Text.text = text
+
+func dialogueNameChange(text :  String) -> void:
+	NameCard.text = text
 
 #endregion
