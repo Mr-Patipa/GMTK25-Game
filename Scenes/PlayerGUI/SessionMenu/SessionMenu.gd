@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var OptionsMenu : Control
 
 @export_category("Game Status UI")
-@export var InitialGameTime : int = 60
+@export var InitialGameTime : int = 20
 @export var TimerLabel : Label
 @export var GameTimer : Timer
 var CurrentGameTimeLeft : int
@@ -70,8 +70,8 @@ func setUpTimer(TimeAdded : int) -> void:
 
 
 func playerReadyed() -> void:
-	CurrentGameTimeLeft -= 1
 	GameManager.time_change_notified.emit(CurrentGameTimeLeft)
+	
 	GameTimer.set_wait_time(1)
 	GameTimer.start()
 

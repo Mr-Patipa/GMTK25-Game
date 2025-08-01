@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cooltcrctjjn8"]
+[gd_scene load_steps=30 format=3 uid="uid://cooltcrctjjn8"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_0i1l6"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="1_inj1o"]
@@ -17,6 +17,29 @@
 [ext_resource type="PackedScene" uid="uid://bkqo7hpc7vmp1" path="res://Scenes/Testing/Navigation/NavigationPlatform.tscn" id="9_bgqnd"]
 [ext_resource type="PackedScene" uid="uid://0e880xbrhakk" path="res://Scenes/Testing/Navigation/Waypoint.tscn" id="10_72bl1"]
 [ext_resource type="PackedScene" uid="uid://bi2jdyfqbg5bs" path="res://Scenes/CharacterScenes/Villain/villain.tscn" id="16_5fkji"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_5fkji"]
+clip_count = 2
+clip_0/name = &"Background"
+clip_0/stream = ExtResource("4_gm78l")
+clip_0/auto_advance = 0
+clip_1/name = &"Scary"
+clip_1/stream = ExtResource("4_a1fi4")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jrnlp"]
 radius = 4.6181
@@ -57,18 +80,13 @@ glow_enabled = true
 [node name="GlobalSignalBus" type="Node" parent="BrainMatter"]
 script = ExtResource("1_0i1l6")
 
-[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "BGMusic", "ScaryMusic")]
+[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController")]
 script = ExtResource("3_72bl1")
 DeathTimer = NodePath("DeathTimer")
-BGMusic = NodePath("BackgroundMusic")
-ScaryMusic = NodePath("ScaryMusic")
+MusicController = NodePath("MusicController")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
-stream = ExtResource("4_gm78l")
-autoplay = true
-
-[node name="ScaryMusic" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
-stream = ExtResource("4_a1fi4")
+[node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
+stream = SubResource("AudioStreamInteractive_5fkji")
 
 [node name="DeathTimer" type="Timer" parent="BrainMatter/GameStateManager"]
 one_shot = true
@@ -221,7 +239,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.76617, 1.43769, 10.476)
 
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("1_inj1o")]
 World = NodePath("../World")
-InitialGameTime = 11
 
 [editable path="World/Door2/MovableBlock"]
 [editable path="World/WheelOfHope"]
