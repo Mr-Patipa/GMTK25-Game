@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dhjrxyrd8nyjt" path="res://Scenes/CharacterScenes/Enemies/PatrollingEnemy/PatrollingEnemy.gd" id="1_sov2d"]
 [ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_vurqo"]
-[ext_resource type="PackedScene" uid="uid://dujih1lyp6fhe" path="res://Scenes/CharacterScenes/Components/AttackComponent/AttackComponent.tscn" id="3_02gml"]
+[ext_resource type="PackedScene" path="res://Scenes/CharacterScenes/Components/AttackComponent/AttackComponent.tscn" id="3_02gml"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="3_s3ra4"]
 [ext_resource type="Script" uid="uid://bva3qpmeehtm3" path="res://Scenes/CharacterScenes/Enemies/States/Patrolling.gd" id="4_g6783"]
 [ext_resource type="Script" uid="uid://khralxc2b406" path="res://Scenes/CharacterScenes/Enemies/States/Chasing.gd" id="5_0tpva"]
-[ext_resource type="Script" uid="uid://dhjdi07fycq1y" path="res://Scenes/CharacterScenes/Enemies/States/Attacking.gd" id="6_l438u"]
+[ext_resource type="Script" uid="uid://cwgbwgscmg45p" path="res://Scenes/CharacterScenes/Enemies/States/Searching.gd" id="6_l438u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bxgct"]
 size = Vector3(0.477852, 1.42688, 0.226051)
@@ -43,7 +43,5 @@ script = ExtResource("5_0tpva")
 Attacking = NodePath("../Attacking")
 Patrolling = NodePath("../Patrolling")
 
-[node name="Attacking" type="Node" parent="StateMachine" node_paths=PackedStringArray("Chasing", "AttackComponentNode")]
+[node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("6_l438u")
-Chasing = NodePath("../Chasing")
-AttackComponentNode = NodePath("../../AttackComponent")

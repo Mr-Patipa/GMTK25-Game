@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cooltcrctjjn8"]
+[gd_scene load_steps=30 format=3 uid="uid://ydqktbpv3jye"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_0i1l6"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="1_inj1o"]
@@ -14,9 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Blocks&Preasures/preasure_plates.tscn" id="5_m5qtu"]
 [ext_resource type="PackedScene" uid="uid://cy88niwngfhy5" path="res://Scenes/Assets/Keys/key.tscn" id="6_uuo8s"]
 [ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.tscn" id="7_it0ms"]
-[ext_resource type="PackedScene" uid="uid://b7yc42r4yy8kr" path="res://Scenes/CharacterScenes/Components/BulletMaker/BulletMaker.tscn" id="8_b1pwf"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="8_brbg3"]
-[ext_resource type="PackedScene" uid="uid://bjd1nqxjjfm2o" path="res://Scenes/CharacterScenes/Enemies/TurretEnemy/TurretEnemy.tscn" id="8_ys03f"]
 [ext_resource type="PackedScene" uid="uid://bkqo7hpc7vmp1" path="res://Scenes/Testing/Navigation/NavigationPlatform.tscn" id="9_bgqnd"]
 [ext_resource type="PackedScene" uid="uid://0e880xbrhakk" path="res://Scenes/Testing/Navigation/Waypoint.tscn" id="10_72bl1"]
 [ext_resource type="PackedScene" uid="uid://bi2jdyfqbg5bs" path="res://Scenes/CharacterScenes/Villain/villain.tscn" id="16_5fkji"]
@@ -120,33 +118,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360193, 0.82915, 0)
 
 [node name="PatrollingMonster" parent="Casino" node_paths=PackedStringArray("PlayerRef") groups=["Enemy"] instance=ExtResource("3_0i1l6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4825, 0.983069, 8.38621)
-[node name="PatrollingEnemy" parent="World" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("3_0i1l6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -49.463)
-WalkSpeed = 4.0
+WalkSpeed = 5.0
 PlayerRef = NodePath("../Player")
 PatrolPoints = NodePath("../NavigationPlatform/PatrollingMonsterPath")
-
-[node name="AngryEnemy" parent="World" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("7_it0ms")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9395, 1, -59.0331)
-PlayerRef = NodePath("../Player")
 DetectionRange = 30.0
+
+[node name="AngryEnemy" parent="Casino" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("7_it0ms")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.9219, 0.983069, -19.1762)
+PlayerRef = NodePath("../Player")
 
 [node name="NavigationPlatform" parent="Casino" instance=ExtResource("9_bgqnd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.6398, 0.323069, -2.89719)
 
 [node name="PatrollingMonsterPath" type="Node3D" parent="Casino/NavigationPlatform"]
-[node name="TurretEnemy" parent="World" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("8_ys03f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0681, 1, -18.536)
-PlayerRef = NodePath("../Player")
-BulletSpeed = 20.0
-
-[node name="BulletMaker" parent="World" instance=ExtResource("8_b1pwf")]
-
-[node name="Floor" type="CSGBox3D" parent="World"]
-transform = Transform3D(-11, -1.50996e-07, 0, 1.66095e-06, -1, 0, 0, 0, 10, 0, 0, 0)
-use_collision = true
-size = Vector3(5, 0.681152, 5)
-material = SubResource("StandardMaterial3D_5fkji")
 
 [node name="Waypoint" parent="Casino/NavigationPlatform/PatrollingMonsterPath" instance=ExtResource("10_72bl1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0473226, -2.97098)
