@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cek0cytyponfk"]
+
+[ext_resource type="Texture2D" uid="uid://bmmgsm68ul7tu" path="res://Resources/Graphics/Testing/White Tile Test.png" id="1_xcqin"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcqin"]
+albedo_texture = ExtResource("1_xcqin")
+
+[sub_resource type="BoxMesh" id="BoxMesh_a2722"]
+material = SubResource("StandardMaterial3D_xcqin")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0243685, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_a2722")
