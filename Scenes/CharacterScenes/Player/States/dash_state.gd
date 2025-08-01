@@ -6,7 +6,6 @@ extends State
 
 @export var Airborne : State
 var Debounce : bool
-var Dashed : bool
 
 
 #region Main Component of the State Class
@@ -15,8 +14,8 @@ func dependencyInjected() -> void: ## _ready() for states.
 
 
 func stateEnter() -> void: ## Runs whenever the state is changed into.
-	if Parent is Player and not Dashed:
-		Dashed = true
+	if Parent is Player and not Parent.Dashed:
+		Parent.Dashed = true
 		Parent.velocity.y = 0
 
 		Parent.velocity.x = Parent.FacingDirection.x * DashForce
@@ -41,8 +40,7 @@ func renderStepped(_delta : float): ## physics_process()
 		if Parent.velocity == Vector3.ZERO:
 			return Airborne
 		
-		if Parent.is_on_floor():
-			Dashed = false
+
 
 func handleInputs(_event : InputEvent): ## unhandled_input()
 	if Parent is Player:

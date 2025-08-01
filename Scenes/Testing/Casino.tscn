@@ -1,21 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://sydm4wgfgdwb"]
+[gd_scene load_steps=10 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
 [ext_resource type="PackedScene" uid="uid://brl8gw21ys46l" path="res://Scenes/Assets/Card Table/CardTable.tscn" id="3_fq3gs"]
 [ext_resource type="MeshLibrary" uid="uid://cv5cf6j2cb7vo" path="res://Resources/Graphics/Wall Tiles/Wall Tiles.tres" id="4_8n5ol"]
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="5_8n5ol"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fq3gs"]
-size = Vector3(18.931, 2.75391, 18.517)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq3gs"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_8n5ol"]
-material = SubResource("StandardMaterial3D_fq3gs")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uga0m"]
-size = Vector3(2, 0.05, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6owt"]
 albedo_color = Color(1, 0.240886, 0.440402, 1)
@@ -27,23 +15,13 @@ size = Vector3(1, 12, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5jau"]
 size = Vector3(1.00781, 8.3999, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq3gs"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fq3gs"]
+material = SubResource("StandardMaterial3D_fq3gs")
+
 [node name="Casino" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164878, 0.0169313, -0.100613)
-
-[node name="Amnesty Zone" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Amnesty Zone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.540009, 0.376953, 0.784668)
-shape = SubResource("BoxShape3D_fq3gs")
-
-[node name="Respawn Boundary" type="MeshInstance3D" parent="."]
-transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 75, 0, -2, 0)
-mesh = SubResource("PlaneMesh_8n5ol")
-
-[node name="Area3D" type="Area3D" parent="Respawn Boundary"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Respawn Boundary/Area3D"]
-shape = SubResource("BoxShape3D_uga0m")
 
 [node name="Stairs" type="MeshInstance3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 1.33095, -1.33095, 0, 1.33095, 1.33095, 54.79, 2.93808, -52.3756)
@@ -136,3 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.42, 4.27231, 41.7424)
 
 [node name="Slot Machine6" parent="Slot Machine Controller" instance=ExtResource("5_8n5ol")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9851, 2.55542, 34.9029)
+
+[node name="Respawn Boundary" type="MeshInstance3D" parent="."]
+transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 75, 0, -2, 0)
+mesh = SubResource("PlaneMesh_fq3gs")

@@ -6,6 +6,7 @@ extends Node
 @export var MusicController : AudioStreamPlayer
 @export var player : Player
 @export var SpawnPos : Marker3D
+@export var Detector : Area3D
 
 @export_category("End Game Stats")
 @export var TimeCounter : Timer
@@ -20,6 +21,7 @@ func _ready() -> void:
 	GameManager.time_change_notified.connect(playScaryMusic)
 	GameManager.player_saved.connect(playBGMusic)
 	DeathTimer.timeout.connect(func() -> void: GameManager.game_ended.emit())
+	Detector.body_entered.connect(func(_body : Node3D)-> void:player.global_position = SpawnPos.position)
 
 
 func playBGMusic() -> void:
