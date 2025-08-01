@@ -121,3 +121,6 @@ func itsOkay() -> void:
 	TweenFOV = get_tree().create_tween()
 	TweenFOV.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	TweenFOV.tween_property(Camera, "fov", InitialFOV, 1)
+	
+func takeDamage(TakenDamage: int) -> void:
+	Health -= TakenDamage

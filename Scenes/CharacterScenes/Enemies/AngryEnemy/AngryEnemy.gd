@@ -1,21 +1,38 @@
 extends CharacterBody3D
-class_name AngryMonster
+class_name AngryEnemy
 
 @onready var DebugLabel: Label3D = $DebugLabel
 @onready var NavigationAgent: NavigationAgent3D = $NavigationAgent
 @onready var LifeTimer: Timer = $LifeTimer
 
-@export var PlayerRef : Player
-@export var WalkSpeed : float = 10.0
+# Componets
+@onready var AttackComponentNode: AttackComponent = $AttackComponent
+
+@export_group("General")
 @export var LifeTime : float = 30.0
-@export var DetectionRange: float = 100.0
+@export var WalkSpeed : float = 10.0
+
+@export_group("Object References")
+@export var PlayerRef : Player
+
+@export_group("Range Settings")
+@export var DetectionRange: float = 10.0
+@export var AttackRange: float = 2.0
+
+@export_group("Combat")
+@export var Damage: int = 10
+@export var AttackCooldown: float = 2.0
 
 func _ready() -> void:
 	if !PlayerRef:
 		queue_free()
 		
 	LifeTimer.start(LifeTime)
-		
+	
+	# Pass exported values into the attack component
+	AttackComponentNode.Damage = Damage
+	AttackComponentNode.AttackCooldown = AttackCooldown
+	
 func _process(_delta: float) -> void:
 	DebugLabel.text = str(round(LifeTimer.time_left))
 	
@@ -34,12 +51,10 @@ func update_movement() -> void:
 	
 		velocity = Direction * WalkSpeed
 		
-func can_see_player() -> bool:
-	var ParentPos = global_position
-	var PlayerPos = PlayerRef.global_position
+func can_see_player(ViewRange: float) -> bool:
+	var ParentPos: Vector3 = global_position
+	var PlayerPos: Vector3 = PlayerRef.global_position
 	
-	# var Direction = (PlayerRef.global_position - global_position).normalized()
-	## Never Used
 	var Distance = ParentPos.distance_to(PlayerPos)
 	
-	return Distance <= DetectionRange
+	return Distance <= ViewRange
