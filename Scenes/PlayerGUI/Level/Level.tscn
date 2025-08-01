@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cooltcrctjjn8"]
+[gd_scene load_steps=31 format=3 uid="uid://cooltcrctjjn8"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_0i1l6"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="1_inj1o"]
@@ -40,6 +40,9 @@ Vector2i(1, 0): {
 "to_time": 0
 }
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fkji"]
+albedo_color = Color(0.158472, 0.158472, 0.158472, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jrnlp"]
 radius = 4.6181
@@ -113,6 +116,7 @@ transform = Transform3D(1.00121, 0, 0, 0, 1.00121, 0, 0, 0, 1.00121, 0, 1.07841,
 transform = Transform3D(-11, -1.50996e-07, 0, 1.66095e-06, -1, 0, 0, 0, 10, 0, 0, 0)
 use_collision = true
 size = Vector3(5, 0.681152, 5)
+material = SubResource("StandardMaterial3D_5fkji")
 
 [node name="Door" parent="World" instance=ExtResource("3_m5qtu")]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 7, 0, 0)
@@ -231,7 +235,8 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_uu6jn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(1, 0, 0, 0, 0.805784, 0.59221, 0, -0.59221, 0.805784, 0, 0, 0)
+transform = Transform3D(0.788397, 0.364308, -0.495691, 0, 0.805784, 0.59221, 0.615166, -0.466897, 0.635278, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="Villain" parent="Lighting" instance=ExtResource("16_5fkji")]
