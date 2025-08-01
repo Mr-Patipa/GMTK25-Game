@@ -1,11 +1,6 @@
-extends Node
-class_name State
+extends State
 
-@warning_ignore("unused_signal")
-signal state_changed(NextState : State)
-
-var Parent : Node
-var Machine : StateMachine ## The state machine that will be controling this state.
+@export var Searching: State
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -23,10 +18,20 @@ func stepped(_delta : float): ## process()
 	return null
 
 
-func renderStepped(_delta : float): ## physics_process()
-	return null
+func renderStepped(delta : float): ## physics_process()
+	Parent.NavigationAgent.target_position = Parent.PlayerRef.global_position
+	Parent.update_movement()
+	
 
+	if not Parent.can_see_player():
+		return Searching
+		
+	Parent.move_and_slide()
+	
 
 func handleInputs(_event : InputEvent): ## unhandled_input()
 	return null
 #endregion
+
+
+	

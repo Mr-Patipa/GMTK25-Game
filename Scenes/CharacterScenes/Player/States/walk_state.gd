@@ -31,7 +31,6 @@ func renderStepped(_delta : float): ## physics_process()
 		
 		if Direction == Vector2.ZERO:
 			return Idle
-		
 		else:
 			Parent.FacingDirection = Direction
 
