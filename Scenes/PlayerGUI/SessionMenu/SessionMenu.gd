@@ -4,16 +4,38 @@ extends CanvasLayer
 @export var OptionsMenu : Control
 
 @export_category("Game Status UI")
-var InitialGameTime : int = 60
-var CurrentGameTimeLeft : int
+@export var InitialGameTime : int = 60
 @export var TimerLabel : Label
 @export var GameTimer : Timer
+var CurrentGameTimeLeft : int
+
+@export_category("Game Over UI")
+@export var FadeDuration : float = 0.5 # How long it takes to fade to black
+@export var GameOver : Control
+@export var Background : TextureRect
+@export var BestTimeLabel : Label
+@export var MostTimeLabel : Label
+@export var CurrentTimeLabel : Label
+@export var PlayBtn : Button
+@export var MenuBtn : Button
+
+var IsEnding = false
+
 
 func _ready() -> void:
 	CurrentGameTimeLeft = InitialGameTime
 	GameTimer.timeout.connect(changeTimeStatus)
 	GameManager.wheel_was_spun.connect(func() -> void: GameTimer.stop())
-	GameManager.player_readyed.connect(setUpTimer)
+	GameManager.time_updated.connect(setUpTimer)
+	GameManager.player_readyed.connect(playerReadyed)
+	GameManager.game_ended.connect(startEnding)
+	MenuBtn.pressed.connect(func() -> void:
+		get_tree().change_scene_to_file(SceneManager.MAIN_MENU)
+	)
+	
+	PlayBtn.pressed.connect(func() -> void:
+		get_tree().change_scene_to_file(SceneManager.LEVEL)
+	)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -36,9 +58,12 @@ func _on_quit_button_pressed() -> void:
 #region Game Status Related
 func setUpTimer(TimeAdded : int) -> void:
 	CurrentGameTimeLeft += TimeAdded
+	TimerLabel.text = "Time Left: " + str(CurrentGameTimeLeft)
+
+
+func playerReadyed() -> void:
 	GameTimer.set_wait_time(1)
 	GameTimer.start()
-
 
 
 func changeTimeStatus() -> void:
@@ -51,5 +76,33 @@ func changeTimeStatus() -> void:
 		TimerLabel.text = "Game Over"
 		GameManager.time_ran_out.emit()
 	
+	if CurrentGameTimeLeft < 11 and not IsEnding:
+		IsEnding = true
+		GameManager.not_much_time_left.emit()
+		
+	
+	elif CurrentGameTimeLeft >= 11:
+		IsEnding = false
+
+#endregion
+
+
+#region Game Over Related
+var FadeTween : Tween
+
+
+func startEnding() -> void:
+	if FadeTween:
+		FadeTween.kill()
+	
+	GameOver.visible = true
+	GameOver.get_node("Others").visible = false
+	Background.modulate = Color8(00,00,00,00)
+	FadeTween = get_tree().create_tween()
+	FadeTween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	FadeTween.tween_property(Background, "modulate", Color8(00,00,00), FadeDuration)
+	FadeTween.finished.connect(func() -> void:
+		GameOver.get_node("Others").visible = true
+	)
 
 #endregion

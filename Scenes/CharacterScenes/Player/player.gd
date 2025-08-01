@@ -1,18 +1,37 @@
 extends CharacterBody3D
 class_name Player
 
-@export var Mass : float = 80
-@export var Force : float = 5
+@export var Health : float = 100
+@export var Machine : StateMachine
+@export var Death : State
+
+@export_category("Movement Related")
 @export var WalkSpeed : float = 100
 @export var JumpHieght : float = 400
 @export var Gravity : float = 981
-@export var Health : float = 100
+
+@export_category("Dash Related")
+@export var Mass : float = 80
+@export var Force : float = 5
 @export var FacingDirection : Vector2
+
+@export_category("Camera Related")
+@export var CameraSpeed : float = 15
+@export var CameraHeight : float = 20
+@export var CameraOffset : float = 35
 @export var Camera : Camera3D
+var PreviousHeight : float = 0
+
+
+func _ready() -> void:
+	GameManager.time_ran_out.connect(func() -> void:
+		Machine.changeState(Death)
+	)
 
 
 func _physics_process(_delta: float) -> void:
 	pushBlocks()
+
 
 func pushBlocks() -> void:
 	for node in get_slide_collision_count():

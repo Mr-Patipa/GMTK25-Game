@@ -1,6 +1,7 @@
 extends State
 
 @export var Idle : State
+@export var Dash : State
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -22,6 +23,9 @@ func stepped(_delta : float): ## process()
 func renderStepped(_delta : float): ## physics_process()
 	if Parent is Player:
 		Parent.move_and_slide()
+		var LocalHeight : Vector3 = Vector3(Parent.position.x, Parent.CameraHeight + Parent.PreviousHeight, Parent.position.z + Parent.CameraOffset)
+		Parent.Camera.position = lerp(Parent.Camera.position, LocalHeight, Parent.CameraSpeed / 100)
+		
 		if Parent.is_on_floor():
 			return Idle
 		
@@ -34,5 +38,7 @@ func renderStepped(_delta : float): ## physics_process()
 
 
 func handleInputs(_event : InputEvent): ## unhandled_input()
-	return null
+	if Parent is Player:
+		if _event.is_action_pressed("Dash"):
+			return Dash
 #endregion

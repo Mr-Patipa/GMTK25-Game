@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddqkulaxxsn8j"]
+[gd_scene load_steps=11 format=3 uid="uid://ddqkulaxxsn8j"]
 
 [ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
@@ -6,22 +6,28 @@
 [ext_resource type="Script" uid="uid://bt7rpu4f1fqm4" path="res://Scenes/CharacterScenes/Player/States/walk_state.gd" id="4_2o5yx"]
 [ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
 [ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="6_hmrng"]
+[ext_resource type="Script" uid="uid://dfyle68jpytny" path="res://Scenes/CharacterScenes/Player/States/dash_state.gd" id="7_mfnoy"]
+[ext_resource type="Script" uid="uid://bnxq4kmu7v0o0" path="res://Scenes/CharacterScenes/Player/States/death_state.gd" id="8_wdmk3"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hmrng"]
-size = Vector3(1, 1.6, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfnoy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2o5yx"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Camera") groups=["Block", "Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Camera") groups=["Block", "Player"]]
 collision_layer = 2
 script = ExtResource("1_46n4p")
+Machine = NodePath("StateMachine")
+Death = NodePath("StateMachine/Death")
 WalkSpeed = 10.0
 JumpHieght = 25.0
 Gravity = 100.0
+FacingDirection = Vector2(1, 0)
 Camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 8, 12)
+top_level = true
+fov = 37.8493
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -29,7 +35,7 @@ texture = ExtResource("6_hmrng")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-shape = SubResource("BoxShape3D_hmrng")
+shape = SubResource("CapsuleShape3D_mfnoy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -42,21 +48,29 @@ Active = true
 Parent = NodePath("..")
 InitialState = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne", "Dash")]
 script = ExtResource("2_qijfs")
 Walk = NodePath("../Walk")
 Airborne = NodePath("../Airborne")
+Dash = NodePath("../Dash")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne", "Dash")]
 script = ExtResource("4_2o5yx")
 Idle = NodePath("../Idle")
 Airborne = NodePath("../Airborne")
+Dash = NodePath("../Dash")
 
-[node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle")]
+[node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Dash")]
 script = ExtResource("5_8ht00")
 Idle = NodePath("../Idle")
+Dash = NodePath("../Dash")
 
-[node name="Dash" type="Node" parent="StateMachine"]
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne")]
+script = ExtResource("7_mfnoy")
+Airborne = NodePath("../Airborne")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("8_wdmk3")
 
 [node name="Handle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1, 0)

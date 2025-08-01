@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwdthf0ljkwut"]
+[gd_scene load_steps=4 format=3 uid="uid://cwdthf0ljkwut"]
 
 [ext_resource type="Script" uid="uid://dtowoe4wqg5k1" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.gd" id="1_62h2g"]
 [ext_resource type="PackedScene" uid="uid://bg56bjdidficu" path="res://Scenes/UI/GeneralButton/GeneralButton.tscn" id="1_ytcdc"]
 
-[node name="GameMEnu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "TimerLabel", "GameTimer")]
+[sub_resource type="CanvasTexture" id="CanvasTexture_pdmds"]
+
+[node name="GameMEnu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "TimerLabel", "GameTimer", "GameOver", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn")]
 script = ExtResource("1_62h2g")
 OptionsMenu = NodePath("Options")
 TimerLabel = NodePath("GameStatus/TimerLabel")
 GameTimer = NodePath("GameStatus/GameTimer")
+GameOver = NodePath("GameOver")
+Background = NodePath("GameOver/Background")
+BestTimeLabel = NodePath("GameOver/Others/BestTime")
+MostTimeLabel = NodePath("GameOver/Others/MostTime")
+CurrentTimeLabel = NodePath("GameOver/Others/CurrentTime")
+PlayBtn = NodePath("GameOver/Others/Play")
+MenuBtn = NodePath("GameOver/Others/Menu")
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -77,6 +86,121 @@ text = "Time Left: 60"
 horizontal_alignment = 1
 
 [node name="GameTimer" type="Timer" parent="GameStatus"]
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="GameOver"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_pdmds")
+
+[node name="Others" type="Control" parent="GameOver"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameStatus" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 256.0
+offset_right = 1096.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 25
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L1" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 352.0
+offset_right = 1048.0
+offset_bottom = 392.0
+theme_override_font_sizes/font_size = 20
+text = "Best Time Complete"
+vertical_alignment = 1
+
+[node name="L2" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 416.0
+offset_right = 1048.0
+offset_bottom = 456.0
+theme_override_font_sizes/font_size = 20
+text = "Most Time Spent"
+vertical_alignment = 1
+
+[node name="L3" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 480.0
+offset_right = 1048.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 20
+text = "Current Time Spent"
+vertical_alignment = 1
+
+[node name="BestTime" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 352.0
+offset_right = 1192.0
+offset_bottom = 392.0
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MostTime" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 416.0
+offset_right = 1192.0
+offset_bottom = 456.0
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CurrentTime" type="Label" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 480.0
+offset_right = 1192.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 704.0
+offset_right = 896.0
+offset_bottom = 768.0
+text = "Play Again"
+
+[node name="Menu" type="Button" parent="GameOver/Others"]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 704.0
+offset_right = 1152.0
+offset_bottom = 768.0
+text = "Menu"
 
 [connection signal="pressed" from="Options/BackgroundColor/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="Options/BackgroundColor/ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
