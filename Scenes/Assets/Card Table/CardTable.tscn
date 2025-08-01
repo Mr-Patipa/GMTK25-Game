@@ -6,9 +6,13 @@
 size = Vector3(2.87, 1.97562, 1)
 
 [node name="Card Table" type="AnimatableBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
 pixel_size = 0.0625
 shaded = true
 alpha_cut = 1
