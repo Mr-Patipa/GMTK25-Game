@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ydqktbpv3jye"]
+[gd_scene load_steps=31 format=3 uid="uid://ydqktbpv3jye"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_0i1l6"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="1_inj1o"]
@@ -59,16 +59,19 @@ radius = 3.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_brbg3"]
 radius = 2.77051
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1pwf"]
+size = Vector3(180.202, 1, 186.079)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugdyg"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_rl1ky"]
+[sub_resource type="Sky" id="Sky_b1pwf"]
 sky_material = SubResource("ProceduralSkyMaterial_ugdyg")
 
 [sub_resource type="Environment" id="Environment_uu6jn"]
 background_mode = 2
-sky = SubResource("Sky_rl1ky")
+sky = SubResource("Sky_b1pwf")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -79,12 +82,13 @@ glow_enabled = true
 [node name="GlobalSignalBus" type="Node" parent="BrainMatter"]
 script = ExtResource("1_0i1l6")
 
-[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos")]
+[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos", "Detector")]
 script = ExtResource("3_72bl1")
 DeathTimer = NodePath("DeathTimer")
 MusicController = NodePath("MusicController")
 player = NodePath("../../Casino/Player")
 SpawnPos = NodePath("../../Casino/PlayerSpawnPos")
+Detector = NodePath("../../Casino/Detector")
 
 [node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
 stream = SubResource("AudioStreamInteractive_5fkji")
@@ -228,6 +232,14 @@ shape = SubResource("SphereShape3D_brbg3")
 
 [node name="Villain" parent="Casino" instance=ExtResource("16_5fkji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.624015, 1.42076, 4.13952)
+
+[node name="Detector" type="Area3D" parent="Casino"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.17399, 0.272499)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Casino/Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91357, 0, -12.9472)
+shape = SubResource("BoxShape3D_b1pwf")
 
 [node name="Lighting" type="Node3D" parent="."]
 metadata/_edit_lock_ = true

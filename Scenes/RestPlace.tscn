@@ -1,0 +1,231 @@
+[gd_scene load_steps=28 format=3 uid="uid://ds0wpkhs3p0s3"]
+
+[ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_83gf6"]
+[ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="2_r2ljp"]
+[ext_resource type="AudioStream" uid="uid://pjvi81b587y1" path="res://Audio/background_music.ogg" id="3_yry2f"]
+[ext_resource type="AudioStream" uid="uid://c1hgj3p4bl4s0" path="res://Audio/ScaryMusic.mp3" id="4_7ddf7"]
+[ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
+[ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_odlwj"]
+[ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
+[ext_resource type="PackedScene" uid="uid://nbov7vuqy6gf" path="res://Scenes/Assets/Doors/door.tscn" id="12_xhvoo"]
+[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="13_plhmv"]
+[ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Blocks&Preasures/preasure_plates.tscn" id="14_3kmnp"]
+[ext_resource type="PackedScene" uid="uid://bjd1nqxjjfm2o" path="res://Scenes/CharacterScenes/Enemies/TurretEnemy/TurretEnemy.tscn" id="14_acak3"]
+[ext_resource type="PackedScene" uid="uid://75j34cg8udnl" path="res://Scenes/Assets/Blocks&Preasures/movable_block.tscn" id="15_ewvdg"]
+[ext_resource type="PackedScene" uid="uid://cy88niwngfhy5" path="res://Scenes/Assets/Keys/key.tscn" id="16_apd7g"]
+[ext_resource type="PackedScene" uid="uid://bi2jdyfqbg5bs" path="res://Scenes/CharacterScenes/Villain/villain.tscn" id="17_fy07g"]
+[ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="18_wgtvb"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_iusis"]
+clip_count = 2
+clip_0/name = &"Background"
+clip_0/stream = ExtResource("3_yry2f")
+clip_0/auto_advance = 0
+clip_1/name = &"Scary"
+clip_1/stream = ExtResource("4_7ddf7")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6aodd"]
+radius = 4.6181
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggwpe"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tmcsw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6h52f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11yoy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hbps4"]
+radius = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_me66b"]
+radius = 2.77051
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnb83"]
+size = Vector3(180.202, 1, 186.079)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j7wxd"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_rl1ky"]
+sky_material = SubResource("ProceduralSkyMaterial_j7wxd")
+
+[sub_resource type="Environment" id="Environment_y8u7o"]
+background_mode = 2
+sky = SubResource("Sky_rl1ky")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="RestPlace" type="Node3D"]
+
+[node name="BrainMatter" type="Node" parent="."]
+
+[node name="GlobalSignalBus" type="Node" parent="BrainMatter"]
+script = ExtResource("1_83gf6")
+
+[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos", "Detector", "TimeCounter")]
+script = ExtResource("2_r2ljp")
+DeathTimer = NodePath("DeathTimer")
+MusicController = NodePath("MusicController")
+player = NodePath("../../World/Player")
+SpawnPos = NodePath("../../World/PlayerSpawnPos")
+Detector = NodePath("../../World/Detector")
+TimeCounter = NodePath("TimeCounter")
+
+[node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
+stream = SubResource("AudioStreamInteractive_iusis")
+
+[node name="DeathTimer" type="Timer" parent="BrainMatter/GameStateManager"]
+one_shot = true
+
+[node name="TimeCounter" type="Timer" parent="BrainMatter/GameStateManager"]
+
+[node name="World" parent="." instance=ExtResource("5_l1uwp")]
+
+[node name="PlayerSpawnPos" type="Marker3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71364, 0.5, 0)
+
+[node name="Player" parent="World" instance=ExtResource("6_odlwj")]
+transform = Transform3D(0.996259, 0, 0, 0, 0.996259, 0, 0, 0, 0.996259, 5.73606, 0.49301, 0.198298)
+InitialStrength = 0.5
+StrengthIncrease = 0.2
+
+[node name="Camera3D" parent="World/Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 5, 6, 8)
+
+[node name="WheelOfHope" parent="World" instance=ExtResource("7_5th8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
+
+[node name="ArialUI" parent="World/WheelOfHope" index="1"]
+transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
+
+[node name="CollisionShape3D" parent="World/WheelOfHope/BufferZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360193, 0.82915, 0)
+
+[node name="Door" parent="World" instance=ExtResource("12_xhvoo")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 6.83512, -0.0169313, 14.2171)
+
+[node name="ArialUI" parent="World/Door" node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("13_plhmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4271, 0.404989)
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="World/Door/ArialUI"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door/ArialUI/Area3D"]
+shape = SubResource("SphereShape3D_6aodd")
+
+[node name="Door2" parent="World" instance=ExtResource("12_xhvoo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8573, -0.0021291, 15.5107)
+
+[node name="PreasurePlate" parent="World/Door2" node_paths=PackedStringArray("Target", "Detector") instance=ExtResource("14_3kmnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80424, 0.544982, -2.58964)
+Target = NodePath("..")
+Detector = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="World/Door2/PreasurePlate"]
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door2/PreasurePlate/Area3D"]
+transform = Transform3D(1.05, 0, 0, 0, 0.21, 0, 0, 0, 1.05, 0, 0, 0)
+shape = SubResource("BoxShape3D_ggwpe")
+
+[node name="MovableBlock" parent="World/Door2" instance=ExtResource("15_ewvdg")]
+
+[node name="Block" parent="World/Door2/MovableBlock" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97816, 1.01488, 0)
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_tmcsw")
+linear_damp = 100.0
+angular_damp = 10.0
+
+[node name="CollisionShape3D" parent="World/Door2/MovableBlock/Block" index="0"]
+shape = SubResource("BoxShape3D_6h52f")
+
+[node name="Door3" parent="World" instance=ExtResource("12_xhvoo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1791, -0.0169309, 23.3474)
+
+[node name="Key" parent="World/Door3" instance=ExtResource("16_apd7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.31381, 0.653436, 0.865097)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Door3/Key"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Key"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_11yoy")
+
+[node name="ArialUI" parent="World/Door3/Key" node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("13_plhmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78528, 0)
+SelfDestruct = true
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="World/Door3/Key/ArialUI"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Key/ArialUI/Area3D"]
+shape = SubResource("SphereShape3D_hbps4")
+
+[node name="Accepter" parent="World/Door3" node_paths=PackedStringArray("Require", "AreaDetector", "Target") instance=ExtResource("13_plhmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55752, 0.986282)
+SelfDestruct = true
+Require = NodePath("../Key")
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="World/Door3/Accepter"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Accepter/Area3D"]
+shape = SubResource("SphereShape3D_me66b")
+
+[node name="Villain" parent="World" instance=ExtResource("17_fy07g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.624015, 1.42076, 4.13952)
+
+[node name="Detector" type="Area3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.17399, 0.272499)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91357, 0, -12.9472)
+shape = SubResource("BoxShape3D_fnb83")
+
+[node name="TurretEnemy" parent="World" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("14_acak3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1296, 0, -43.8844)
+PlayerRef = NodePath("../Player")
+
+[node name="Lighting" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_y8u7o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.788397, 0.364308, -0.495691, 0, 0.805784, 0.59221, 0.615166, -0.466897, 0.635278, 0, 0, 0)
+shadow_enabled = true
+
+[node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("18_wgtvb")]
+World = NodePath("../World")
+
+[editable path="World/Player"]
+[editable path="World/WheelOfHope"]
+[editable path="World/Door2/MovableBlock"]
