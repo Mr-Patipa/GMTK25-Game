@@ -1,11 +1,6 @@
-extends Node
-class_name State
+extends State
 
-@warning_ignore("unused_signal")
-signal state_changed(NextState : State)
-
-var Parent : Node
-var Machine : StateMachine ## The state machine that will be controling this state.
+@export var Chasing: State 
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -24,9 +19,21 @@ func stepped(_delta : float): ## process()
 
 
 func renderStepped(_delta : float): ## physics_process()
-	return null
-
-
+	if Parent.NavigationAgent.is_navigation_finished(): 
+		if Parent.Waypoints.is_empty():
+			return
+	
+		Parent.NavigationAgent.target_position = Parent.Waypoints[Parent.CurrentWaypoint]
+		Parent.CurrentWaypoint = (Parent.CurrentWaypoint + 1) % Parent.Waypoints.size()
+	
+	print("[at]")
+	Parent.update_movement()
+	Parent.move_and_slide()
+	
+	if Parent.can_see_player():
+		return Chasing
+		
 func handleInputs(_event : InputEvent): ## unhandled_input()
 	return null
+			
 #endregion

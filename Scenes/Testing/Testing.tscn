@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://8wdgjx6el6id" path="res://Resources/Graphics/Testing/Test Character.png" id="2_s084k"]
 [ext_resource type="Script" uid="uid://cubqd5kklfv4l" path="res://Scenes/Testing/Camera3d.gd" id="4_k75jd"]
 [ext_resource type="Texture2D" uid="uid://bmmgsm68ul7tu" path="res://Resources/Graphics/Testing/White Tile Test.png" id="5_31m54"]
-[ext_resource type="Script" uid="uid://c14btblbvvurj" path="res://Scenes/Testing/Item.gd" id="6_dq6ea"]
-[ext_resource type="Texture2D" uid="uid://cpeaka7gwsn6n" path="res://Resources/Graphics/Testing/Key.png" id="7_hyiko"]
+[ext_resource type="Script" path="res://Scenes/Testing/Item.gd" id="6_dq6ea"]
+[ext_resource type="Texture2D" uid="uid://g8wxylkl8tog" path="res://Resources/Graphics/Testing/Key.png" id="7_hyiko"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k75jd"]
 size = Vector3(3, 0.1, 3)

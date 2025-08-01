@@ -4,7 +4,6 @@ class_name StateMachine
 signal is_activated
 signal dependency_injected
 
-
 @export var Active : bool :
 	set(Value):
 		Active = Value

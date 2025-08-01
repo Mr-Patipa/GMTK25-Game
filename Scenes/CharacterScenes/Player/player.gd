@@ -28,7 +28,6 @@ func _ready() -> void:
 		Machine.changeState(Death)
 	)
 
-
 func _physics_process(_delta: float) -> void:
 	pushBlocks()
 
