@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://orp04wp4d834"]
+
+[ext_resource type="Texture2D" uid="uid://bqvkbl6erybsg" path="res://Resources/Graphics/Wall Tiles/Wall 1.png" id="1_fyjh7"]
+[ext_resource type="Texture2D" uid="uid://bnxx33m7y0c72" path="res://Resources/Graphics/Wall Tiles/Wall 2.png" id="2_mwubg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llx6l"]
+albedo_texture = ExtResource("1_fyjh7")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eplv7"]
+material = SubResource("StandardMaterial3D_llx6l")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ykukd"]
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrmyb"]
+albedo_texture = ExtResource("2_mwubg")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_avpit"]
+material = SubResource("StandardMaterial3D_wrmyb")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1r20b"]
+size = Vector3(1, 0.05, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Wall 1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_eplv7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall 1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall 1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_ykukd")
+
+[node name="Wall 2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_avpit")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall 2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall 2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+shape = SubResource("BoxShape3D_1r20b")

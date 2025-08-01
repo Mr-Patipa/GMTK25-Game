@@ -12,7 +12,7 @@ size = Vector3(0.43341, 1.26752, 0.197144)
 
 [node name="AngryEnemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_dh63o")
-WalkSpeed = 5.0
+WalkSpeed = 4.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_vurqo")

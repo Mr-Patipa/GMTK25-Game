@@ -13,6 +13,7 @@ size = Vector3(0.477852, 1.42688, 0.226051)
 
 [node name="PatrollingEnemy" type="CharacterBody3D"]
 script = ExtResource("1_sov2d")
+WalkSpeed = 4.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_vurqo")
