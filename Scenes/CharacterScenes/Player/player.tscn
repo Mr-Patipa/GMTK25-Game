@@ -70,6 +70,7 @@ script = ExtResource("8_wdmk3")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.029, 1.5, -2.86102e-06)
+visible = false
 light_energy = 0.5
 shadow_enabled = true
 spot_range = 2.872
@@ -77,6 +78,7 @@ spot_angle = 4.58
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 2.17146, 2.94091)
+visible = false
 light_energy = 2.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
