@@ -15,11 +15,12 @@ var SpinTween : Tween
 var OnCooldown : bool
 var ChosenSlice : int
 var ExtraTime : int
-var Activated : bool = false
+
 
 func _ready() -> void:
 	CoolTimer.timeout.connect(changeCoolDown)
-	BufferZone.body_exited.connect(checkPlayer)
+	BufferZone.body_entered.connect(func(_body : Node3D) -> void: GameManager.player_saved.emit())
+	BufferZone.body_exited.connect(func(_body : Node3D) -> void: GameManager.player_readyed.emit())
 
 
 func activate(_player : Player) -> void:
@@ -42,6 +43,7 @@ func startSpinning() -> void:
 
 func chooseLandPos() -> float:
 	randomize()
+	@warning_ignore("integer_division")
 	var InitialOffset : float = 360 / SliceCount + (SliceCount / 2)
 	ChosenSlice = randi_range(1, SliceCount)
 	var LandPos : float = (SpinTimes * 360) + (InitialOffset * ChosenSlice)
@@ -51,7 +53,7 @@ func chooseLandPos() -> float:
 
 func checkStatus() -> void:
 	ExtraTime = 0
-	Activated = false
+	
 	
 	CoolTimer.set_wait_time(CooldownTime)
 	CoolTimer.start()
@@ -73,9 +75,3 @@ func TimeRandomizer() -> float:
 	randomize()
 	var Value : float = randf_range(SpinDuration - 0.4, SpinDuration + 0.2)
 	return Value
-
-
-func checkPlayer(body : Node3D) -> void:
-	if body is Player and not Activated:
-		Activated = true
-		GameManager.player_readyed.emit()

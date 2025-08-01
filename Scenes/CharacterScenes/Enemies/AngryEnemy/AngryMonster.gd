@@ -16,7 +16,7 @@ func _ready() -> void:
 		
 	LifeTimer.start(LifeTime)
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	DebugLabel.text = str(round(LifeTimer.time_left))
 	
 func _on_life_timer_timeout() -> void:
@@ -38,7 +38,8 @@ func can_see_player() -> bool:
 	var ParentPos = global_position
 	var PlayerPos = PlayerRef.global_position
 	
-	var Direction = (PlayerRef.global_position - global_position).normalized()
+	# var Direction = (PlayerRef.global_position - global_position).normalized()
+	## Never Used
 	var Distance = ParentPos.distance_to(PlayerPos)
 	
 	return Distance <= DetectionRange

@@ -18,7 +18,7 @@ func stepped(_delta : float): ## process()
 	return null
 
 
-func renderStepped(delta : float): ## physics_process()
+func renderStepped(_delta : float): ## physics_process()
 	Parent.NavigationAgent.target_position = Parent.PlayerRef.global_position
 	Parent.update_movement()
 	

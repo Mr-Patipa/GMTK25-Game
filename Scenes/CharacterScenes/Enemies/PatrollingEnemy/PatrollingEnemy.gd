@@ -27,8 +27,9 @@ func _createWaypoints() -> void:
 	for child in get_node(PatrolPoints).get_children():
 		Waypoints.append(child.global_position)
 		
-func _process(delta: float) -> void:
-	print(state_machine.CurrentState)
+func _process(_delta: float) -> void:
+	#print(state_machine.CurrentState)
+	pass
 	
 # Updates movement for Navigation
 # Using on States
@@ -46,7 +47,8 @@ func can_see_player() -> bool:
 	var ParentPos = global_position
 	var PlayerPos = PlayerRef.global_position
 	
-	var Direction = (PlayerRef.global_position - global_position).normalized()
+	# var Direction = (PlayerRef.global_position - global_position).normalized()
+	## Never Used
 	var Distance = ParentPos.distance_to(PlayerPos)
 	
 	return Distance <= DetectionRange

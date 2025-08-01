@@ -18,8 +18,12 @@ var CurrentGameTimeLeft : int
 @export var CurrentTimeLabel : Label
 @export var PlayBtn : Button
 @export var MenuBtn : Button
-
 var IsEnding = false
+
+@export_category("Dialogue Menu related")
+@export var DialogueMenu : Control
+@export var NameCard : Label
+@export var Text : Label
 
 
 func _ready() -> void:
@@ -27,8 +31,12 @@ func _ready() -> void:
 	GameTimer.timeout.connect(changeTimeStatus)
 	GameManager.wheel_was_spun.connect(func() -> void: GameTimer.stop())
 	GameManager.time_updated.connect(setUpTimer)
+	GameManager.player_saved.connect(playerSaved)
 	GameManager.player_readyed.connect(playerReadyed)
 	GameManager.game_ended.connect(startEnding)
+	GameManager.dialogue_triggered.connect(showDialogue)
+	GameManager.dialogue_sent.connect(changeDialogueText)
+	
 	MenuBtn.pressed.connect(func() -> void:
 		get_tree().change_scene_to_file(SceneManager.MAIN_MENU)
 	)
@@ -62,14 +70,19 @@ func setUpTimer(TimeAdded : int) -> void:
 
 
 func playerReadyed() -> void:
+	CurrentGameTimeLeft -= 1
+	GameManager.time_change_notified.emit(CurrentGameTimeLeft)
 	GameTimer.set_wait_time(1)
 	GameTimer.start()
 
+func playerSaved() -> void:
+	GameTimer.stop()
 
 func changeTimeStatus() -> void:
 	if CurrentGameTimeLeft > 0:
 		CurrentGameTimeLeft -= 1
 		TimerLabel.text = "Time Left: " + str(CurrentGameTimeLeft)
+		GameManager.time_change_notified.emit(CurrentGameTimeLeft)
 	
 	else:
 		GameTimer.stop()
@@ -104,5 +117,15 @@ func startEnding() -> void:
 	FadeTween.finished.connect(func() -> void:
 		GameOver.get_node("Others").visible = true
 	)
+
+#endregion
+
+
+#region Villain Dialogue Box Related
+func showDialogue() -> void:
+	DialogueMenu.visible = true
+
+func changeDialogueText(string : String) -> void:
+	Text.text = string
 
 #endregion

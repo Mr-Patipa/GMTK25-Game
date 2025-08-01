@@ -5,7 +5,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pdmds"]
 
-[node name="GameMEnu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "TimerLabel", "GameTimer", "GameOver", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn")]
+[node name="GameMEnu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "TimerLabel", "GameTimer", "GameOver", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text")]
 script = ExtResource("1_62h2g")
 OptionsMenu = NodePath("Options")
 TimerLabel = NodePath("GameStatus/TimerLabel")
@@ -17,6 +17,9 @@ MostTimeLabel = NodePath("GameOver/Others/MostTime")
 CurrentTimeLabel = NodePath("GameOver/Others/CurrentTime")
 PlayBtn = NodePath("GameOver/Others/Play")
 MenuBtn = NodePath("GameOver/Others/Menu")
+DialogueMenu = NodePath("DialogueMenu")
+NameCard = NodePath("DialogueMenu/Panel/NameCard")
+Text = NodePath("DialogueMenu/Panel/Text")
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -86,6 +89,48 @@ text = "Time Left: 60"
 horizontal_alignment = 1
 
 [node name="GameTimer" type="Timer" parent="GameStatus"]
+
+[node name="DialogueMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="DialogueMenu"]
+custom_minimum_size = Vector2(1200, 150)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -496.0
+offset_top = -168.0
+offset_right = 504.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NameCard" type="Label" parent="DialogueMenu/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 496.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 25
+text = "The Devil"
+
+[node name="Text" type="Label" parent="DialogueMenu/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 56.0
+offset_right = 1172.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 20
+text = "Something Yaddi Yadda, I am a placeholder..."
 
 [node name="GameOver" type="Control" parent="."]
 visible = false

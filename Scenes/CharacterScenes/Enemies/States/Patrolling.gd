@@ -26,7 +26,7 @@ func renderStepped(_delta : float): ## physics_process()
 		Parent.NavigationAgent.target_position = Parent.Waypoints[Parent.CurrentWaypoint]
 		Parent.CurrentWaypoint = (Parent.CurrentWaypoint + 1) % Parent.Waypoints.size()
 	
-	print("[at]")
+	#print("[at]")
 	Parent.update_movement()
 	Parent.move_and_slide()
 	

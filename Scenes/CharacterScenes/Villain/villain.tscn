@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi2jdyfqbg5bs"]
+
+[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_dr31a"]
+[ext_resource type="Script" uid="uid://befnwntklwahb" path="res://Scenes/CharacterScenes/Villain/interaction_controller.gd" id="1_npxie"]
+[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="2_6gjdc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lp2y0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_npxie"]
+radius = 1.91891
+
+[node name="Villain" type="CharacterBody3D"]
+
+[node name="InteractionController" type="Node3D" parent="." node_paths=PackedStringArray("ArialPrompt")]
+script = ExtResource("1_npxie")
+ArialPrompt = NodePath("../ArialUI")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_dr31a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_lp2y0")
+
+[node name="ArialUI" parent="." node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("2_6gjdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11157, 0)
+AreaDetector = NodePath("Area3D")
+Target = NodePath("../InteractionController")
+
+[node name="Area3D" type="Area3D" parent="ArialUI"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArialUI/Area3D"]
+shape = SubResource("SphereShape3D_npxie")

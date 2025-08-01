@@ -1,11 +1,13 @@
 extends Node3D
 class_name ArialUI
 
+@export var Disabled : bool = false
 @export var SelfDestruct : bool = false
 @export var Require : Interactable
 @export var AreaDetector : Area3D
 @export var Target : Interactable
 @export var Screen : MeshInstance3D
+
 
 var Clickable : bool = false
 var player : Player
@@ -29,7 +31,7 @@ func onBodyExited(body: Node3D) -> void:
 		player = body
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Clickable and event.is_action_pressed("Interact"):
+	if Clickable and event.is_action_pressed("Interact") and not Disabled:
 		if Require != null:
 			if Require.get_parent().get_parent() is Player:
 				Target.activate(player)

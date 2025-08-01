@@ -3,44 +3,38 @@
 [ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
 [ext_resource type="Script" uid="uid://ccl1hetvxpdlh" path="res://Scenes/CharacterScenes/Player/States/idle_state.gd" id="2_qijfs"]
+[ext_resource type="Texture2D" uid="uid://8wdgjx6el6id" path="res://Resources/Graphics/Testing/Test Character.png" id="2_xm3sw"]
 [ext_resource type="Script" uid="uid://bt7rpu4f1fqm4" path="res://Scenes/CharacterScenes/Player/States/walk_state.gd" id="4_2o5yx"]
 [ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
-[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="6_hmrng"]
 [ext_resource type="Script" uid="uid://dfyle68jpytny" path="res://Scenes/CharacterScenes/Player/States/dash_state.gd" id="7_mfnoy"]
 [ext_resource type="Script" uid="uid://bnxq4kmu7v0o0" path="res://Scenes/CharacterScenes/Player/States/death_state.gd" id="8_wdmk3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfnoy"]
+radius = 0.2
+height = 1.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2o5yx"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnhwv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Camera") groups=["Block", "Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Camera", "CShakeOffsetTimer") groups=["Block", "Player"]]
 collision_layer = 2
 script = ExtResource("1_46n4p")
 Machine = NodePath("StateMachine")
 Death = NodePath("StateMachine/Death")
-WalkSpeed = 10.0
-JumpHieght = 25.0
-Gravity = 100.0
+WalkSpeed = 5.0
+JumpHieght = 9.81
+Gravity = 50.0
 FacingDirection = Vector2(1, 0)
+CameraHeight = 8.0
+CameraOffset = 7.0
 Camera = NodePath("Camera3D")
+CShakeOffsetTimer = NodePath("Camera3D/ShakeOffsetTimer")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 8, 12)
+transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 0, 6, 8)
 top_level = true
-fov = 37.8493
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-texture = ExtResource("6_hmrng")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-shape = SubResource("CapsuleShape3D_mfnoy")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_2o5yx")
+[node name="ShakeOffsetTimer" type="Timer" parent="Camera3D"]
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Parent", "InitialState")]
 script = ExtResource("1_lg7rm")
@@ -67,10 +61,42 @@ Dash = NodePath("../Dash")
 
 [node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne")]
 script = ExtResource("7_mfnoy")
+DashForce = 5.0
+Decceleration = 5.0
 Airborne = NodePath("../Airborne")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_wdmk3")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 2.17146, 2.94091)
+visible = false
+light_energy = 2.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.34202, 0.939693, 0, -0.939693, -0.34202, 0, 0.0960252, 1.03586)
+visible = false
+light_energy = 0.5
+shadow_enabled = true
+spot_range = 2.872
+spot_angle = 47.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0.449847, 0)
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_xm3sw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_mfnoy")
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.190875, 0, 0, 0, 0.022186, 0, 0, 0, 0.218658, 0, 0.00311631, 0)
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_vnhwv")
+skeleton = NodePath("")
+
 [node name="Handle" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.5, 0)
