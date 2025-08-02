@@ -43,10 +43,12 @@ func spawn_bartenders():
 	
 	for p in right_pos:
 		var new_point = rightSpawns.curve.sample_baked(p*rightSpawns.curve.get_baked_length())
-		new_point = Vector3(rightSpawns.position.x, rightSpawns.position.y+1.1, new_point.z)
+		new_point = rightSpawns.to_global(new_point)
+		print(new_point)
+		new_point = Vector3(rightSpawns.global_position.x, rightSpawns.global_position.y+1.1, new_point.z)
 		var new_bartender = Bartender.instantiate()
 
-		new_bartender.position = new_point
+		new_bartender.global_position = new_point
 		self.add_child(new_bartender)
 		
 		new_bartender.target = (Vector3($"Left Gutter".global_position.x+50,
@@ -58,10 +60,11 @@ func spawn_bartenders():
 		
 	for p in left_pos:
 		var new_point = leftSpawns.curve.sample_baked(p*leftSpawns.curve.get_baked_length())
-		new_point = Vector3(leftSpawns.position.x, leftSpawns.position.y+1.1, new_point.z)
+		new_point = leftSpawns.to_global(new_point)
+		new_point = Vector3(leftSpawns.global_position.x, leftSpawns.global_position.y+1.1, new_point.z)
 		var new_bartender = Bartender.instantiate()
 		
-		new_bartender.position = new_point
+		new_bartender.global_position = new_point
 		self.add_child(new_bartender)
 
 		new_bartender.target = (Vector3($"Right Gutter".global_position.x-50,

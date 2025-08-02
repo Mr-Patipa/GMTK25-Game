@@ -109,10 +109,10 @@ point_count = 2
 size = Vector3(25, 25, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rbrrp"]
-size = Vector3(3.1571, 1, 164.835)
+size = Vector3(3.1571, 1, 197.191)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0or0"]
-size = Vector3(3.1571, 1, 160.059)
+size = Vector3(3.1571, 1, 202.549)
 
 [sub_resource type="Curve3D" id="Curve3D_pjrpw"]
 _data = {
@@ -352,7 +352,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5173, 12.0527, -39.2076)
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bar Area Controller/Right Gutter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07855, 0, 74.408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07855, 0, 58.2297)
 shape = SubResource("BoxShape3D_rbrrp")
 
 [node name="Left Gutter" type="Area3D" parent="Bar Area Controller"]
@@ -360,7 +360,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.3303, 11.343, -37.9743)
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bar Area Controller/Left Gutter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51565, 0, 72.0202)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51565, 0, 50.7752)
 shape = SubResource("BoxShape3D_l0or0")
 
 [node name="Left Spawns" type="Path3D" parent="Bar Area Controller"]
