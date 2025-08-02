@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://sydm4wgfgdwb"]
+[gd_scene load_steps=33 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
 [ext_resource type="Script" uid="uid://bfpoebxwnbgmm" path="res://Scenes/Assets/Card Table/PokerPitController.gd" id="3_8n5ol"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="5_8n5ol"]
 [ext_resource type="Script" uid="uid://dy75nfox4iwx8" path="res://Scenes/Assets/Slot Machine/SlotMachineController.gd" id="5_s6owt"]
 [ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_uga0m"]
+[ext_resource type="PackedScene" uid="uid://b53icxys2o4wc" path="res://Scenes/Assets/Item/Item.tscn" id="7_ir4eo"]
+[ext_resource type="PackedScene" uid="uid://kpittpdtrxen" path="res://Scenes/CharacterScenes/Enemies/Bartender/Bartender.tscn" id="8_bbas2"]
+[ext_resource type="Script" uid="uid://dxua7tjjm5fxe" path="res://Scenes/Testing/BarAreaController.gd" id="8_rbrrp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6owt"]
 albedo_color = Color(1, 0.240886, 0.440402, 1)
@@ -104,6 +107,26 @@ point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ir4eo"]
 size = Vector3(25, 25, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rbrrp"]
+size = Vector3(3.1571, 1, 197.191)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l0or0"]
+size = Vector3(3.1571, 1, 202.549)
+
+[sub_resource type="Curve3D" id="Curve3D_pjrpw"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_trv1x"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq3gs"]
 albedo_color = Color(0, 0, 0, 1)
@@ -315,6 +338,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 5, 40)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Slot Machine Controller/Area3D"]
 shape = SubResource("BoxShape3D_ir4eo")
+
+[node name="Item" parent="Slot Machine Controller" instance=ExtResource("7_ir4eo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.998, 0.5, 50)
+visible = false
+
+[node name="Bar Area Controller" type="Node" parent="."]
+script = ExtResource("8_rbrrp")
+Bartender = ExtResource("8_bbas2")
+
+[node name="Right Gutter" type="Area3D" parent="Bar Area Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5173, 12.0527, -39.2076)
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bar Area Controller/Right Gutter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07855, 0, 58.2297)
+shape = SubResource("BoxShape3D_rbrrp")
+
+[node name="Left Gutter" type="Area3D" parent="Bar Area Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.3303, 11.343, -37.9743)
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bar Area Controller/Left Gutter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51565, 0, 50.7752)
+shape = SubResource("BoxShape3D_l0or0")
+
+[node name="Left Spawns" type="Path3D" parent="Bar Area Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.159, 11.228, -43.902)
+curve = SubResource("Curve3D_pjrpw")
+
+[node name="Right Spawns" type="Path3D" parent="Bar Area Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1593, 11.2281, -43.9018)
+curve = SubResource("Curve3D_trv1x")
 
 [node name="Respawn Boundary" type="MeshInstance3D" parent="."]
 transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 75, 0, -2, 0)

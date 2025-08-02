@@ -28,3 +28,7 @@ func assignNumber(num: int):
 
 func _on_text_timer_timeout() -> void:
 	$"Order Number".visible = false
+
+
+func _on_interactable_slot_machine_interaction() -> void:
+	self.activate()
