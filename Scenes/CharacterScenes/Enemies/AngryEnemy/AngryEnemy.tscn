@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcp1e5mn1rk67"]
 
-[ext_resource type="Script" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.gd" id="1_dh63o"]
+[ext_resource type="Script" uid="uid://pr13mgo6vkqx" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.gd" id="1_dh63o"]
 [ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_vurqo"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="3_s3ra4"]
-[ext_resource type="PackedScene" path="res://Scenes/CharacterScenes/Components/AttackComponent/AttackComponent.tscn" id="3_y5ma2"]
+[ext_resource type="PackedScene" uid="uid://dujih1lyp6fhe" path="res://Scenes/CharacterScenes/Components/AttackComponent/AttackComponent.tscn" id="3_y5ma2"]
 [ext_resource type="Script" uid="uid://cwgbwgscmg45p" path="res://Scenes/CharacterScenes/Enemies/States/Searching.gd" id="5_o722m"]
 [ext_resource type="Script" uid="uid://khralxc2b406" path="res://Scenes/CharacterScenes/Enemies/States/Chasing.gd" id="6_0ks3a"]
 
