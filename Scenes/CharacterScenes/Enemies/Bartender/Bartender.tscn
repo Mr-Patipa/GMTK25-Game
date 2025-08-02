@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://kpittpdtrxen"]
+[gd_scene load_steps=4 format=3 uid="uid://kpittpdtrxen"]
 
+[ext_resource type="Script" uid="uid://c3i0dfw7l01qa" path="res://Scenes/CharacterScenes/Enemies/Bartender/Bartender.gd" id="1_ae5my"]
 [ext_resource type="Texture2D" uid="uid://cupsjst7bnmak" path="res://Resources/Graphics/Sprites/Bartender.jpeg" id="1_geexh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_geexh"]
 size = Vector3(1, 1.88779, 0.339111)
 
-[node name="Bartender" type="AnimatableBody3D"]
+[node name="Bartender" type="CharacterBody3D"]
+script = ExtResource("1_ae5my")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0625
@@ -15,3 +17,10 @@ texture = ExtResource("1_geexh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_geexh")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_geexh")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
