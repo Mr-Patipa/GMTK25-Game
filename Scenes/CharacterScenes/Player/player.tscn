@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddqkulaxxsn8j"]
+[gd_scene load_steps=11 format=3 uid="uid://ddqkulaxxsn8j"]
 
 [ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
@@ -12,6 +12,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfnoy"]
 radius = 0.2
 height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vnhwv"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Camera", "CShakeOffsetTimer") groups=["Block", "Player"]]
 collision_layer = 2
@@ -59,18 +61,25 @@ Dash = NodePath("../Dash")
 
 [node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne")]
 script = ExtResource("7_mfnoy")
-DashForce = 25.0
-Decceleration = 70.0
+DashForce = 5.0
+Decceleration = 5.0
 Airborne = NodePath("../Airborne")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_wdmk3")
 
-[node name="Shadow" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.029, 1.5, -2.86102e-06)
-light_negative = true
-light_specular = 16.0
-spot_angle = 6.0
+visible = false
+light_energy = 0.5
+shadow_enabled = true
+spot_range = 2.872
+spot_angle = 4.58
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 2.17146, 2.94091)
+visible = false
+light_energy = 2.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0.449847, 0)
@@ -82,6 +91,12 @@ texture = ExtResource("2_xm3sw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_mfnoy")
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.190875, 0, 0, 0, 0.022186, 0, 0, 0, 0.218658, 0, 0.00311631, 0)
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_vnhwv")
+skeleton = NodePath("")
 
 [node name="Handle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.5, 0)
