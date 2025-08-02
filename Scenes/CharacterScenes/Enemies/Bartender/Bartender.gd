@@ -2,6 +2,9 @@ extends CharacterBody3D
 class_name Bartender
 
 var target: Vector3
+var charging := false
+
+@export var speed := 5
 
 signal bartenderCollidedWithPlayer
 
@@ -12,12 +15,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if charging:
+		move_and_collide((target - self.global_position).normalized() *speed*delta)
 	
 func charge() -> void:
-	move_and_collide(target)
+	self.charging = true
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	print(body is Player)
 	if body is not Player: return
 	bartenderCollidedWithPlayer.emit()
+
+func checkBarrier(body: Node3D) -> void:
+	if body == self:
+		self.queue_free()
