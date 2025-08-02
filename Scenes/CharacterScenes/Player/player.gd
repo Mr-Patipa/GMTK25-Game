@@ -32,6 +32,7 @@ var CurrentStrength : float = 0
 var TweenFOV : Tween
 var Safe : bool = false
 var CurrentTime : int
+var Dashed : bool
 
 
 func _ready() -> void:

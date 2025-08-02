@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddqkulaxxsn8j"]
+[gd_scene load_steps=13 format=3 uid="uid://ddqkulaxxsn8j"]
 
 [ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
 [ext_resource type="Script" uid="uid://dfyle68jpytny" path="res://Scenes/CharacterScenes/Player/States/dash_state.gd" id="7_mfnoy"]
 [ext_resource type="Script" uid="uid://bnxq4kmu7v0o0" path="res://Scenes/CharacterScenes/Player/States/death_state.gd" id="8_wdmk3"]
+[ext_resource type="AudioStream" uid="uid://dsm6k2h1equh6" path="res://Audio/jump sound.ogg" id="9_bqxua"]
+[ext_resource type="AudioStream" uid="uid://dpl7fw3fiqlpq" path="res://Audio/footsteps.ogg" id="10_vnhwv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfnoy"]
 radius = 0.2
@@ -42,28 +44,32 @@ Active = true
 Parent = NodePath("..")
 InitialState = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne", "Dash")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne", "Dash", "JumpSFX")]
 script = ExtResource("2_qijfs")
 Walk = NodePath("../Walk")
 Airborne = NodePath("../Airborne")
 Dash = NodePath("../Dash")
+JumpSFX = NodePath("../../JumpSFX")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne", "Dash")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne", "Dash", "JumpSFX", "WalkSFX")]
 script = ExtResource("4_2o5yx")
 Idle = NodePath("../Idle")
 Airborne = NodePath("../Airborne")
 Dash = NodePath("../Dash")
+JumpSFX = NodePath("../../JumpSFX")
+WalkSFX = NodePath("../../WalkSFX")
 
 [node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Dash")]
 script = ExtResource("5_8ht00")
 Idle = NodePath("../Idle")
 Dash = NodePath("../Dash")
 
-[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne")]
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne", "JumpSFX")]
 script = ExtResource("7_mfnoy")
 DashForce = 5.0
 Decceleration = 5.0
 Airborne = NodePath("../Airborne")
+JumpSFX = NodePath("../../JumpSFX")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_wdmk3")
@@ -100,3 +106,10 @@ skeleton = NodePath("")
 
 [node name="Handle" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.5, 0)
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_bqxua")
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vnhwv")
+volume_db = 18.0

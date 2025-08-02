@@ -79,12 +79,13 @@ glow_enabled = true
 [node name="GlobalSignalBus" type="Node" parent="BrainMatter"]
 script = ExtResource("1_83gf6")
 
-[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos", "TimeCounter")]
+[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos", "Detector", "TimeCounter")]
 script = ExtResource("2_r2ljp")
 DeathTimer = NodePath("DeathTimer")
 MusicController = NodePath("MusicController")
 player = NodePath("../../World/Player")
 SpawnPos = NodePath("../../World/PlayerSpawnPos")
+Detector = NodePath("../../World/Detector")
 TimeCounter = NodePath("TimeCounter")
 
 [node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
@@ -122,6 +123,10 @@ StrengthIncrease = 0.2
 
 [node name="Camera3D" parent="World/Player" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 5, 6, 8)
+
+[node name="Dash" parent="World/Player/StateMachine" index="3"]
+DashForce = 20.0
+Decceleration = 45.0
 
 [node name="WheelOfHope" parent="World" instance=ExtResource("7_5th8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
