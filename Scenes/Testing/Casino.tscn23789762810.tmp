@@ -323,4 +323,4 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("6_uga0m")]
 
-[connection signal="area_entered" from="Slot Machine Controller/Area3D" to="Slot Machine Controller" method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Slot Machine Controller/Area3D" to="Slot Machine Controller" method="_on_area_3d_body_entered"]

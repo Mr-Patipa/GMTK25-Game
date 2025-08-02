@@ -24,9 +24,7 @@ func assignSlots() -> void:
 		slots.erase(slot)
 		slot.assignNumber(i)
 		await get_tree().create_timer(.5).timeout
-	
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	print(body)
-	if body is not Player: return
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if area.get_parent() is not Player: return
 	self.assignSlots()
