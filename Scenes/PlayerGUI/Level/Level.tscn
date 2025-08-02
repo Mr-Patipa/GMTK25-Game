@@ -113,6 +113,7 @@ transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 
 
 [node name="WheelOfHope" parent="Casino" instance=ExtResource("8_brbg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
+Chaser = ExtResource("7_it0ms")
 
 [node name="ArialUI" parent="Casino/WheelOfHope" index="1"]
 transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
@@ -122,7 +123,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360193, 0.82915, 0)
 
 [node name="PatrollingMonster" parent="Casino" node_paths=PackedStringArray("PlayerRef") groups=["Enemy"] instance=ExtResource("3_0i1l6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4825, 0.983069, 8.38621)
-WalkSpeed = 5.0
 PlayerRef = NodePath("../Player")
 PatrolPoints = NodePath("../NavigationPlatform/PatrollingMonsterPath")
 DetectionRange = 30.0

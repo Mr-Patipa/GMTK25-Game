@@ -13,7 +13,7 @@ class_name TheWheel
 
 @export_category("Enemies Related")
 @export var EnemySpawnPoints : Node3D
-@export var Angry : PackedScene
+@export var Chaser : PackedScene
 
 
 
@@ -67,7 +67,7 @@ func checkStatus() -> void:
 	CoolTimer.start()
 	
 	print(ChosenSlice)
-	var NewEnemy : AngryEnemy = Angry.instantiate()
+	var NewEnemy : ChaserEnemy = Chaser.instantiate()
 	var NewSpawn : Marker3D = EnemySpawnPoints.get_children().pick_random()
 	get_parent().add_child(NewEnemy)
 	NewEnemy.global_position = NewSpawn.global_position
