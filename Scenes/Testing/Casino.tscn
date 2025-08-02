@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://sydm4wgfgdwb"]
+[gd_scene load_steps=24 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
+[ext_resource type="Script" uid="uid://bfpoebxwnbgmm" path="res://Scenes/Assets/PokerPitController.gd" id="3_8n5ol"]
 [ext_resource type="PackedScene" uid="uid://brl8gw21ys46l" path="res://Scenes/Assets/Card Table/CardTable.tscn" id="3_fq3gs"]
 [ext_resource type="MeshLibrary" uid="uid://cv5cf6j2cb7vo" path="res://Resources/Graphics/Wall Tiles/Wall Tiles.tres" id="4_8n5ol"]
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="5_8n5ol"]
+[ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_uga0m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6owt"]
 albedo_color = Color(1, 0.240886, 0.440402, 1)
@@ -32,6 +34,7 @@ _data = {
 point_count = 15
 
 [sub_resource type="Curve3D" id="Curve3D_uga0m"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.058, 0, -44.828, 0, 0, 0, 0, 0, 0, -12.058, 0, -49.77, 0, 0, 0, 0, 0, 0, -12.058, 0, -44.828, 0, 0, 0, 0, 0, 0, -12.058, 0, -40.119),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
@@ -39,6 +42,7 @@ _data = {
 point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_s6owt"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -21.189, 0, -44.582, 0, 0, 0, 0, 0, 0, -16.336, 0, -44.582),
 "tilts": PackedFloat32Array(0, 0)
@@ -56,6 +60,7 @@ _data = {
 point_count = 9
 
 [sub_resource type="Curve3D" id="Curve3D_rbrrp"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.838, 0, -39.87, 0, 0, 0, 0, 0, 0, -28.453, 0, -39.905, 0, 0, 0, 0, 0, 0, -30.706, 0, -41.207, 0, 0, 0, 0, 0, 0, -30.749, 0, -44.488, 0, 0, 0, 0, 0, 0, -28.744, 0, -47.606, 0, 0, 0, 0, 0, 0, -23.945, 0, -48.002, 0, 0, 0, 0, 0, 0, -21.368, 0, -47.37, 0, 0, 0, 0, 0, 0, -21.093, 0, -44.567, 0, 0, 0, 0, 0, 0, -21.573, 0, -41.279),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -63,6 +68,7 @@ _data = {
 point_count = 9
 
 [sub_resource type="Curve3D" id="Curve3D_l0or0"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -34.647, 0, -44.295, 0, 0, 0, 0, 0, 0, -30.46, 0, -44.295),
 "tilts": PackedFloat32Array(0, 0)
@@ -72,6 +78,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_afxkc"]
 
 [sub_resource type="Curve3D" id="Curve3D_votmq"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -39.259, 0, -44.429, 0, 0, 0, 0, 0, 0, -39.259, 0, -40.429, 0, 0, 0, 0, 0, 0, -39.259, 0, -48.563),
 "tilts": PackedFloat32Array(0, 0, 0)
@@ -79,6 +86,7 @@ _data = {
 point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_a8ow1"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -42.056, 0, -43.342, 0, 0, 0, 0, 0, 0, -42.056, 0, -46.005),
 "tilts": PackedFloat32Array(0, 0)
@@ -86,6 +94,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_t0i4m"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -44.172, 0, -47.639, 0, 0, 0, 0, 0, 0, -44.172, 0, -41.459),
 "tilts": PackedFloat32Array(0, 0)
@@ -132,71 +141,93 @@ data = {
 metadata/_editor_floor_ = Vector3(-38, 9, -100)
 
 [node name="Poker Pit Controller" type="Node" parent="."]
+script = ExtResource("3_8n5ol")
 
-[node name="Card Table A" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table A" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.771, 0, -48.153)
+path_follow = NodePath("../Path3D A/PathFollow3D")
 
-[node name="Card Table B" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table B" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.539, 0, -40.979)
+path_follow = NodePath("../Path3D A/PathFollow3D")
 
-[node name="Card Table C" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table C" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.058, 0, -44.828)
+path_follow = NodePath("../Path3D C/PathFollow3D")
 
-[node name="Card Table D" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table D" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.189, 0, -48.153)
+path_follow = NodePath("../Path3D DE/PathFollow3D")
 
-[node name="Card Table E" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table E" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.189, 0, -40.979)
+path_follow = NodePath("../Path3D DE/PathFollow3D")
 
-[node name="Card Table F" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table F" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.945, 0, -48.002)
+path_follow = NodePath("../Path3D F/PathFollow3D")
 
 [node name="Central Card Table" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2031, 0, -44.3462)
+follows_path = false
 
-[node name="Card Table G" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table G" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.838, 0, -39.87)
+path_follow = NodePath("../Path3D G/PathFollow3D")
 
-[node name="Card Table H" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table H" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9062, 1.18241, -46.8694)
+path_follow = NodePath("../Path3D HI/PathFollow3D")
 
-[node name="Card Table I" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table I" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3402, 0, -41.3662)
+path_follow = NodePath("../Path3D HI/PathFollow3D")
 
-[node name="Card Table J" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table J" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.259, 0, -44.429)
+path_follow = NodePath("../Path3D J/PathFollow3D")
 
-[node name="Card Table K" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table K" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.056, 0, -43.342)
+path_follow = NodePath("../Path3D K/PathFollow3D")
 
-[node name="Card Table L" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+[node name="Card Table L" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.172, 0, -47.639)
+path_follow = NodePath("../Path3D L/PathFollow3D")
 
 [node name="Path3D A" type="Path3D" parent="Poker Pit Controller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 curve = SubResource("Curve3D_fq3gs")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D A"]
-transform = Transform3D(-0.971891, 0, -0.235432, 0, 1, 0, 0.235432, 0, -0.971891, -8.771, 0, -48.153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.771, 0, -48.153)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D B" type="Path3D" parent="Poker Pit Controller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 curve = SubResource("Curve3D_8n5ol")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D B"]
-transform = Transform3D(0.9226, 0, -0.385756, 0, 1, 0, 0.385756, 0, 0.9226, -4.539, 0, -40.979)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.539, 0, -40.979)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D C" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_uga0m")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D C"]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -12.058, 0, -44.828)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D DE" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_s6owt")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D DE"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21.189, 0, -44.582)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.189, 0, -44.582)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D E" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_ir4eo")
@@ -207,19 +238,25 @@ curve = SubResource("Curve3D_ir4eo")
 curve = SubResource("Curve3D_bbas2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D F"]
-transform = Transform3D(-0.238188, 0, -0.971219, 0, 1, 0, 0.971219, 0, -0.238188, -23.945, 0, -48.002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.945, 0, -48.002)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D G" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_rbrrp")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D G"]
-transform = Transform3D(0.00758362, 0, 0.999971, 0, 1, 0, -0.999971, 0, 0.00758362, -23.838, 0, -39.87)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.838, 0, -39.87)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D HI" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_l0or0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D HI"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -34.647, 0, -44.295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.647, 0, -44.295)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D I" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_afxkc")
@@ -230,19 +267,25 @@ curve = SubResource("Curve3D_afxkc")
 curve = SubResource("Curve3D_votmq")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D J"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39.259, 0, -44.429)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.259, 0, -44.429)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D K" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_a8ow1")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D K"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.056, 0, -43.342)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Path3D L" type="Path3D" parent="Poker Pit Controller"]
 curve = SubResource("Curve3D_t0i4m")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D L"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -44.172, 0, -47.639)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.172, 0, -47.639)
+rotation_mode = 0
+tilt_enabled = false
 
 [node name="Slot Machine Controller" type="Node" parent="."]
 
@@ -268,3 +311,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9851, 2.55542, 34.9029)
 transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 75, 0, -2, 0)
 mesh = SubResource("PlaneMesh_fq3gs")
 metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("6_uga0m")]

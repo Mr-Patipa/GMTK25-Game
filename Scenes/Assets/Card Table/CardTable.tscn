@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://brl8gw21ys46l"]
+[gd_scene load_steps=4 format=3 uid="uid://brl8gw21ys46l"]
 
+[ext_resource type="Script" uid="uid://dbcsnychpih8m" path="res://Scenes/Assets/Card Table/CardTable.gd" id="1_d346c"]
 [ext_resource type="Texture2D" uid="uid://csmq0dojh61e1" path="res://Resources/Graphics/Sprites/Poker table.png" id="1_dc2l4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8n5ol"]
@@ -9,6 +10,8 @@ size = Vector3(2.87, 1.97562, 1)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+sync_to_physics = false
+script = ExtResource("1_d346c")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
@@ -20,5 +23,4 @@ texture_filter = 0
 texture = ExtResource("1_dc2l4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0650024, -0.0614777, 0)
 shape = SubResource("BoxShape3D_8n5ol")
