@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ds0wpkhs3p0s3"]
+[gd_scene load_steps=29 format=3 uid="uid://ds0wpkhs3p0s3"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_83gf6"]
 [ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="2_r2ljp"]
@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
 [ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_odlwj"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
+[ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.tscn" id="8_7dvjk"]
 [ext_resource type="PackedScene" uid="uid://nbov7vuqy6gf" path="res://Scenes/Assets/Doors/door.tscn" id="12_xhvoo"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="13_plhmv"]
 [ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Blocks&Preasures/preasure_plates.tscn" id="14_3kmnp"]
-[ext_resource type="PackedScene" uid="uid://bjd1nqxjjfm2o" path="res://Scenes/CharacterScenes/Enemies/TurretEnemy/TurretEnemy.tscn" id="14_acak3"]
 [ext_resource type="PackedScene" uid="uid://75j34cg8udnl" path="res://Scenes/Assets/Blocks&Preasures/movable_block.tscn" id="15_ewvdg"]
+[ext_resource type="PackedScene" uid="uid://cy78huobjxgq1" path="res://Scenes/Assets/SlotMachines/slot_machines.tscn" id="16_7dvjk"]
 [ext_resource type="PackedScene" uid="uid://cy88niwngfhy5" path="res://Scenes/Assets/Keys/key.tscn" id="16_apd7g"]
 [ext_resource type="PackedScene" uid="uid://bi2jdyfqbg5bs" path="res://Scenes/CharacterScenes/Villain/villain.tscn" id="17_fy07g"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="18_wgtvb"]
@@ -72,7 +73,7 @@ sky = SubResource("Sky_rl1ky")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="RestPlace" type="Node3D"]
+[node name="Root" type="Node3D"]
 
 [node name="BrainMatter" type="Node" parent="."]
 
@@ -101,6 +102,21 @@ one_shot = true
 [node name="PlayerSpawnPos" type="Marker3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71364, 0.5, 0)
 
+[node name="EnemySpawnPoints" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
+
+[node name="M1" type="Marker3D" parent="World/EnemySpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4906, 2.72378, -19.4311)
+
+[node name="M2" type="Marker3D" parent="World/EnemySpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3373, 2.72378, 3.24068)
+
+[node name="M3" type="Marker3D" parent="World/EnemySpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0645, 2.72378, 20.6854)
+
+[node name="M4" type="Marker3D" parent="World/EnemySpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9588, 2.72378, 29.6218)
+
 [node name="Player" parent="World" instance=ExtResource("6_odlwj")]
 transform = Transform3D(0.996259, 0, 0, 0, 0.996259, 0, 0, 0, 0.996259, 5.73606, 0.49301, 0.198298)
 InitialStrength = 0.5
@@ -109,8 +125,10 @@ StrengthIncrease = 0.2
 [node name="Camera3D" parent="World/Player" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 5, 6, 8)
 
-[node name="WheelOfHope" parent="World" instance=ExtResource("7_5th8o")]
+[node name="WheelOfHope" parent="World" node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("7_5th8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
+EnemySpawnPoints = NodePath("../EnemySpawnPoints")
+Angry = ExtResource("8_7dvjk")
 
 [node name="ArialUI" parent="World/WheelOfHope" index="1"]
 transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
@@ -209,10 +227,6 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91357, 0, -12.9472)
 shape = SubResource("BoxShape3D_fnb83")
 
-[node name="TurretEnemy" parent="World" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("14_acak3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1296, 0, -43.8844)
-PlayerRef = NodePath("../Player")
-
 [node name="Lighting" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -225,6 +239,9 @@ shadow_enabled = true
 
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("18_wgtvb")]
 World = NodePath("../World")
+
+[node name="SlotMachines" parent="." instance=ExtResource("16_7dvjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2859, 0.100002, 0.482087)
 
 [editable path="World/Player"]
 [editable path="World/WheelOfHope"]

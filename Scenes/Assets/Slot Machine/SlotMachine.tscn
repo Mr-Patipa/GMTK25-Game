@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq613sl6t77te"]
+[gd_scene load_steps=6 format=3 uid="uid://bq613sl6t77te"]
 
+[ext_resource type="Script" uid="uid://do3r0yrhor075" path="res://Scenes/Assets/Slot Machine/slot_machine.gd" id="1_54deh"]
 [ext_resource type="Texture2D" uid="uid://bln20uefnbgiv" path="res://Resources/Graphics/Sprites/Slot - Front.png" id="1_savm0"]
+[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="2_p2luo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2luo"]
 size = Vector3(1.42102, 4.02386, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p2luo"]
+height = 6.90283
+radius = 1.6167
+
 [node name="Slot Machine" type="StaticBody3D"]
+script = ExtResource("1_54deh")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
@@ -18,3 +25,15 @@ texture = ExtResource("1_savm0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285034, 0.125641, 0)
 shape = SubResource("BoxShape3D_p2luo")
+
+[node name="ArialUI" parent="." node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("2_p2luo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.92846, 0)
+AreaDetector = NodePath("Area3D")
+Target = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="ArialUI"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArialUI/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45142, 0)
+shape = SubResource("CylinderShape3D_p2luo")
