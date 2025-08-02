@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://lc3rj1jr8na3"]
+
+[ext_resource type="Script" uid="uid://dhjrxyrd8nyjt" path="res://Scenes/CharacterScenes/Enemies/GuardEnemy/GuardEnemy.gd" id="1_sov2d"]
+[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_vurqo"]
+[ext_resource type="Script" uid="uid://det2m5ovvx6m2" path="res://Scenes/CharacterScenes/Components/DamageComponent.gd" id="3_ds4cc"]
+[ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="3_s3ra4"]
+[ext_resource type="Script" uid="uid://d0mibigqd3brv" path="res://Scenes/CharacterScenes/Components/HealthComponent.gd" id="4_2w2po"]
+[ext_resource type="Script" uid="uid://bva3qpmeehtm3" path="res://Scenes/CharacterScenes/Enemies/States/Patrolling.gd" id="4_g6783"]
+[ext_resource type="Script" uid="uid://khralxc2b406" path="res://Scenes/CharacterScenes/Enemies/States/Chasing.gd" id="5_0tpva"]
+[ext_resource type="Script" uid="uid://uhsav0ou5aaj" path="res://Scenes/CharacterScenes/Components/SpeedComponent.gd" id="5_50fx3"]
+[ext_resource type="Script" uid="uid://dhjdi07fycq1y" path="res://Scenes/CharacterScenes/Enemies/States/Damaging.gd" id="7_02gml"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bxgct"]
+size = Vector3(0.477852, 1.24155, 0.226051)
+
+[node name="GuardEnemy" type="CharacterBody3D"]
+script = ExtResource("1_sov2d")
+Speed = 4.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_vurqo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bxgct")
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="."]
+path_max_distance = 5.01
+debug_enabled = true
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25835, 0)
+text = "Guard"
+font_size = 96
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("3_ds4cc")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_2w2po")
+
+[node name="SpeedComponent" type="Node" parent="."]
+script = ExtResource("5_50fx3")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Parent", "InitialState")]
+script = ExtResource("3_s3ra4")
+Active = true
+Parent = NodePath("..")
+InitialState = NodePath("Patrolling")
+
+[node name="Patrolling" type="Node" parent="StateMachine" node_paths=PackedStringArray("Chasing")]
+script = ExtResource("4_g6783")
+Chasing = NodePath("../Chasing")
+
+[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("Damaging", "Patrolling")]
+script = ExtResource("5_0tpva")
+Damaging = NodePath("../Damaging")
+Patrolling = NodePath("../Patrolling")
+
+[node name="Damaging" type="Node" parent="StateMachine" node_paths=PackedStringArray("Chasing")]
+script = ExtResource("7_02gml")
+Chasing = NodePath("../Chasing")
+
+[node name="DamageCooldownTimer" type="Timer" parent="StateMachine/Damaging"]
+
+[connection signal="timeout" from="StateMachine/Damaging/DamageCooldownTimer" to="StateMachine/Damaging" method="_on_damage_cooldown_timer_timeout"]
