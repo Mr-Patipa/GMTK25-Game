@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://kpittpdtrxen"]
+
+[ext_resource type="Texture2D" uid="uid://cupsjst7bnmak" path="res://Resources/Graphics/Sprites/Bartender.jpeg" id="1_geexh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_geexh"]
+size = Vector3(1, 1.88779, 0.339111)
+
+[node name="Bartender" type="AnimatableBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0625
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_geexh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_geexh")
