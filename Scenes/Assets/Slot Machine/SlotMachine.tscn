@@ -51,4 +51,5 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0409421, 0)
 shape = SubResource("CylinderShape3D_avs1u")
 
+[connection signal="SlotMachineInteraction" from="Interactable" to="." method="_on_interactable_slot_machine_interaction"]
 [connection signal="timeout" from="Text Timer" to="." method="_on_text_timer_timeout"]

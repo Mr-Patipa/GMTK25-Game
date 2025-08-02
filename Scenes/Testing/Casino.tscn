@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://sydm4wgfgdwb"]
+[gd_scene load_steps=27 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
 [ext_resource type="Script" uid="uid://bfpoebxwnbgmm" path="res://Scenes/Assets/Card Table/PokerPitController.gd" id="3_8n5ol"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="5_8n5ol"]
 [ext_resource type="Script" uid="uid://dy75nfox4iwx8" path="res://Scenes/Assets/Slot Machine/SlotMachineController.gd" id="5_s6owt"]
 [ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_uga0m"]
+[ext_resource type="PackedScene" uid="uid://b53icxys2o4wc" path="res://Scenes/Assets/Item/Item.tscn" id="7_ir4eo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6owt"]
 albedo_color = Color(1, 0.240886, 0.440402, 1)
@@ -315,6 +316,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 5, 40)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Slot Machine Controller/Area3D"]
 shape = SubResource("BoxShape3D_ir4eo")
+
+[node name="Item" parent="Slot Machine Controller" instance=ExtResource("7_ir4eo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.998, 0.5, 50)
+visible = false
 
 [node name="Respawn Boundary" type="MeshInstance3D" parent="."]
 transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 75, 0, -2, 0)
