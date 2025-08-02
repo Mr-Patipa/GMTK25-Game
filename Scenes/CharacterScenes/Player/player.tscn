@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bnxq4kmu7v0o0" path="res://Scenes/CharacterScenes/Player/States/death_state.gd" id="8_wdmk3"]
 [ext_resource type="AudioStream" uid="uid://dsm6k2h1equh6" path="res://Audio/jump sound.ogg" id="9_bqxua"]
 [ext_resource type="AudioStream" uid="uid://dpl7fw3fiqlpq" path="res://Audio/footsteps.ogg" id="10_vnhwv"]
+[ext_resource type="Script" path="res://Scenes/CharacterScenes/Player/States/death_state.gd" id="8_wdmk3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfnoy"]
 radius = 0.2
