@@ -25,6 +25,7 @@ func stepped(_delta : float): ## process()
 
 func renderStepped(_delta : float): ## physics_process()
 	if Parent is Player:
+		Parent.move_and_slide()
 		Parent.Camera.position = lerp(Parent.Camera.position, Parent.position + Vector3(0, Parent.CameraHeight, Parent.CameraOffset), Parent.CameraSpeed / 100)
 		var Direction : Vector2 = Input.get_vector("Left", "Right", "Up", "Down")
 		
