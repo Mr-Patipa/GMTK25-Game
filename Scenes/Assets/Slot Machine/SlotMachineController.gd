@@ -2,16 +2,34 @@ extends Node
 
 var slotAmount: int = 3
 var currentSlot: int = 1
+var secondsPerText: float = .5
+
+var difficulty_additions = {"DARK": self.makeDarkAndFast,
+							"FIVE": self.increaseSlotAmount}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func addDifficulty() -> void:
+	# Get difficulty to add
+	var addOnKey = difficulty_additions.keys().pick_random()
+	var addOn = difficulty_additions[addOnKey]
+	difficulty_additions.remove(addOn)
+	
+	addOn.call()
+
+func increaseSlotAmount():
+	self.slotAmount = 5
+	
+func makeDarkAndFast():
+	#TO-DO: We need to fix the lighting issue so we can actually make it dark
+	self.secondsPerText = .22
 
 func assignSlots() -> void:
 	var slots: Array[SlotMachine] = []

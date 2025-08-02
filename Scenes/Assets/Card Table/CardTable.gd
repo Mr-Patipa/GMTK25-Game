@@ -27,4 +27,5 @@ func _physics_process(delta: float) -> void:
 	# Bug workaround. See https://github.com/godotengine/godot/issues/67257
 
 func pathSetup() -> void:
+	if self.path_follow == null: return
 	self.reparent(path_follow)
