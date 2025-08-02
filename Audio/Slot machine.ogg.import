@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c0tq6x38kgabm"
+path="res://.godot/imported/Slot machine.ogg-50f666eb92069b27a6d2d7bb7aac3d73.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Slot machine.ogg"
+dest_files=["res://.godot/imported/Slot machine.ogg-50f666eb92069b27a6d2d7bb7aac3d73.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

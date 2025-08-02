@@ -2,14 +2,15 @@ extends Interactable
 class_name TheWheel
 
 
-@export var SpinTimes : int = 7 # Amount of time it spins before it slows down
-@export var SpinDuration : float = 7 # Duration of each spins
+@export var SpinTimes : int = 16 # Amount of time it spins before it slows down
+@export var SpinDuration : float = 9 # Duration of each spins
 @export var SliceCount : int = 8 # How many options are on the wheel
 @export var CooldownTime : float = 2 # How long until you could spin the wheel again after it's finished
 @export var TimeAdded : int = 60 # Amount of time added for every spin
 @export var WheelBase : Marker3D
 @export var CoolTimer : Timer
 @export var BufferZone : Area3D
+@export var SpinSFX : AudioStreamPlayer3D
 
 var SpinTween : Tween
 var OnCooldown : bool
@@ -33,9 +34,10 @@ func activate(_player : Player) -> void:
 func startSpinning() -> void:
 	if SpinTween:
 		SpinTween.kill()
+	SpinSFX.play()
 	
 	SpinTween = get_tree().create_tween()
-	SpinTween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	SpinTween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
 	SpinTween.tween_property(WheelBase, "rotation_degrees", Vector3(0, chooseLandPos(), 0), SpinDuration)
 	SpinTween.play()
 	SpinTween.finished.connect(checkStatus)

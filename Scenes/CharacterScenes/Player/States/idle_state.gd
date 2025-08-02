@@ -3,6 +3,7 @@ extends State
 @export var Walk : State
 @export var Airborne : State
 @export var Dash : State
+@export var JumpSFX : AudioStreamPlayer
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -38,6 +39,8 @@ func renderStepped(_delta : float): ## physics_process()
 func handleInputs(_event : InputEvent): ## unhandled_input()
 	if Parent is Player:
 		if _event.is_action_pressed("Jump"):
+			JumpSFX.play()
+			JumpSFX.seek(0.2)
 			Parent.velocity.y = Parent.JumpHieght
 			Parent.PreviousHeight = Parent.position.y
 			return Airborne

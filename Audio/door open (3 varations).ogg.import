@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d24lmbymqoo0t"
+path="res://.godot/imported/door open (3 varations).ogg-2acf5764c07b49a096f35ad3f54d973e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/door open (3 varations).ogg"
+dest_files=["res://.godot/imported/door open (3 varations).ogg-2acf5764c07b49a096f35ad3f54d973e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

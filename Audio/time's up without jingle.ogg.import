@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dhqq6aanavl4h"
+path="res://.godot/imported/time's up without jingle.ogg-267dc6a0823f90e6295ca42a63faf220.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/time's up without jingle.ogg"
+dest_files=["res://.godot/imported/time's up without jingle.ogg-267dc6a0823f90e6295ca42a63faf220.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -2,9 +2,9 @@ extends State
 
 @export var DashForce : float = 20
 @export var Decceleration : float = 20
-
-
 @export var Airborne : State
+@export var JumpSFX : AudioStreamPlayer
+
 var Debounce : bool
 var Dashed : bool
 
@@ -48,6 +48,8 @@ func handleInputs(_event : InputEvent): ## unhandled_input()
 	if Parent is Player:
 		if _event.is_action_pressed("Jump"):
 			if Parent.is_on_floor():
+				JumpSFX.play()
+				JumpSFX.seek(0.2)
 				Parent.velocity.y = Parent.JumpHieght
 				return Airborne
 			

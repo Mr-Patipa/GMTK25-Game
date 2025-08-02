@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cofnkihdrskxa"]
+[gd_scene load_steps=7 format=3 uid="uid://cofnkihdrskxa"]
 
 [ext_resource type="Script" uid="uid://bpu1sgwd1eqbt" path="res://Scenes/Assets/WheelOfHope/wheel_of_hope.gd" id="1_p1lns"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="2_0wmru"]
+[ext_resource type="AudioStream" uid="uid://cbyqryvklfm3v" path="res://Audio/roulette full sound.ogg" id="3_0wmru"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_bkewf"]
 
@@ -12,12 +13,13 @@ radius = 3.49348
 height = 1.65729
 radius = 9.0
 
-[node name="WheelOfHope" type="Node3D" node_paths=PackedStringArray("WheelBase", "CoolTimer", "BufferZone")]
+[node name="WheelOfHope" type="Node3D" node_paths=PackedStringArray("WheelBase", "CoolTimer", "BufferZone", "SpinSFX")]
 script = ExtResource("1_p1lns")
 TimeAdded = 10
 WheelBase = NodePath("Wheel")
 CoolTimer = NodePath("CoolTimer")
 BufferZone = NodePath("BufferZone")
+SpinSFX = NodePath("AudioStreamPlayer3D")
 
 [node name="Wheel" type="Marker3D" parent="."]
 
@@ -50,3 +52,6 @@ shape = SubResource("CylinderShape3D_p1lns")
 
 [node name="CoolTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0wmru")
