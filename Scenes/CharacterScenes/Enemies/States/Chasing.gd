@@ -1,6 +1,6 @@
 extends State
 
-@export var Attacking: State
+@export var Damaging: State
 @export var Patrolling: State
 
 #region Main Component of the State Class
@@ -20,17 +20,17 @@ func stepped(_delta : float): ## process()
 
 
 func renderStepped(_delta : float): ## physics_process()
-	if Parent is AngryEnemy:
-		Parent.NavigationAgent.target_position = Parent.PlayerRef.global_position
-		Parent.update_movement()
-
-		if (Patrolling != null) and (not Parent.can_see_player(Parent.DetectionRange)):
-			return Patrolling
+	
+	Parent.NavigationAgent.target_position = Parent.PlayerRef.global_position
+	Parent.updateMovement()
+	
+	if (Patrolling != null) and (not Parent.canSeePlayer(Parent.DetectionRange)):
+		return Patrolling
+	
+	if Parent.canSeePlayer(Parent.AttackRange):
+		return Damaging
 		
-		if Parent.can_see_player(Parent.AttackRange):
-			return Attacking
-			
-		Parent.move_and_slide()
+	Parent.move_and_slide()
 	
 
 func handleInputs(_event : InputEvent): ## unhandled_input()

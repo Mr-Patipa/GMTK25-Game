@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcp1e5mn1rk67"]
+
+[ext_resource type="Script" uid="uid://pr13mgo6vkqx" path="res://Scenes/CharacterScenes/Enemies/ChaserEnemy/ChaserEnemy.gd" id="1_dh63o"]
+[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_vurqo"]
+[ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="3_s3ra4"]
+[ext_resource type="Script" uid="uid://det2m5ovvx6m2" path="res://Scenes/CharacterScenes/Components/DamageComponent.gd" id="3_u3fib"]
+[ext_resource type="Script" uid="uid://d0mibigqd3brv" path="res://Scenes/CharacterScenes/Components/HealthComponent.gd" id="4_vdc1f"]
+[ext_resource type="Script" uid="uid://uhsav0ou5aaj" path="res://Scenes/CharacterScenes/Components/SpeedComponent.gd" id="5_s56hm"]
+[ext_resource type="Script" uid="uid://khralxc2b406" path="res://Scenes/CharacterScenes/Enemies/States/Chasing.gd" id="6_0ks3a"]
+[ext_resource type="Script" uid="uid://dhjdi07fycq1y" path="res://Scenes/CharacterScenes/Enemies/States/Damaging.gd" id="6_rv136"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dh63o"]
+size = Vector3(0.43341, 1.26752, 0.197144)
+
+[node name="ChaserEnemy" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_dh63o")
+Speed = 4.0
+DetectionRange = 100.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_vurqo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436708, 0.00772095, -0.0140991)
+shape = SubResource("BoxShape3D_dh63o")
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.75
+path_max_distance = 5.01
+debug_enabled = true
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("3_u3fib")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_vdc1f")
+
+[node name="SpeedComponent" type="Node" parent="."]
+script = ExtResource("5_s56hm")
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25835, 0)
+text = "Chaser"
+font_size = 96
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("Parent", "InitialState")]
+script = ExtResource("3_s3ra4")
+Active = true
+Parent = NodePath("..")
+InitialState = NodePath("Chasing")
+
+[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("Damaging")]
+script = ExtResource("6_0ks3a")
+Damaging = NodePath("../Damaging")
+
+[node name="Damaging" type="Node" parent="StateMachine" node_paths=PackedStringArray("Chasing")]
+script = ExtResource("6_rv136")
+Chasing = NodePath("../Chasing")
+
+[node name="DamageCooldownTimer" type="Timer" parent="StateMachine/Damaging"]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Damaging/DamageCooldownTimer" to="StateMachine/Damaging" method="_on_damage_cooldown_timer_timeout"]

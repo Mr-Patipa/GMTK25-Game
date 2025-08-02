@@ -1,6 +1,6 @@
 extends State
 
-@export var RangeAttacking: State
+@export var Damaging: State
 
 func dependencyInjected() -> void: ## _ready() for states.
 	pass
@@ -18,8 +18,8 @@ func stepped(_delta : float): ## process()
 
 
 func renderStepped(_delta : float): ## physics_process()
-	if Parent.can_see_player(Parent.DetectionRange):
-		return RangeAttacking
+	if Parent.canSeePlayer(Parent.DetectionRange):
+		return Damaging
 		
 	return null
 	

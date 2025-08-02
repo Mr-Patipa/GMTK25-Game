@@ -23,4 +23,5 @@ mesh = SubResource("SphereMesh_04c13")
 
 [node name="LifeTimer" type="Timer" parent="."]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
