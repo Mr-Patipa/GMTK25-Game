@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcp1e5mn1rk67"]
+[gd_scene load_steps=9 format=3 uid="uid://bcp1e5mn1rk67"]
 
 [ext_resource type="Script" uid="uid://pr13mgo6vkqx" path="res://Scenes/CharacterScenes/Enemies/ChaserEnemy/ChaserEnemy.gd" id="1_dh63o"]
 [ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_vurqo"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://d0mibigqd3brv" path="res://Scenes/CharacterScenes/Components/HealthComponent.gd" id="4_vdc1f"]
 [ext_resource type="Script" uid="uid://uhsav0ou5aaj" path="res://Scenes/CharacterScenes/Components/SpeedComponent.gd" id="5_s56hm"]
 [ext_resource type="Script" uid="uid://khralxc2b406" path="res://Scenes/CharacterScenes/Enemies/States/Chasing.gd" id="6_0ks3a"]
-[ext_resource type="Script" uid="uid://dhjdi07fycq1y" path="res://Scenes/CharacterScenes/Enemies/States/Damaging.gd" id="6_rv136"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh63o"]
 size = Vector3(0.43341, 1.26752, 0.197144)
@@ -57,9 +56,7 @@ InitialState = NodePath("Chasing")
 script = ExtResource("6_0ks3a")
 Damaging = NodePath("../Damaging")
 
-[node name="Damaging" type="Node" parent="StateMachine" node_paths=PackedStringArray("Chasing")]
-script = ExtResource("6_rv136")
-Chasing = NodePath("../Chasing")
+[node name="Damaging" type="Node" parent="StateMachine"]
 
 [node name="DamageCooldownTimer" type="Timer" parent="StateMachine/Damaging"]
 

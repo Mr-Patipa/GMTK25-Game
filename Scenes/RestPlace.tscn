@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c1hgj3p4bl4s0" path="res://Audio/ScaryMusic.mp3" id="4_7ddf7"]
 [ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
-[ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.tscn" id="8_7dvjk"]
+[ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/ChaserEnemy/ChaserEnemy.tscn" id="8_7dvjk"]
 [ext_resource type="PackedScene" uid="uid://nbov7vuqy6gf" path="res://Scenes/Assets/Doors/door.tscn" id="12_xhvoo"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="13_plhmv"]
 [ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Blocks&Preasures/preasure_plates.tscn" id="14_3kmnp"]
@@ -119,7 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9588, 2.72378, 29.6218)
 [node name="WheelOfHope" parent="World" node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("7_5th8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
 EnemySpawnPoints = NodePath("../EnemySpawnPoints")
-Angry = ExtResource("8_7dvjk")
+Chaser = ExtResource("8_7dvjk")
 
 [node name="ArialUI" parent="World/WheelOfHope" index="1"]
 transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
