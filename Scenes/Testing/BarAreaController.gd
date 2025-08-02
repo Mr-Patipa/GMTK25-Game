@@ -47,9 +47,8 @@ func spawn_bartenders():
 		print(new_point)
 		new_point = Vector3(rightSpawns.global_position.x, rightSpawns.global_position.y+1.1, new_point.z)
 		var new_bartender = Bartender.instantiate()
-
-		new_bartender.global_position = new_point
 		self.add_child(new_bartender)
+		new_bartender.global_position = new_point
 		
 		new_bartender.target = (Vector3($"Left Gutter".global_position.x+50,
 									new_bartender.global_position.y,
@@ -63,9 +62,8 @@ func spawn_bartenders():
 		new_point = leftSpawns.to_global(new_point)
 		new_point = Vector3(leftSpawns.global_position.x, leftSpawns.global_position.y+1.1, new_point.z)
 		var new_bartender = Bartender.instantiate()
-		
-		new_bartender.global_position = new_point
 		self.add_child(new_bartender)
+		new_bartender.global_position = new_point
 
 		new_bartender.target = (Vector3($"Right Gutter".global_position.x-50,
 								new_bartender.global_position.y,

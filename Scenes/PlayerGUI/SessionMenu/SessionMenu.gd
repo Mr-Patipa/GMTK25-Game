@@ -24,11 +24,14 @@ var IsEnding = false
 @export var DialogueMenu : Control
 @export var NameCard : Label
 @export var Text : Label
+var InDialogue : bool = false
 
 
 func _ready() -> void:
 	CurrentGameTimeLeft = InitialGameTime
 	GameTimer.timeout.connect(changeTimeStatus)
+	GameManager.dialogue_opened.connect(func(): DialogueMenu.visible = true)
+	GameManager.wheel_dialogue_needed.connect(checkAvailable)
 	GameManager.wheel_was_spun.connect(func() -> void: GameTimer.stop())
 	GameManager.time_updated.connect(setUpTimer)
 	GameManager.player_saved.connect(playerSaved)
@@ -37,6 +40,7 @@ func _ready() -> void:
 	GameManager.dialogue_triggered.connect(triggerVisibility)
 	GameManager.dialogue_sent.connect(dialogueTextChange)
 	GameManager.dialogue_name_sent.connect(dialogueNameChange)
+	GameManager.player_has_died.connect(startEnding)
 	
 	MenuBtn.pressed.connect(func() -> void:
 		get_tree().change_scene_to_file(SceneManager.MAIN_MENU)
@@ -126,9 +130,11 @@ func startEnding() -> void:
 func triggerVisibility() -> void:
 	if DialogueMenu.visible == false:
 		DialogueMenu.visible = true
+		InDialogue = true
 	
 	else:
 		DialogueMenu.visible = false
+		InDialogue = false
 
 
 func dialogueTextChange(text : String) -> void:
@@ -136,5 +142,18 @@ func dialogueTextChange(text : String) -> void:
 
 func dialogueNameChange(text :  String) -> void:
 	NameCard.text = text
+
+#endregion
+
+
+#region Wheel Dialogue Related
+func checkAvailable(timer : Timer, name_card : String, text : String) -> void:
+	if InDialogue == true:
+		timer.stop()
+	
+	print("Here")
+	NameCard.text = name_card
+	Text.text = text
+
 
 #endregion

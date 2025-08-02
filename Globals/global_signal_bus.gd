@@ -22,3 +22,11 @@ signal dialogue_triggered
 signal dialogue_sent
 @warning_ignore("unused_signal")
 signal dialogue_name_sent
+@warning_ignore("unused_signal")
+signal player_has_died
+@warning_ignore("unused_signal")
+signal difficulty_changed
+@warning_ignore("unused_signal")
+signal wheel_dialogue_needed
+@warning_ignore("unused_signal")
+signal dialogue_opened

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bwwxydcd6n0oa"]
+[gd_scene load_steps=26 format=3 uid="uid://bwwxydcd6n0oa"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_83gf6"]
 [ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="2_r2ljp"]
@@ -59,18 +59,15 @@ radius = 2.77051
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnb83"]
 size = Vector3(180.202, 1, 186.079)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j7wxd"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_rl1ky"]
-sky_material = SubResource("ProceduralSkyMaterial_j7wxd")
-
 [sub_resource type="Environment" id="Environment_y8u7o"]
 background_mode = 2
-sky = SubResource("Sky_rl1ky")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_curve = 0.258816
 
 [node name="Root" type="Node3D"]
 
@@ -90,6 +87,7 @@ TimeCounter = NodePath("TimeCounter")
 
 [node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
 stream = SubResource("AudioStreamInteractive_iusis")
+volume_db = -80.0
 
 [node name="DeathTimer" type="Timer" parent="BrainMatter/GameStateManager"]
 one_shot = true
@@ -105,16 +103,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71364, 0.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
 
 [node name="M1" type="Marker3D" parent="World/EnemySpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4906, 2.72378, -19.4311)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9165, 2.72378, -0.249826)
 
 [node name="M2" type="Marker3D" parent="World/EnemySpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3373, 2.72378, 3.24068)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9533, 2.72378, 3.24068)
 
 [node name="M3" type="Marker3D" parent="World/EnemySpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0645, 2.72378, 20.6854)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.48207, 2.72378, 9.05585)
 
 [node name="M4" type="Marker3D" parent="World/EnemySpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9588, 2.72378, 29.6218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3187, 2.72378, 8.20232)
 
 [node name="WheelOfHope" parent="World" node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("7_5th8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
@@ -225,11 +223,12 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_y8u7o")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(0.788397, 0.364308, -0.495691, 0, 0.805784, 0.59221, 0.615166, -0.466897, 0.635278, 0, 0, 0)
+transform = Transform3D(1, 3.78552e-08, 6.55671e-08, -3.78551e-08, -0.5, 0.866025, 6.5567e-08, -0.866026, -0.5, 0, 0, 0)
 shadow_enabled = true
 
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("18_wgtvb")]
 World = NodePath("../World")
+InitialGameTime = 60
 
 [node name="SlotMachines" parent="." instance=ExtResource("16_7dvjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2859, 0.100002, 0.482087)

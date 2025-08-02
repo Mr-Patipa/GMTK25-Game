@@ -1,14 +1,32 @@
 extends CharacterBody3D
 class_name Player
 
-@export var Health : float = 100
+@export var Health : float = 100 :
+	set(value):
+		Health = value
+		
+		if Health <= 0:
+			GameManager.player_has_died.emit()
+			Machine.changeState(Death)
+
 @export var Machine : StateMachine
 @export var Death : State
+@export var Inventory : Node
+@export var Modifiers : Node
+
 
 @export_category("Movement Related")
 @export var WalkSpeed : float = 100
 @export var JumpHieght : float = 400
 @export var Gravity : float = 981
+var Direction : Vector2
+var SpeedChange : float = 0
+var Inversed : bool = false
+
+@export_category("Kayote Time Related")
+@export var KayoteTime : float = 0.2
+@export var IsKayote : bool = false
+@export var KayoteTimer : Timer
 
 @export_category("Dash Related")
 @export var Mass : float = 80
@@ -30,9 +48,24 @@ var PreviousHeight : float = 0
 var CurrentStrength : float = 0
 
 var TweenFOV : Tween
-var Safe : bool = false
+var Safe : bool = false :
+	set(value):
+		Safe = value
+		
+		if Safe == true:
+			for timer in Modifiers.get_children():
+				if timer is Timer:
+					timer.stop()
+		
+		else:
+			for timer in Modifiers.get_children():
+				if timer is Timer:
+					timer.start()
+
+
 var CurrentTime : int
 var Dashed : bool = false
+
 
 
 func _ready() -> void:
@@ -59,10 +92,11 @@ func _ready() -> void:
 	GameManager.time_ran_out.connect(func() -> void:
 		Machine.changeState(Death)
 	)
+	KayoteTimer.timeout.connect(func() -> void: IsKayote = false)
+
 
 func _physics_process(_delta: float) -> void:
 	pushBlocks()
-	
 
 
 func pushBlocks() -> void:

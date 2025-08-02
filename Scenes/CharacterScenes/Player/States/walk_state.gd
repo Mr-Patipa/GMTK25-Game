@@ -26,19 +26,26 @@ func stepped(_delta : float): ## process()
 func renderStepped(_delta : float): ## physics_process()
 	if Parent is Player:
 		Parent.Camera.position = lerp(Parent.Camera.position, Parent.position + Vector3(0, Parent.CameraHeight, Parent.CameraOffset), Parent.CameraSpeed / 100)
-		var Direction : Vector2 = Input.get_vector("Left", "Right", "Up", "Down")
+		if not Parent.Inversed:
+			Parent.Direction = Input.get_vector("Left", "Right", "Up", "Down")
 		
-		Parent.velocity.x = Direction.x * Parent.WalkSpeed
-		Parent.velocity.z = Direction.y * Parent.WalkSpeed
+		else:
+			Parent.Direction = -Input.get_vector("Left", "Right", "Up", "Down")
+		
+		Parent.velocity.x = Parent.Direction.x * (Parent.WalkSpeed + Parent.SpeedChange)
+		Parent.velocity.z = Parent.Direction.y * (Parent.WalkSpeed + Parent.SpeedChange)
 		
 		Parent.move_and_slide()
 		
-		if Direction == Vector2.ZERO:
+		if Parent.Direction == Vector2.ZERO:
 			return Idle
 		else:
-			Parent.FacingDirection = Direction
+			Parent.FacingDirection = Parent.Direction
 		
 		if not Parent.is_on_floor():
+			Parent.IsKayote = true
+			Parent.KayoteTimer.set_wait_time(Parent.KayoteTime)
+			Parent.KayoteTimer.start()
 			return Airborne
 
 

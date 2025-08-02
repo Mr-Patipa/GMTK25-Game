@@ -30,10 +30,14 @@ func renderStepped(_delta : float): ## physics_process()
 			return Idle
 		
 		else:
-			var Direction : Vector2 = Input.get_vector("Left", "Right", "Up", "Down")
-		
-			Parent.velocity.x = Direction.x * Parent.WalkSpeed
-			Parent.velocity.z = Direction.y * Parent.WalkSpeed
+			if not Parent.Inversed:
+				Parent.Direction = Input.get_vector("Left", "Right", "Up", "Down")
+			
+			else:
+				Parent.Direction = -Input.get_vector("Left", "Right", "Up", "Down")
+			
+			Parent.velocity.x = Parent.Direction.x * (Parent.WalkSpeed + Parent.SpeedChange)
+			Parent.velocity.z = Parent.Direction.y * (Parent.WalkSpeed + Parent.SpeedChange)
 			Parent.velocity = Parent.velocity.move_toward(Vector3(0, -Parent.Gravity, 0), _delta * Parent.Gravity)
 
 
@@ -41,4 +45,9 @@ func handleInputs(_event : InputEvent): ## unhandled_input()
 	if Parent is Player:
 		if _event.is_action_pressed("Dash"):
 			return Dash
+		
+		if _event.is_action_pressed("Jump") and Parent.IsKayote == true:
+			Parent.velocity.y = Parent.JumpHieght
+			Parent.PreviousHeight = Parent.position.y
+			Parent.IsKayote = false
 #endregion

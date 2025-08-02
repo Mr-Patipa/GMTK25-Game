@@ -32,9 +32,13 @@ func renderStepped(_delta : float): ## physics_process()
 		
 		if Direction != Vector2.ZERO:
 			Parent.FacingDirection = Direction
+			Parent.Direction = Direction
 			return Walk
 		
 		if not Parent.is_on_floor():
+			Parent.IsKayote = true
+			Parent.KayoteTimer.set_wait_time(Parent.KayoteTime)
+			Parent.KayoteTimer.start()
 			return Airborne
 
 

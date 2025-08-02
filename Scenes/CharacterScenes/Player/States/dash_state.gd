@@ -35,8 +35,8 @@ func stepped(_delta : float): ## process()
 func renderStepped(_delta : float): ## physics_process()
 	if Parent is Player:
 		Parent.move_and_slide()
-		var LocalHeight : Vector3 = Vector3(Parent.position.x, Parent.CameraHeight + + Parent.PreviousHeight, Parent.position.z + Parent.CameraOffset)
-		Parent.Camera.position = lerp(Parent.Camera.position, LocalHeight, Parent.CameraSpeed / 100)
+		
+		Parent.Camera.position = lerp(Parent.Camera.position, Parent.position + Vector3(0, Parent.CameraHeight, Parent.CameraOffset), Parent.CameraSpeed / 100)
 		Parent.velocity = Parent.velocity.move_toward(Vector3.ZERO, _delta * Decceleration)
 	
 		if Parent.velocity == Vector3.ZERO:
@@ -49,6 +49,7 @@ func handleInputs(_event : InputEvent): ## unhandled_input()
 				JumpSFX.play()
 				JumpSFX.seek(0.2)
 				Parent.velocity.y = Parent.JumpHieght
+				Parent.PreviousHeight = Parent.position.y
 				return Airborne
 			
 			else:

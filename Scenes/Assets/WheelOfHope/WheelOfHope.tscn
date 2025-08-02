@@ -13,13 +13,14 @@ radius = 3.49348
 height = 1.65729
 radius = 9.0
 
-[node name="WheelOfHope" type="Node3D" node_paths=PackedStringArray("WheelBase", "CoolTimer", "BufferZone", "SpinSFX")]
+[node name="WheelOfHope" type="Node3D" node_paths=PackedStringArray("WheelBase", "CoolTimer", "BufferZone", "SpinSFX", "PlaceholderTimer", "DialogueTimer")]
 script = ExtResource("1_p1lns")
-TimeAdded = 10
 WheelBase = NodePath("Wheel")
 CoolTimer = NodePath("CoolTimer")
 BufferZone = NodePath("BufferZone")
 SpinSFX = NodePath("AudioStreamPlayer3D")
+PlaceholderTimer = NodePath("Timer")
+DialogueTimer = NodePath("DialogueTimer")
 
 [node name="Wheel" type="Marker3D" parent="."]
 
@@ -52,6 +53,13 @@ shape = SubResource("CylinderShape3D_p1lns")
 
 [node name="CoolTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="DialogueTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_0wmru")
