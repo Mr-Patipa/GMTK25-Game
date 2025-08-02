@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq613sl6t77te"]
+[gd_scene load_steps=7 format=3 uid="uid://bq613sl6t77te"]
 
+[ext_resource type="Script" uid="uid://c2l0l322qw6x4" path="res://Scenes/Assets/Slot Machine/SlotMachine.gd" id="1_p2luo"]
 [ext_resource type="Texture2D" uid="uid://bln20uefnbgiv" path="res://Resources/Graphics/Sprites/Slot - Front.png" id="1_savm0"]
+[ext_resource type="Script" uid="uid://bq8oqyhxmk5iy" path="res://Scenes/Assets/Slot Machine/SlotMachineInteraction.gd" id="3_54deh"]
+[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="4_if7do"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2luo"]
 size = Vector3(1.42102, 4.02386, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_avs1u"]
+height = 4.37231
+radius = 0.960449
+
 [node name="Slot Machine" type="StaticBody3D"]
+script = ExtResource("1_p2luo")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
@@ -18,3 +26,29 @@ texture = ExtResource("1_savm0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285034, 0.125641, 0)
 shape = SubResource("BoxShape3D_p2luo")
+
+[node name="Interactable" type="Node3D" parent="."]
+script = ExtResource("3_54deh")
+metadata/_custom_type_script = "uid://dqa7kl3wioodn"
+
+[node name="Order Number" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+pixel_size = 0.0625
+
+[node name="Text Timer" type="Timer" parent="."]
+wait_time = 0.33
+one_shot = true
+
+[node name="ArialUI" parent="." node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("4_if7do")]
+AreaDetector = NodePath("Area3D")
+Target = NodePath("../Interactable")
+
+[node name="Area3D" type="Area3D" parent="ArialUI"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArialUI/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0409421, 0)
+shape = SubResource("CylinderShape3D_avs1u")
+
+[connection signal="timeout" from="Text Timer" to="." method="_on_text_timer_timeout"]

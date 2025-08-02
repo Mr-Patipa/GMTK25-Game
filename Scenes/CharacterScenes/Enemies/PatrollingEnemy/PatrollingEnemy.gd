@@ -1,12 +1,23 @@
 extends CharacterBody3D
-class_name PatrollingMonster
+class_name PatrollingEnemy
 
 @onready var NavigationAgent: NavigationAgent3D = $NavigationAgent
+@onready var AttackComponentNode: AttackComponent = $AttackComponent
 
+@export_group("General")
+@export var WalkSpeed: float = 8.0
+
+@export_group("Object References")
 @export var PlayerRef : Player
-@export var WalkSpeed : float = 10.0
-@export var DetectionRange: float = 100.0
 @export var PatrolPoints: NodePath
+
+@export_group("Range Settings")
+@export var DetectionRange: float = 10.0
+@export var AttackRange: float = 2.0
+
+@export_group("Combat")
+@export var Damage: int = 10
+@export var AttackCooldown: float = 2.0
 
 var Waypoints: Array[Vector3] = []
 var CurrentWaypoint: int = 0
@@ -14,8 +25,6 @@ var CurrentWaypoint: int = 0
 @onready var state_machine: StateMachine = $StateMachine
 @onready var patrolling: Node = $StateMachine/Patrolling
 @onready var chasing: Node = $StateMachine/Chasing
-@onready var searching: Node = $StateMachine/Searching
-
 
 func _ready() -> void:
 	if !PlayerRef:
@@ -23,14 +32,14 @@ func _ready() -> void:
 	
 	_createWaypoints()
 	
+	# Pass exported values into the attack component
+	AttackComponentNode.Damage = Damage
+	AttackComponentNode.AttackCooldown = AttackCooldown
+	
 func _createWaypoints() -> void:
 	for child in get_node(PatrolPoints).get_children():
 		Waypoints.append(child.global_position)
 		
-func _process(_delta: float) -> void:
-	#print(state_machine.CurrentState)
-	pass
-	
 # Updates movement for Navigation
 # Using on States
 func update_movement() -> void:
@@ -43,12 +52,10 @@ func update_movement() -> void:
 	
 		velocity = Direction * WalkSpeed
 	
-func can_see_player() -> bool:
-	var ParentPos = global_position
-	var PlayerPos = PlayerRef.global_position
+func can_see_player(ViewRange: float) -> bool:
+	var ParentPos: Vector3 = global_position
+	var PlayerPos: Vector3 = PlayerRef.global_position
 	
-	# var Direction = (PlayerRef.global_position - global_position).normalized()
-	## Never Used
 	var Distance = ParentPos.distance_to(PlayerPos)
 	
-	return Distance <= DetectionRange
+	return Distance <= ViewRange

@@ -32,7 +32,7 @@ var CurrentStrength : float = 0
 var TweenFOV : Tween
 var Safe : bool = false
 var CurrentTime : int
-var Dashed : bool
+var Dashed : bool = false
 
 
 func _ready() -> void:
@@ -122,3 +122,14 @@ func itsOkay() -> void:
 	TweenFOV = get_tree().create_tween()
 	TweenFOV.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	TweenFOV.tween_property(Camera, "fov", InitialFOV, 1)
+
+
+func takeDamage(TakenDamage: int) -> void:
+	Health -= TakenDamage
+
+
+func _on_item_collected_signal(n: String, a: int) -> void:
+	# Triggered when collecting an item.
+	# Hook up via signal from Item.gd's collectedSignal
+	for i in range(a):
+		self.Player_Inventory.append(n)
