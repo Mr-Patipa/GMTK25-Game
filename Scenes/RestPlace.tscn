@@ -5,8 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://pjvi81b587y1" path="res://Audio/background_music.ogg" id="3_yry2f"]
 [ext_resource type="AudioStream" uid="uid://c1hgj3p4bl4s0" path="res://Audio/ScaryMusic.mp3" id="4_7ddf7"]
 [ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
-[ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_odlwj"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
+[ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/AngryEnemy/AngryEnemy.tscn" id="8_7dvjk"]
 [ext_resource type="PackedScene" uid="uid://nbov7vuqy6gf" path="res://Scenes/Assets/Doors/door.tscn" id="12_xhvoo"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="13_plhmv"]
 [ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Blocks&Preasures/preasure_plates.tscn" id="14_3kmnp"]
@@ -116,20 +116,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0645, 2.72378, 20.6854)
 [node name="M4" type="Marker3D" parent="World/EnemySpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9588, 2.72378, 29.6218)
 
-[node name="Player" parent="World" instance=ExtResource("6_odlwj")]
-transform = Transform3D(0.996259, 0, 0, 0, 0.996259, 0, 0, 0, 0.996259, 5.73606, 0.49301, 0.198298)
-InitialStrength = 0.5
-StrengthIncrease = 0.2
-
-[node name="Camera3D" parent="World/Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 5, 6, 8)
-
-[node name="Dash" parent="World/Player/StateMachine" index="3"]
-DashForce = 20.0
-Decceleration = 45.0
-
-[node name="WheelOfHope" parent="World" instance=ExtResource("7_5th8o")]
+[node name="WheelOfHope" parent="World" node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("7_5th8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
+EnemySpawnPoints = NodePath("../EnemySpawnPoints")
+Angry = ExtResource("8_7dvjk")
 
 [node name="ArialUI" parent="World/WheelOfHope" index="1"]
 transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
@@ -246,6 +236,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2859, 0.100002, 0.482087)
 
 [node name="Node" type="Node" parent="."]
 
-[editable path="World/Player"]
 [editable path="World/WheelOfHope"]
 [editable path="World/Door2/MovableBlock"]
