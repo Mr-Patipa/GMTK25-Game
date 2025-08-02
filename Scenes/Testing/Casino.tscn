@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sydm4wgfgdwb"]
+[gd_scene load_steps=22 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
 [ext_resource type="PackedScene" uid="uid://brl8gw21ys46l" path="res://Scenes/Assets/Card Table/CardTable.tscn" id="3_fq3gs"]
@@ -14,6 +14,83 @@ size = Vector3(1, 12, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5jau"]
 size = Vector3(1.00781, 8.3999, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_fq3gs"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.771, 0, -48.153, 0, 0, 0, 0, 0, 0, -7.967, 0, -44.834, 0, 0, 0, 0, 0, 0, -9.028, 0, -42.347, 0, 0, 0, 0, 0, 0, -7.868, 0, -40.936, 0, 0, 0, 0, 0, 0, -6.765, 0, -40.237, 0, 0, 0, 0, 0, 0, -5.433, 0, -40.254, 0, 0, 0, 0, 0, 0, -4.539, 0, -40.979, 0, 0, 0, 0, 0, 0, -3.939, 0, -42.414, 0, 0, 0, 0, 0, 0, -5.015, 0, -44.635, 0, 0, 0, 0, 0, 0, -3.822, 0, -47.98, 0, 0, 0, 0, 0, 0, -4.263, 0, -49.02, 0, 0, 0, 0, 0, 0, -5.082, 0, -49.77, 0, 0, 0, 0, 0, 0, -6.511, 0, -49.942, 0, 0, 0, 0, 0, 0, -7.748, 0, -49.926, 0, 0, 0, 0, 0, 0, -8.406, 0, -49.347),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 15
+
+[sub_resource type="Curve3D" id="Curve3D_8n5ol"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -4.539, 0, -40.979, 0, 0, 0, 0, 0, 0, -3.939, 0, -42.414, 0, 0, 0, 0, 0, 0, -5.015, 0, -44.635, 0, 0, 0, 0, 0, 0, -3.822, 0, -47.98, 0, 0, 0, 0, 0, 0, -4.263, 0, -49.02, 0, 0, 0, 0, 0, 0, -5.082, 0, -49.77, 0, 0, 0, 0, 0, 0, -6.511, 0, -49.942, 0, 0, 0, 0, 0, 0, -7.748, 0, -49.926, 0, 0, 0, 0, 0, 0, -8.406, 0, -49.347, 0, 0, 0, 0, 0, 0, -8.771, 0, -48.153, 0, 0, 0, 0, 0, 0, -7.967, 0, -44.834, 0, 0, 0, 0, 0, 0, -9.028, 0, -42.347, 0, 0, 0, 0, 0, 0, -7.868, 0, -40.936, 0, 0, 0, 0, 0, 0, -6.765, 0, -40.237, 0, 0, 0, 0, 0, 0, -5.433, 0, -40.254),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 15
+
+[sub_resource type="Curve3D" id="Curve3D_uga0m"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.058, 0, -44.828, 0, 0, 0, 0, 0, 0, -12.058, 0, -49.77, 0, 0, 0, 0, 0, 0, -12.058, 0, -44.828, 0, 0, 0, 0, 0, 0, -12.058, 0, -40.119),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_s6owt"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -21.189, 0, -44.582, 0, 0, 0, 0, 0, 0, -16.336, 0, -44.582),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ir4eo"]
+
+[sub_resource type="Curve3D" id="Curve3D_bbas2"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.945, 0, -48.002, 0, 0, 0, 0, 0, 0, -21.368, 0, -47.37, 0, 0, 0, 0, 0, 0, -21.093, 0, -44.567, 0, 0, 0, 0, 0, 0, -21.573, 0, -41.279, 0, 0, 0, 0, 0, 0, -23.838, 0, -39.87, 0, 0, 0, 0, 0, 0, -28.453, 0, -39.905, 0, 0, 0, 0, 0, 0, -30.706, 0, -41.207, 0, 0, 0, 0, 0, 0, -30.749, 0, -44.488, 0, 0, 0, 0, 0, 0, -28.744, 0, -47.606),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="Curve3D" id="Curve3D_rbrrp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.838, 0, -39.87, 0, 0, 0, 0, 0, 0, -28.453, 0, -39.905, 0, 0, 0, 0, 0, 0, -30.706, 0, -41.207, 0, 0, 0, 0, 0, 0, -30.749, 0, -44.488, 0, 0, 0, 0, 0, 0, -28.744, 0, -47.606, 0, 0, 0, 0, 0, 0, -23.945, 0, -48.002, 0, 0, 0, 0, 0, 0, -21.368, 0, -47.37, 0, 0, 0, 0, 0, 0, -21.093, 0, -44.567, 0, 0, 0, 0, 0, 0, -21.573, 0, -41.279),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="Curve3D" id="Curve3D_l0or0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -34.647, 0, -44.295, 0, 0, 0, 0, 0, 0, -30.46, 0, -44.295),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_afxkc"]
+
+[sub_resource type="Curve3D" id="Curve3D_votmq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -39.259, 0, -44.429, 0, 0, 0, 0, 0, 0, -39.259, 0, -40.429, 0, 0, 0, 0, 0, 0, -39.259, 0, -48.563),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_a8ow1"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -42.056, 0, -43.342, 0, 0, 0, 0, 0, 0, -42.056, 0, -46.005),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_t0i4m"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -44.172, 0, -47.639, 0, 0, 0, 0, 0, 0, -44.172, 0, -41.459),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq3gs"]
 albedo_color = Color(0, 0, 0, 1)
@@ -56,44 +133,116 @@ metadata/_editor_floor_ = Vector3(-38, 9, -100)
 
 [node name="Poker Pit Controller" type="Node" parent="."]
 
-[node name="Card Table" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9062, 1.18241, -46.8694)
+[node name="Card Table A" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.771, 0, -48.153)
 
-[node name="Card Table2" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3762, 0, -47.7031)
+[node name="Card Table B" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.539, 0, -40.979)
 
-[node name="Card Table3" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3402, 0, -41.3662)
+[node name="Card Table C" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.058, 0, -44.828)
 
-[node name="Card Table4" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0271, 0, -48.4408)
+[node name="Card Table D" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.189, 0, -48.153)
 
-[node name="Card Table5" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9634, 0, -41.1852)
+[node name="Card Table E" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.189, 0, -40.979)
 
-[node name="Card Table6" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6191, 0, -47.5431)
-
-[node name="Card Table7" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9597, 0, -41.5522)
-
-[node name="Card Table8" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11438, 0, -48.4936)
-
-[node name="Card Table9" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.61913, 0, -42.613)
-
-[node name="Card Table10" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9733, 0, -41.5784)
-
-[node name="Card Table11" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.6873, 0, -44.8903)
-
-[node name="Card Table12" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0949, 0, -45.1359)
+[node name="Card Table F" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.945, 0, -48.002)
 
 [node name="Central Card Table" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2031, 0, -44.3462)
+
+[node name="Card Table G" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.838, 0, -39.87)
+
+[node name="Card Table H" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9062, 1.18241, -46.8694)
+
+[node name="Card Table I" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3402, 0, -41.3662)
+
+[node name="Card Table J" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.259, 0, -44.429)
+
+[node name="Card Table K" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.056, 0, -43.342)
+
+[node name="Card Table L" parent="Poker Pit Controller" instance=ExtResource("3_fq3gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.172, 0, -47.639)
+
+[node name="Path3D A" type="Path3D" parent="Poker Pit Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+curve = SubResource("Curve3D_fq3gs")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D A"]
+transform = Transform3D(-0.971891, 0, -0.235432, 0, 1, 0, 0.235432, 0, -0.971891, -8.771, 0, -48.153)
+
+[node name="Path3D B" type="Path3D" parent="Poker Pit Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+curve = SubResource("Curve3D_8n5ol")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D B"]
+transform = Transform3D(0.9226, 0, -0.385756, 0, 1, 0, 0.385756, 0, 0.9226, -4.539, 0, -40.979)
+
+[node name="Path3D C" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_uga0m")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D C"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -12.058, 0, -44.828)
+
+[node name="Path3D DE" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_s6owt")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D DE"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21.189, 0, -44.582)
+
+[node name="Path3D E" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_ir4eo")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D E"]
+
+[node name="Path3D F" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_bbas2")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D F"]
+transform = Transform3D(-0.238188, 0, -0.971219, 0, 1, 0, 0.971219, 0, -0.238188, -23.945, 0, -48.002)
+
+[node name="Path3D G" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_rbrrp")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D G"]
+transform = Transform3D(0.00758362, 0, 0.999971, 0, 1, 0, -0.999971, 0, 0.00758362, -23.838, 0, -39.87)
+
+[node name="Path3D HI" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_l0or0")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D HI"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -34.647, 0, -44.295)
+
+[node name="Path3D I" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_afxkc")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D I"]
+
+[node name="Path3D J" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_votmq")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D J"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -39.259, 0, -44.429)
+
+[node name="Path3D K" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_a8ow1")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D K"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.056, 0, -43.342)
+
+[node name="Path3D L" type="Path3D" parent="Poker Pit Controller"]
+curve = SubResource("Curve3D_t0i4m")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Poker Pit Controller/Path3D L"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -44.172, 0, -47.639)
 
 [node name="Slot Machine Controller" type="Node" parent="."]
 
@@ -118,3 +267,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9851, 2.55542, 34.9029)
 [node name="Respawn Boundary" type="MeshInstance3D" parent="."]
 transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 75, 0, -2, 0)
 mesh = SubResource("PlaneMesh_fq3gs")
+metadata/_edit_lock_ = true
