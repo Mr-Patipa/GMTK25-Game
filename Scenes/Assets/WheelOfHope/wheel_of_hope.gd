@@ -12,10 +12,17 @@ class_name TheWheel
 @export var BufferZone : Area3D
 @export var SpinSFX : AudioStreamPlayer3D
 
+@export_category("Enemies Related")
+@export var EnemySpawnPoints : Node3D
+@export var Angry : PackedScene
+
+
+
 var SpinTween : Tween
 var OnCooldown : bool
 var ChosenSlice : int
 var ExtraTime : int
+var plr : Player
 
 
 func _ready() -> void:
@@ -24,7 +31,8 @@ func _ready() -> void:
 	BufferZone.body_exited.connect(func(_body : Node3D) -> void: GameManager.player_readyed.emit())
 
 
-func activate(_player : Player) -> void:
+func activate(player : Player) -> void:
+	plr = player
 	if not OnCooldown:
 		OnCooldown = true
 		startSpinning()
@@ -61,9 +69,22 @@ func checkStatus() -> void:
 	CoolTimer.start()
 	
 	print(ChosenSlice)
+	var NewEnemy : AngryEnemy = Angry.instantiate()
+	var NewSpawn : Marker3D = EnemySpawnPoints.get_children().pick_random()
+	get_parent().add_child(NewEnemy)
+	NewEnemy.global_position = NewSpawn.global_position
+	NewEnemy.PlayerRef = plr
+	
 	match ChosenSlice:
 		1:
 			print("You Win")
+		
+		2:
+			#Spawn Angry Enemy
+			pass
+		
+		
+			
 	
 	GameManager.time_updated.emit(TimeAdded + ExtraTime)
 

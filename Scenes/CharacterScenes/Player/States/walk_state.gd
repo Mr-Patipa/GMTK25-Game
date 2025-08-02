@@ -10,7 +10,7 @@ func dependencyInjected() -> void: ## _ready() for states.
 
 
 func stateEnter() -> void: ## Runs whenever the state is changed into.
-	pass
+	Parent.Dashed = false
 
 
 func stateExit() -> void: ## Runs when the state is changed out of.

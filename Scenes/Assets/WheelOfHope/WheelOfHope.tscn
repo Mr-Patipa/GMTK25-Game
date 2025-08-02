@@ -15,6 +15,10 @@ radius = 9.0
 
 [node name="WheelOfHope" type="Node3D" node_paths=PackedStringArray("WheelBase", "CoolTimer", "BufferZone", "SpinSFX")]
 script = ExtResource("1_p1lns")
+SpinTimes = null
+SpinDuration = null
+SliceCount = null
+CooldownTime = null
 TimeAdded = 10
 WheelBase = NodePath("Wheel")
 CoolTimer = NodePath("CoolTimer")

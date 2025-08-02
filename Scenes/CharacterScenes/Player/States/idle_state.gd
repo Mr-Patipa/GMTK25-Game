@@ -13,6 +13,7 @@ func dependencyInjected() -> void: ## _ready() for states.
 func stateEnter() -> void: ## Runs whenever the state is changed into.
 	if Parent is Player:
 		Parent.velocity = Vector3.ZERO
+		Parent.Dashed = false
 
 
 func stateExit() -> void: ## Runs when the state is changed out of.
@@ -25,6 +26,7 @@ func stepped(_delta : float): ## process()
 
 func renderStepped(_delta : float): ## physics_process()
 	if Parent is Player:
+		Parent.move_and_slide()
 		Parent.Camera.position = lerp(Parent.Camera.position, Parent.position + Vector3(0, Parent.CameraHeight, Parent.CameraOffset), Parent.CameraSpeed / 100)
 		var Direction : Vector2 = Input.get_vector("Left", "Right", "Up", "Down")
 		
