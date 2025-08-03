@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://tkbftlb38xp"]
+
+[ext_resource type="Script" uid="uid://chjbnnkg3u241" path="res://Classes/Collectable/collectable.gd" id="1_67off"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wnycr"]
+radius = 0.289543
+
+[node name="Collectable" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_67off")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wnycr")
+
+[connection signal="body_entered" from="." to="." method="playerEntered"]

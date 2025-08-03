@@ -16,7 +16,7 @@ func addDifficulty() -> void:
 	# Get difficulty to add
 	var component_key = difficulty_additions.keys().pick_random()
 	var component = difficulty_additions[component_key]
-	difficulty_additions.remove(component_key)
+	difficulty_additions.erase(component_key)
 	
 	if component_key == "PATHS":
 		addComponentPaths(component)

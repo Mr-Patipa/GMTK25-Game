@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://sydm4wgfgdwb"]
+[gd_scene load_steps=35 format=3 uid="uid://sydm4wgfgdwb"]
 
 [ext_resource type="MeshLibrary" uid="uid://dcok7ta2iqn7i" path="res://Resources/Graphics/Carpet Tiles/Carpet Tiles.tres" id="1_f5jau"]
 [ext_resource type="Script" uid="uid://bfpoebxwnbgmm" path="res://Scenes/Assets/Card Table/PokerPitController.gd" id="3_8n5ol"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://dy75nfox4iwx8" path="res://Scenes/Assets/Slot Machine/SlotMachineController.gd" id="5_s6owt"]
 [ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="6_uga0m"]
 [ext_resource type="PackedScene" uid="uid://b53icxys2o4wc" path="res://Scenes/Assets/Item/Item.tscn" id="7_ir4eo"]
+[ext_resource type="PackedScene" uid="uid://tkbftlb38xp" path="res://Classes/Collectable/Collectable.tscn" id="8_afxkc"]
 [ext_resource type="PackedScene" uid="uid://kpittpdtrxen" path="res://Scenes/CharacterScenes/Enemies/Bartender/Bartender.tscn" id="8_bbas2"]
 [ext_resource type="Script" uid="uid://dxua7tjjm5fxe" path="res://Scenes/Testing/BarAreaController.gd" id="8_rbrrp"]
+[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="9_votmq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6owt"]
 albedo_color = Color(1, 0.240886, 0.440402, 1)
@@ -340,9 +342,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 5, 40)
 shape = SubResource("BoxShape3D_ir4eo")
 debug_color = Color(0, 0, 0, 0.42)
 
-[node name="Item" parent="Slot Machine Controller" instance=ExtResource("7_ir4eo")]
+[node name="ItemOld" parent="Slot Machine Controller" instance=ExtResource("7_ir4eo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.998, 0.5, 50)
 visible = false
+
+[node name="Item" type="Node3D" parent="Slot Machine Controller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6712, 1.26345, 36.8855)
+visible = false
+
+[node name="Collectable" parent="Slot Machine Controller/Item" node_paths=PackedStringArray("Parent") instance=ExtResource("8_afxkc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18706, -0.937801)
+monitoring = false
+Parent = NodePath("..")
+
+[node name="Sprite3D" type="Sprite3D" parent="Slot Machine Controller/Item"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+modulate = Color(0.515522, 0.350436, 0.399314, 1)
+texture = ExtResource("9_votmq")
 
 [node name="Bar Area Controller" type="Node" parent="."]
 script = ExtResource("8_rbrrp")

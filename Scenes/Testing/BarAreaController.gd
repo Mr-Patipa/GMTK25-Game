@@ -44,7 +44,7 @@ func spawn_bartenders():
 	for p in right_pos:
 		var new_point = rightSpawns.curve.sample_baked(p*rightSpawns.curve.get_baked_length())
 		new_point = rightSpawns.to_global(new_point)
-		print(new_point)
+		#print(new_point)
 		new_point = Vector3(rightSpawns.global_position.x, rightSpawns.global_position.y+1.1, new_point.z)
 		var new_bartender = Bartender.instantiate()
 		self.add_child(new_bartender)

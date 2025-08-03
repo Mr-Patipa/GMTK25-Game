@@ -1,15 +1,18 @@
 extends Interactable
 class_name William
 
+var CurrentItemCount : int = 0
+@export var ItemNeeded : int = 3
+@export var EndTime : float = 3
 @export var ArialPrompt : ArialUI
+@export var EndTimer : Timer
 
 var DialogueActive : bool = false
 var CurrentOrder : int = 0
 var CurrentText : String
 var CurrentDialogue : Array[String]
 var plr : Player
-var WithItem : bool = false
-var ItemCount : int = 0
+
 
 var Initial : bool = false
 var InitialDialogue : Array[String] = [
@@ -46,21 +49,33 @@ var ItemGottenAll : Array[String] = [
 	"See you soon pal."
 ]
 
+func _ready() -> void:
+	EndTimer.timeout.connect(func() -> void:
+		GameManager.game_ended.emit()
+	)
+
+
 func activate(player : Player) -> void:
+	plr = player
 	
 	if not Initial:
 		CurrentDialogue = InitialDialogue
 	else:
-		if WithItem == false:
+		
+		
+		if plr.ItemCount == 0:
 			CurrentDialogue = [WithNoItemsV1, WithNoItemsV2].pick_random()
+		
 		else:
+			CurrentItemCount += plr.ItemCount
+			plr.ItemCount = 0
 			CurrentDialogue = [ItemGottenV1, ItemGottenV1].pick_random()
 		
-		if ItemCount == 5:
+		if CurrentItemCount == ItemNeeded:
 			CurrentDialogue = ItemGottenAll
+		
 	
 	GameManager.dialogue_triggered.emit()
-	plr = player
 	GameManager.dialogue_sent.emit("...")
 	GameManager.dialogue_name_sent.emit("William")
 	
@@ -88,10 +103,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			GameManager.dialogue_triggered.emit()
 			plr.Machine.Active = true
 			DialogueActive = false
+			ArialPrompt.visible = true
 			
 			if not Initial:
 				Initial = true
 			
 			else:
-				if ItemCount == 5:
-					GameManager.game_ended.emit()
+				if CurrentItemCount == ItemNeeded:
+					EndTimer.set_wait_time(EndTime)
+					EndTimer.start()
+					GameManager.GameWon == true

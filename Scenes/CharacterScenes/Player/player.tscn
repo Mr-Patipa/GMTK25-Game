@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddqkulaxxsn8j"]
+[gd_scene load_steps=13 format=3 uid="uid://ddqkulaxxsn8j"]
 
 [ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bt7rpu4f1fqm4" path="res://Scenes/CharacterScenes/Player/States/walk_state.gd" id="4_2o5yx"]
 [ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
 [ext_resource type="Script" uid="uid://dfyle68jpytny" path="res://Scenes/CharacterScenes/Player/States/dash_state.gd" id="7_mfnoy"]
+[ext_resource type="Script" uid="uid://d3s3i3faueskj" path="res://Scenes/CharacterScenes/Player/States/knockback.gd" id="8_vnhwv"]
 [ext_resource type="Script" uid="uid://bnxq4kmu7v0o0" path="res://Scenes/CharacterScenes/Player/States/death_state.gd" id="8_wdmk3"]
 [ext_resource type="AudioStream" uid="uid://dsm6k2h1equh6" path="res://Audio/jump sound.ogg" id="9_bqxua"]
 [ext_resource type="AudioStream" uid="uid://dpl7fw3fiqlpq" path="res://Audio/footsteps.ogg" id="10_vnhwv"]
@@ -15,12 +16,11 @@
 radius = 0.2
 height = 1.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Inventory", "Modifiers", "KayoteTimer", "Camera", "CShakeOffsetTimer") groups=["Block", "Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Modifiers", "KayoteTimer", "Camera", "CShakeOffsetTimer") groups=["Block", "Player"]]
 collision_layer = 2
 script = ExtResource("1_46n4p")
 Machine = NodePath("StateMachine")
 Death = NodePath("StateMachine/Death")
-Inventory = NodePath("Inventory")
 Modifiers = NodePath("Modifiers")
 WalkSpeed = 5.0
 JumpHieght = 9.81
@@ -37,8 +37,6 @@ CShakeOffsetTimer = NodePath("Camera3D/ShakeOffsetTimer")
 
 [node name="KayoteTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Inventory" type="Node" parent="."]
 
 [node name="Modifiers" type="Node" parent="."]
 
@@ -85,6 +83,10 @@ JumpSFX = NodePath("../../JumpSFX")
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_wdmk3")
 
+[node name="Knockback" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle")]
+script = ExtResource("8_vnhwv")
+Idle = NodePath("../Idle")
+
 [node name="Shadow" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.029, 1.5, -2.86102e-06)
 light_negative = true
@@ -93,7 +95,6 @@ spot_angle = 6.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0.449847, 0)
-no_depth_test = true
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("2_xm3sw")

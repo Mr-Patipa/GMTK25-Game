@@ -7,13 +7,14 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pdmds"]
 
-[node name="GameMenu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "VolumeController", "TimerLabel", "GameTimer", "GameOver", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text")]
+[node name="GameMenu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "VolumeController", "TimerLabel", "GameTimer", "GameOver", "GameStatus", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text")]
 script = ExtResource("1_62h2g")
 OptionsMenu = NodePath("Options")
 VolumeController = NodePath("VolumeController")
 TimerLabel = NodePath("GameStatus/TimerLabel")
 GameTimer = NodePath("GameStatus/GameTimer")
 GameOver = NodePath("GameOver")
+GameStatus = NodePath("GameOver/Others/GameStatus")
 Background = NodePath("GameOver/Background")
 BestTimeLabel = NodePath("GameOver/Others/BestTime")
 MostTimeLabel = NodePath("GameOver/Others/MostTime")
@@ -23,6 +24,31 @@ MenuBtn = NodePath("GameOver/Others/Menu")
 DialogueMenu = NodePath("DialogueMenu")
 NameCard = NodePath("DialogueMenu/Panel/NameCard")
 Text = NodePath("DialogueMenu/Panel/Text")
+
+[node name="GameStatus" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1016.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerLabel" type="Label" parent="GameStatus"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Time Left: 60"
+horizontal_alignment = 1
+
+[node name="GameTimer" type="Timer" parent="GameStatus"]
 
 [node name="VolumeController" type="Control" parent="."]
 visible = false
@@ -80,75 +106,6 @@ label_settings = ExtResource("3_u64uq")
 layout_mode = 2
 BusName = "Sfx"
 
-[node name="Options" type="Control" parent="."]
-visible = false
-custom_minimum_size = Vector2(400, 500)
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackgroundColor" type="ColorRect" parent="Options"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.355314, 0.355314, 0.355314, 1)
-
-[node name="ButtonContainer" type="VBoxContainer" parent="Options/BackgroundColor"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 60
-
-[node name="ReturnButton" parent="Options/BackgroundColor/ButtonContainer" instance=ExtResource("1_ytcdc")]
-layout_mode = 2
-text = "Return"
-
-[node name="QuitButton" parent="Options/BackgroundColor/ButtonContainer" instance=ExtResource("1_ytcdc")]
-layout_mode = 2
-text = "Quit"
-
-[node name="GameStatus" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -1016.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TimerLabel" type="Label" parent="GameStatus"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -88.0
-offset_top = 16.0
-offset_right = 88.0
-offset_bottom = 51.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 25
-text = "Time Left: 60"
-horizontal_alignment = 1
-
-[node name="GameTimer" type="Timer" parent="GameStatus"]
-
 [node name="DialogueMenu" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -200,6 +157,54 @@ offset_bottom = 141.0
 theme_override_font_sizes/font_size = 25
 text = "F"
 
+[node name="Options" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Options/BackgroundColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="ReturnButton" parent="Options/BackgroundColor/ButtonContainer" instance=ExtResource("1_ytcdc")]
+layout_mode = 2
+text = "Return"
+
+[node name="QuitButton" parent="Options/BackgroundColor/ButtonContainer" instance=ExtResource("1_ytcdc")]
+layout_mode = 2
+text = "Quit"
+
 [node name="GameOver" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -220,7 +225,6 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_pdmds")
 
 [node name="Others" type="Control" parent="GameOver"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

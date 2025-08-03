@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwwxydcd6n0oa"]
+[gd_scene load_steps=17 format=3 uid="uid://bwwxydcd6n0oa"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_83gf6"]
 [ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="2_r2ljp"]
@@ -8,12 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
 [ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/ChaserEnemy/ChaserEnemy.tscn" id="8_7dvjk"]
-[ext_resource type="PackedScene" uid="uid://nbov7vuqy6gf" path="res://Scenes/Assets/Doors/door.tscn" id="12_xhvoo"]
-[ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="13_plhmv"]
-[ext_resource type="PackedScene" uid="uid://cj55hxbfqn7n2" path="res://Scenes/Assets/Blocks&Preasures/preasure_plates.tscn" id="14_3kmnp"]
-[ext_resource type="PackedScene" uid="uid://75j34cg8udnl" path="res://Scenes/Assets/Blocks&Preasures/movable_block.tscn" id="15_ewvdg"]
+[ext_resource type="PackedScene" uid="uid://tkbftlb38xp" path="res://Classes/Collectable/Collectable.tscn" id="12_fu36u"]
+[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="13_lwnbm"]
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="16_7dvjk"]
-[ext_resource type="PackedScene" uid="uid://cy88niwngfhy5" path="res://Scenes/Assets/Keys/key.tscn" id="16_apd7g"]
 [ext_resource type="PackedScene" uid="uid://bi2jdyfqbg5bs" path="res://Scenes/CharacterScenes/Villain/villain.tscn" id="17_fy07g"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="18_wgtvb"]
 
@@ -39,23 +36,6 @@ Vector2i(1, 0): {
 "to_time": 0
 }
 }
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_6aodd"]
-radius = 4.6181
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ggwpe"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tmcsw"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6h52f"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_11yoy"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_hbps4"]
-radius = 3.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_me66b"]
-radius = 2.77051
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnb83"]
 size = Vector3(180.202, 1, 186.079)
@@ -88,7 +68,6 @@ TimeCounter = NodePath("TimeCounter")
 
 [node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
 stream = SubResource("AudioStreamInteractive_iusis")
-volume_db = -80.0
 
 [node name="DeathTimer" type="Timer" parent="BrainMatter/GameStateManager"]
 one_shot = true
@@ -113,7 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9165, 2.72378, -0.249826)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9533, 2.72378, 3.24068)
 
 [node name="M3" type="Marker3D" parent="World/EnemySpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.48207, 2.72378, 9.05585)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.29667, 2.51346, 9.21587)
 
 [node name="M4" type="Marker3D" parent="World/EnemySpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3187, 2.72378, 8.20232)
@@ -129,86 +108,6 @@ transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.399
 [node name="CollisionShape3D" parent="World/WheelOfHope/BufferZone" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360193, 0.82915, 0)
 
-[node name="Door" parent="World" instance=ExtResource("12_xhvoo")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 6.83512, -0.0169313, 14.2171)
-
-[node name="ArialUI" parent="World/Door" node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("13_plhmv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4271, 0.404989)
-AreaDetector = NodePath("Area3D")
-Target = NodePath("..")
-
-[node name="Area3D" type="Area3D" parent="World/Door/ArialUI"]
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door/ArialUI/Area3D"]
-shape = SubResource("SphereShape3D_6aodd")
-
-[node name="Door2" parent="World" instance=ExtResource("12_xhvoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8573, -0.0021291, 15.5107)
-
-[node name="PreasurePlate" parent="World/Door2" node_paths=PackedStringArray("Target", "Detector") instance=ExtResource("14_3kmnp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80424, 0.544982, -2.58964)
-Target = NodePath("..")
-Detector = NodePath("Area3D")
-
-[node name="Area3D" type="Area3D" parent="World/Door2/PreasurePlate"]
-collision_mask = 6
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door2/PreasurePlate/Area3D"]
-transform = Transform3D(1.05, 0, 0, 0, 0.21, 0, 0, 0, 1.05, 0, 0, 0)
-shape = SubResource("BoxShape3D_ggwpe")
-
-[node name="MovableBlock" parent="World/Door2" instance=ExtResource("15_ewvdg")]
-
-[node name="Block" parent="World/Door2/MovableBlock" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97816, 1.01488, 0)
-collision_layer = 4
-collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_tmcsw")
-linear_damp = 100.0
-angular_damp = 10.0
-
-[node name="CollisionShape3D" parent="World/Door2/MovableBlock/Block" index="0"]
-shape = SubResource("BoxShape3D_6h52f")
-
-[node name="Door3" parent="World" instance=ExtResource("12_xhvoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1791, -0.0169309, 23.3474)
-
-[node name="Key" parent="World/Door3" instance=ExtResource("16_apd7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.31381, 0.653436, 0.865097)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="World/Door3/Key"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Key"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("BoxShape3D_11yoy")
-
-[node name="ArialUI" parent="World/Door3/Key" node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("13_plhmv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78528, 0)
-SelfDestruct = true
-AreaDetector = NodePath("Area3D")
-Target = NodePath("..")
-
-[node name="Area3D" type="Area3D" parent="World/Door3/Key/ArialUI"]
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Key/ArialUI/Area3D"]
-shape = SubResource("SphereShape3D_hbps4")
-
-[node name="Accepter" parent="World/Door3" node_paths=PackedStringArray("Require", "AreaDetector", "Target") instance=ExtResource("13_plhmv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55752, 0.986282)
-SelfDestruct = true
-Require = NodePath("../Key")
-AreaDetector = NodePath("Area3D")
-Target = NodePath("..")
-
-[node name="Area3D" type="Area3D" parent="World/Door3/Accepter"]
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Door3/Accepter/Area3D"]
-shape = SubResource("SphereShape3D_me66b")
-
 [node name="Villain" parent="World" instance=ExtResource("17_fy07g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.624015, 1.42076, 4.13952)
 
@@ -220,6 +119,51 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91357, 0, -12.9472)
 shape = SubResource("BoxShape3D_fnb83")
 
+[node name="Item1" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2158, 1.3902, -44.3312)
+
+[node name="Collectable" parent="World/Item1" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
+collision_mask = 3
+Parent = NodePath("..")
+
+[node name="Sprite3D" type="Sprite3D" parent="World/Item1"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+modulate = Color(1, 0.55373, 0.354052, 1)
+texture = ExtResource("13_lwnbm")
+
+[node name="Item2" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7769, 1.44405, -44.7095)
+
+[node name="Collectable" parent="World/Item2" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
+Parent = NodePath("..")
+
+[node name="Sprite3D" type="Sprite3D" parent="World/Item2"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+modulate = Color(1, 0.55373, 0.354052, 1)
+texture = ExtResource("13_lwnbm")
+
+[node name="Item3" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.261, 1.44405, -44.1518)
+
+[node name="Collectable" parent="World/Item3" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
+Parent = NodePath("..")
+
+[node name="Sprite3D" type="Sprite3D" parent="World/Item3"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+modulate = Color(1, 0.55373, 0.354052, 1)
+texture = ExtResource("13_lwnbm")
+
+[node name="Item4" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4078, 12.4092, 57.9145)
+
+[node name="Collectable" parent="World/Item4" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
+Parent = NodePath("..")
+
+[node name="Sprite3D" type="Sprite3D" parent="World/Item4"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+modulate = Color(1, 0.55373, 0.354052, 1)
+texture = ExtResource("13_lwnbm")
+
 [node name="Lighting" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -227,7 +171,7 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_y8u7o")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(1, 3.78552e-08, 6.55671e-08, -3.78551e-08, -0.5, 0.866025, 6.5567e-08, -0.866026, -0.5, 0, 0, 0)
+transform = Transform3D(1, 6.86168e-08, -3.19966e-08, -3.78551e-08, 0.819152, 0.573576, 6.5567e-08, -0.573576, 0.819152, 0, 0, 0)
 shadow_enabled = true
 
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("18_wgtvb")]
@@ -240,4 +184,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2859, 0.100002, 0.482087)
 [node name="Node" type="Node" parent="."]
 
 [editable path="World/WheelOfHope"]
-[editable path="World/Door2/MovableBlock"]

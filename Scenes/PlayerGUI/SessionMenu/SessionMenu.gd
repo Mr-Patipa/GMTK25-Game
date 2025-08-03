@@ -13,6 +13,7 @@ var CurrentGameTimeLeft : int
 @export_category("Game Over UI")
 @export var FadeDuration : float = 0.5 # How long it takes to fade to black
 @export var GameOver : Control
+@export var GameStatus : Label
 @export var Background : TextureRect
 @export var BestTimeLabel : Label
 @export var MostTimeLabel : Label
@@ -50,7 +51,7 @@ func _ready() -> void:
 	)
 	
 	PlayBtn.pressed.connect(func() -> void:
-		get_tree().change_scene_to_file(SceneManager.LEVEL)
+		get_tree().change_scene_to_file(SceneManager.ROOT)
 	)
 
 
@@ -130,6 +131,9 @@ func startEnding() -> void:
 	FadeTween.finished.connect(func() -> void:
 		GameOver.get_node("Others").visible = true
 	)
+	
+	if GameManager.GameWon == true:
+		GameStatus.text = "You Win!"
 
 #endregion
 
@@ -159,7 +163,6 @@ func checkAvailable(timer : Timer, name_card : String, text : String) -> void:
 	if InDialogue == true:
 		timer.stop()
 	
-	print("Here")
 	NameCard.text = name_card
 	Text.text = text
 

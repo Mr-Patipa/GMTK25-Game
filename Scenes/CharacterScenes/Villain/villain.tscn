@@ -11,9 +11,14 @@ radius = 1.0
 
 [node name="Villain" type="CharacterBody3D"]
 
-[node name="InteractionController" type="Node3D" parent="." node_paths=PackedStringArray("ArialPrompt")]
+[node name="EndTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="InteractionController" type="Node3D" parent="." node_paths=PackedStringArray("ArialPrompt", "EndTimer")]
 script = ExtResource("1_npxie")
+ItemNeeded = 5
 ArialPrompt = NodePath("../ArialUI")
+EndTimer = NodePath("../EndTimer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_dr31a")

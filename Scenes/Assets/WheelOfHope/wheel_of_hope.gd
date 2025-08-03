@@ -103,6 +103,7 @@ func checkStatus() -> void:
 			#You won the game...
 			GameManager.game_ended.emit()
 			text = "You win"
+			GameManager.GameWon == true
 		
 		2:
 			#Spawn Angry Enemy

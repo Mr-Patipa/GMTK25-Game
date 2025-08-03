@@ -30,3 +30,7 @@ signal difficulty_changed
 signal wheel_dialogue_needed
 @warning_ignore("unused_signal")
 signal dialogue_opened
+@warning_ignore("unused_signal")
+signal player_collided
+
+var GameWon : bool = false

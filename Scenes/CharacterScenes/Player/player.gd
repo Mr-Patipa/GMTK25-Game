@@ -11,7 +11,7 @@ class_name Player
 
 @export var Machine : StateMachine
 @export var Death : State
-@export var Inventory : Node
+@export var ItemCount : int = 0
 @export var Modifiers : Node
 
 
@@ -126,7 +126,6 @@ func strengthMultiplier(time : int) -> void:
 
 
 func pickNewLocation() -> void:
-	
 	if Safe == false:
 		randomize()
 		var RandomLocation : Vector3 = Vector3(
@@ -167,3 +166,4 @@ func _on_item_collected_signal(n: String, a: int) -> void:
 	# Hook up via signal from Item.gd's collectedSignal
 	for i in range(a):
 		self.Player_Inventory.append(n)
+		print("Here")

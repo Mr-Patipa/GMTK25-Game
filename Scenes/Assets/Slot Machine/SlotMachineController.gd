@@ -4,6 +4,7 @@ var slotAmount: int = 3
 var currentSlot: int = 1
 var secondsPerText: float = .5
 
+
 var difficulty_additions = {"DARK": self.makeDarkAndFast,
 							"FIVE": self.increaseSlotAmount}
 
@@ -20,7 +21,7 @@ func addDifficulty() -> void:
 	# Get difficulty to add
 	var addOnKey = difficulty_additions.keys().pick_random()
 	var addOn = difficulty_additions[addOnKey]
-	difficulty_additions.remove(addOn)
+	difficulty_additions.erase(addOn)
 	
 	addOn.call()
 
@@ -58,6 +59,7 @@ func updateMemoryGame(order_number: int):
 func checkWinCondition():
 	if self.currentSlot < self.slotAmount+1: return
 	$Item.visible = true
+	get_node("Item").get_node("Collectable").monitoring = true
 	
 func resetWinCondition():
 	# TO-DO: Play sad sound
