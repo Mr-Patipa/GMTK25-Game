@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://bwwxydcd6n0oa"]
+[gd_scene load_steps=27 format=3 uid="uid://bwwxydcd6n0oa"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_83gf6"]
 [ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="2_r2ljp"]
 [ext_resource type="AudioStream" uid="uid://pjvi81b587y1" path="res://Audio/background_music.ogg" id="3_yry2f"]
 [ext_resource type="AudioStream" uid="uid://c1hgj3p4bl4s0" path="res://Audio/ScaryMusic.mp3" id="4_7ddf7"]
+[ext_resource type="Script" uid="uid://b0gq5dnfaueci" path="res://Globals/SceneManager.gd" id="5_hv1ua"]
 [ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
 [ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/ChaserEnemy/ChaserEnemy.tscn" id="8_7dvjk"]
@@ -93,6 +94,9 @@ volume_db = -80.0
 one_shot = true
 
 [node name="TimeCounter" type="Timer" parent="BrainMatter/GameStateManager"]
+
+[node name="SceneManager" type="Node" parent="BrainMatter"]
+script = ExtResource("5_hv1ua")
 
 [node name="World" parent="." instance=ExtResource("5_l1uwp")]
 

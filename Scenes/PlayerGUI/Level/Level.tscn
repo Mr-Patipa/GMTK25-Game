@@ -103,13 +103,10 @@ one_shot = true
 [node name="PlayerSpawnPos" type="Marker3D" parent="Casino"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89408, 1, 0)
 
-[node name="Player" parent="Casino" instance=ExtResource("2_jrnlp")]
+[node name="Player2" parent="Casino" instance=ExtResource("2_jrnlp")]
 transform = Transform3D(1.00121, 0, 0, 0, 1.00121, 0, 0, 0, 1.00121, 5.73606, 1.19301, 0.198298)
 InitialStrength = 0.5
 StrengthIncrease = 0.2
-
-[node name="Camera3D" parent="Casino/Player" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.642787, 0.766045, 0, -0.766045, 0.642787, 5, 6, 8)
 
 [node name="WheelOfHope" parent="Casino" instance=ExtResource("8_brbg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
@@ -255,6 +252,5 @@ shadow_enabled = true
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("1_inj1o")]
 World = NodePath("../Casino")
 
-[editable path="Casino/Player"]
 [editable path="Casino/WheelOfHope"]
 [editable path="Casino/Door2/MovableBlock"]
