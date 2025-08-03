@@ -4,6 +4,7 @@ extends State
 @export var Airborne : State
 @export var Dash : State
 @export var JumpSFX : AudioStreamPlayer
+@export var AnimTree : AnimationTree
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -14,6 +15,9 @@ func stateEnter() -> void: ## Runs whenever the state is changed into.
 	if Parent is Player:
 		Parent.velocity = Vector3.ZERO
 		Parent.Dashed = false
+		AnimTree.active = true
+		AnimTree["parameters/conditions/IsIdling"] = true
+		AnimTree["parameters/Idle/blend_position"] = Parent.FacingDirection.y
 
 
 func stateExit() -> void: ## Runs when the state is changed out of.
@@ -29,6 +33,7 @@ func renderStepped(_delta : float): ## physics_process()
 		Parent.move_and_slide()
 		Parent.Camera.position = lerp(Parent.Camera.position, Parent.position + Vector3(0, Parent.CameraHeight, Parent.CameraOffset), Parent.CameraSpeed / 100)
 		var Direction : Vector2 = Input.get_vector("Left", "Right", "Up", "Down")
+		
 		
 		if Direction != Vector2.ZERO:
 			Parent.FacingDirection = Direction

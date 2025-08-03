@@ -4,7 +4,7 @@ class_name TheWheel
 
 @export var SpinTimes : int = 16 # Amount of time it spins before it slows down
 @export var SpinDuration : float = 9 # Duration of each spins
-@export var SliceCount : int = 7 # How many options are on the wheel
+@export var SliceCount : int = 6 # How many options are on the wheel
 @export var CooldownTime : float = 2 # How long until you could spin the wheel again after it's finished
 @export var TimeAdded : int = 60 # Amount of time added for every spin
 @export var WheelBase : Marker3D
@@ -105,12 +105,6 @@ func checkStatus() -> void:
 	
 	match ChosenSlice:
 		1:
-			#You won the game...
-			GameManager.game_ended.emit()
-			text = "You win"
-			GameManager.GameWon == true
-		
-		2:
 			#Spawn Angry Enemy
 			for i in range(0, SpawnAmount, 1):
 				NewEnemy = Chaser.instantiate()
@@ -125,13 +119,13 @@ func checkStatus() -> void:
 			text = "+ " + str(TimeAdded) + " seconds" + "
 				Two Extra Ghost Spawned in!"
 		
-		3:
+		2:
 			#Change game difficulty
 			GameManager.difficulty_changed.emit()
 			text = "+ " + str(TimeAdded) + " seconds" + "
 				Games are now harder!"
 		
-		4:
+		3:
 			#Give player exetra speed
 			plr.SpeedChange += ExtraSpeed
 			PlusTime -= ExtraTime
@@ -145,7 +139,7 @@ func checkStatus() -> void:
 			text = "+ " + str(TimeAdded + PlusTime) + " seconds" + "
 				Your movement speed has been increased!"
 		
-		5:
+		4:
 			#Reduce player speed
 			PlusTime = ExtraTime /2
 			plr.SpeedChange -= ReducedSpeed
@@ -159,7 +153,7 @@ func checkStatus() -> void:
 			text = "+ " + str(TimeAdded + PlusTime) + " seconds" + "
 				Your movement Speed has decreased"
 		
-		6:
+		5:
 			#Reverse control
 			plr.Inversed = true
 			PlusTime = ExtraTime
@@ -173,7 +167,7 @@ func checkStatus() -> void:
 			text = "+ " + str(TimeAdded + PlusTime) + " seconds" + "
 				Your controls are now reversed"
 			
-		7:
+		6:
 			# Lights out and flickering
 			AmbientLight.visible = false
 			NewTimer = PlaceholderTimer.duplicate()

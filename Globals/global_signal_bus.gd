@@ -33,4 +33,12 @@ signal dialogue_opened
 @warning_ignore("unused_signal")
 signal player_collided
 
+
 var GameWon : bool = false
+var BestTime : int
+var MostTime : int
+var CurrentTime : int
+
+
+func _ready() -> void:
+	CurrentTime = 0

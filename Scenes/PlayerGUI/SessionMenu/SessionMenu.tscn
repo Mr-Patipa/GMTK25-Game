@@ -7,10 +7,11 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pdmds"]
 
-[node name="GameMenu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "VolumeController", "TimerLabel", "GameTimer", "GameOver", "GameStatus", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text")]
+[node name="GameMenu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "VolumeController", "TimerLabel", "GameTimer", "GameOver", "GameStatus", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text", "TimeCounter")]
 script = ExtResource("1_62h2g")
 OptionsMenu = NodePath("Options")
 VolumeController = NodePath("VolumeController")
+InitialGameTime = 60
 TimerLabel = NodePath("GameStatus/TimerLabel")
 GameTimer = NodePath("GameStatus/GameTimer")
 GameOver = NodePath("GameOver")
@@ -24,6 +25,7 @@ MenuBtn = NodePath("GameOver/Others/Menu")
 DialogueMenu = NodePath("DialogueMenu")
 NameCard = NodePath("DialogueMenu/Panel/NameCard")
 Text = NodePath("DialogueMenu/Panel/Text")
+TimeCounter = NodePath("TimeCounter")
 
 [node name="GameStatus" type="Control" parent="."]
 layout_mode = 3
@@ -318,6 +320,8 @@ offset_top = 704.0
 offset_right = 1152.0
 offset_bottom = 768.0
 text = "Menu"
+
+[node name="TimeCounter" type="Timer" parent="."]
 
 [connection signal="pressed" from="Options/BackgroundColor/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="Options/BackgroundColor/ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

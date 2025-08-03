@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://kpittpdtrxen"]
 
 [ext_resource type="Script" uid="uid://c3i0dfw7l01qa" path="res://Scenes/CharacterScenes/Enemies/Bartender/Bartender.gd" id="1_ae5my"]
-[ext_resource type="Texture2D" uid="uid://cupsjst7bnmak" path="res://Resources/Graphics/Sprites/Bartender.jpeg" id="1_geexh"]
+[ext_resource type="Texture2D" uid="uid://d6oane6monls" path="res://Resources/Graphics/Sprites/Bartender.png" id="2_ae5my"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_geexh"]
 size = Vector3(1, 1.88779, 0.339111)
@@ -15,7 +15,7 @@ script = ExtResource("1_ae5my")
 pixel_size = 0.0625
 alpha_cut = 1
 texture_filter = 0
-texture = ExtResource("1_geexh")
+texture = ExtResource("2_ae5my")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_geexh")

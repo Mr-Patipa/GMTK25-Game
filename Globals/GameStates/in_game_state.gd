@@ -10,8 +10,7 @@ extends Node
 
 @export var debug := false
 
-@export_category("End Game Stats")
-@export var TimeCounter : Timer
+
 
 var Victory : bool = false
 var IsEnding : bool = false

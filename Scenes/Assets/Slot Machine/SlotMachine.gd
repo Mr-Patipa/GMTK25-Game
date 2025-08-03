@@ -1,6 +1,7 @@
 extends StaticBody3D
 class_name SlotMachine
 
+@export var AnimPlayer : AnimationPlayer
 var order_number: int = -1
 
 signal SlotMachineActivated(order_number)
@@ -17,6 +18,10 @@ func _process(delta: float) -> void:
 
 func activate() -> void:
 	SlotMachineActivated.emit(order_number)
+	AnimPlayer.play("Spinning")
+	AnimPlayer.animation_finished.connect(func(animation) -> void:
+		AnimPlayer.play("Idle")
+	)
 
 func assignNumber(num: int):
 	self.order_number = num

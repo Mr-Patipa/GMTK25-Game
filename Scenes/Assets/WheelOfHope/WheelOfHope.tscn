@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bpu1sgwd1eqbt" path="res://Scenes/Assets/WheelOfHope/wheel_of_hope.gd" id="1_p1lns"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="2_0wmru"]
+[ext_resource type="Texture2D" uid="uid://fgtouk43hpxp" path="res://Resources/Graphics/Sprites/Poker or Roulette Table.png" id="2_kgscm"]
 [ext_resource type="AudioStream" uid="uid://cbyqryvklfm3v" path="res://Audio/roulette full sound.ogg" id="3_0wmru"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_bkewf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kgscm"]
 radius = 3.49348
@@ -24,14 +23,9 @@ DialogueTimer = NodePath("DialogueTimer")
 
 [node name="Wheel" type="Marker3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel"]
-transform = Transform3D(4, 0, 0, 0, 0.0618965, 0, 0, 0, 4, 0, 0, 0)
-mesh = SubResource("CylinderMesh_bkewf")
-skeleton = NodePath("../..")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Wheel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83745, 0.632816, 0)
-use_collision = true
+[node name="Sprite3D" type="Sprite3D" parent="Wheel"]
+transform = Transform3D(3.1, 0, 0, 0, 3.1, 0, 0, 0, 3.1, 0, 0.387939, 0)
+texture = ExtResource("2_kgscm")
 
 [node name="ArialUI" parent="." node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("2_0wmru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39993, 0)

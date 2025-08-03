@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq613sl6t77te"]
+[gd_scene load_steps=12 format=3 uid="uid://bq613sl6t77te"]
 
 [ext_resource type="Script" uid="uid://c2l0l322qw6x4" path="res://Scenes/Assets/Slot Machine/SlotMachine.gd" id="1_p2luo"]
 [ext_resource type="Texture2D" uid="uid://bln20uefnbgiv" path="res://Resources/Graphics/Sprites/Slot - Front.png" id="1_savm0"]
 [ext_resource type="Script" uid="uid://bq8oqyhxmk5iy" path="res://Scenes/Assets/Slot Machine/SlotMachineInteraction.gd" id="3_54deh"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="4_if7do"]
+[ext_resource type="PackedScene" uid="uid://dr8cf6fcnkmod" path="res://Resources/Graphics/Sprites/SlotMachineSheet.tscn" id="5_avs1u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2luo"]
 size = Vector3(1.42102, 4.02386, 1)
@@ -12,11 +13,67 @@ size = Vector3(1.42102, 4.02386, 1)
 height = 4.37231
 radius = 0.960449
 
-[node name="Slot Machine" type="StaticBody3D"]
+[sub_resource type="Animation" id="Animation_avs1u"]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slot Machine Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1aeqn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slot Machine Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2v12q"]
+resource_name = "Spinning"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slot Machine Sheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d6bfw"]
+_data = {
+&"Idle": SubResource("Animation_avs1u"),
+&"RESET": SubResource("Animation_1aeqn"),
+&"Spinning": SubResource("Animation_2v12q")
+}
+
+[node name="Slot Machine" type="StaticBody3D" node_paths=PackedStringArray("AnimPlayer")]
 script = ExtResource("1_p2luo")
+AnimPlayer = NodePath("AnimationPlayer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 pixel_size = 0.0625
 shaded = true
 alpha_cut = 1
@@ -41,15 +98,26 @@ wait_time = 0.33
 one_shot = true
 
 [node name="ArialUI" parent="." node_paths=PackedStringArray("AreaDetector", "Target") instance=ExtResource("4_if7do")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.012, 0)
 AreaDetector = NodePath("Area3D")
 Target = NodePath("../Interactable")
 
 [node name="Area3D" type="Area3D" parent="ArialUI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0337992, -1.97918, 0.00162315)
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArialUI/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0409421, 0)
 shape = SubResource("CylinderShape3D_avs1u")
+
+[node name="Slot Machine Sheet" parent="." instance=ExtResource("5_avs1u")]
+transform = Transform3D(11.57, 0, 0, 0, 11.57, 0, 0, 0, 11.57, 0, -4.29629, 0)
+frame = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_d6bfw")
+}
 
 [connection signal="SlotMachineInteraction" from="Interactable" to="." method="_on_interactable_slot_machine_interaction"]
 [connection signal="timeout" from="Text Timer" to="." method="_on_text_timer_timeout"]

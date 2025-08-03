@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwwxydcd6n0oa"]
+[gd_scene load_steps=17 format=3 uid="uid://d1ftjaujcjjql"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_83gf6"]
 [ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="2_r2ljp"]
@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://sydm4wgfgdwb" path="res://Scenes/Testing/Casino.tscn" id="5_l1uwp"]
 [ext_resource type="PackedScene" uid="uid://cofnkihdrskxa" path="res://Scenes/Assets/WheelOfHope/WheelOfHope.tscn" id="7_5th8o"]
 [ext_resource type="PackedScene" uid="uid://bcp1e5mn1rk67" path="res://Scenes/CharacterScenes/Enemies/ChaserEnemy/ChaserEnemy.tscn" id="8_7dvjk"]
+[ext_resource type="Texture2D" uid="uid://ckbnwjubhiatm" path="res://Resources/Graphics/Sprites/Gold Coin.png" id="11_20eh2"]
 [ext_resource type="PackedScene" uid="uid://tkbftlb38xp" path="res://Classes/Collectable/Collectable.tscn" id="12_fu36u"]
-[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="13_lwnbm"]
 [ext_resource type="PackedScene" uid="uid://bq613sl6t77te" path="res://Scenes/Assets/Slot Machine/SlotMachine.tscn" id="16_7dvjk"]
 [ext_resource type="PackedScene" uid="uid://bi2jdyfqbg5bs" path="res://Scenes/CharacterScenes/Villain/villain.tscn" id="17_fy07g"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="18_wgtvb"]
@@ -57,22 +57,19 @@ fog_depth_curve = 0.258816
 [node name="GlobalSignalBus" type="Node" parent="BrainMatter"]
 script = ExtResource("1_83gf6")
 
-[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos", "Detector", "TimeCounter")]
+[node name="GameStateManager" type="Node" parent="BrainMatter" node_paths=PackedStringArray("DeathTimer", "MusicController", "player", "SpawnPos", "Detector")]
 script = ExtResource("2_r2ljp")
 DeathTimer = NodePath("DeathTimer")
 MusicController = NodePath("MusicController")
 player = NodePath("../../World/Player")
 SpawnPos = NodePath("../../World/PlayerSpawnPos")
 Detector = NodePath("../../World/Detector")
-TimeCounter = NodePath("TimeCounter")
 
 [node name="MusicController" type="AudioStreamPlayer" parent="BrainMatter/GameStateManager"]
 stream = SubResource("AudioStreamInteractive_iusis")
 
 [node name="DeathTimer" type="Timer" parent="BrainMatter/GameStateManager"]
 one_shot = true
-
-[node name="TimeCounter" type="Timer" parent="BrainMatter/GameStateManager"]
 
 [node name="SceneManager" type="Node" parent="BrainMatter"]
 script = ExtResource("5_hv1ua")
@@ -104,6 +101,9 @@ Chaser = ExtResource("8_7dvjk")
 Lights = NodePath("../../Lighting/CasinoLights")
 AmbientLight = NodePath("../../Lighting/AmbientLight")
 
+[node name="Sprite3D" parent="World/WheelOfHope/Wheel" index="0"]
+transform = Transform3D(3.1, 0, 0, 0, 3.1, 0, 0, 0, 3.1, 0, 0.387939, 0)
+
 [node name="ArialUI" parent="World/WheelOfHope" index="1"]
 transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
 
@@ -122,27 +122,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91357, 0, -12.9472)
 shape = SubResource("BoxShape3D_fnb83")
 
 [node name="Item1" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2158, 0.836492, -44.3312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2158, 0.836492, -44.1467)
 
 [node name="Collectable" parent="World/Item1" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
 collision_mask = 3
 Parent = NodePath("..")
 
 [node name="Sprite3D" type="Sprite3D" parent="World/Item1"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-modulate = Color(1, 0.55373, 0.354052, 1)
-texture = ExtResource("13_lwnbm")
+transform = Transform3D(3.44, 0, 0, 0, 3.44, 0, 0, 0, 3.44, 0, 0, -0.0442924)
+texture = ExtResource("11_20eh2")
 
 [node name="Item2" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9934, 0.780599, -44.3244)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8745, 0.836492, -44.7688)
 
 [node name="Collectable" parent="World/Item2" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
+collision_mask = 3
 Parent = NodePath("..")
 
 [node name="Sprite3D" type="Sprite3D" parent="World/Item2"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-modulate = Color(1, 0.55373, 0.354052, 1)
-texture = ExtResource("13_lwnbm")
+transform = Transform3D(3.44, 0, 0, 0, 3.44, 0, 0, 0, 3.44, 0, 0, -0.0442924)
+texture = ExtResource("11_20eh2")
 
 [node name="Item3" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2992, 0.878647, -44.1565)
@@ -151,9 +150,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2992, 0.878647, -44.1565)
 Parent = NodePath("..")
 
 [node name="Sprite3D" type="Sprite3D" parent="World/Item3"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-modulate = Color(1, 0.55373, 0.354052, 1)
-texture = ExtResource("13_lwnbm")
+transform = Transform3D(3.44, 0, 0, 0, 3.44, 0, 0, 0, 3.44, 0, 0, -0.0442924)
+texture = ExtResource("11_20eh2")
 
 [node name="Item4" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45129, 12.4092, 57.9145)
@@ -162,9 +160,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45129, 12.4092, 57.9145)
 Parent = NodePath("..")
 
 [node name="Sprite3D" type="Sprite3D" parent="World/Item4"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-modulate = Color(1, 0.55373, 0.354052, 1)
-texture = ExtResource("13_lwnbm")
+transform = Transform3D(3.44, 0, 0, 0, 3.44, 0, 0, 0, 3.44, 0, 0, -0.0442924)
+texture = ExtResource("11_20eh2")
 
 [node name="Lighting" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
@@ -279,7 +276,7 @@ World = NodePath("../World")
 InitialGameTime = 60
 
 [node name="SlotMachines" parent="." instance=ExtResource("16_7dvjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2859, 0.100002, 0.482087)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2859, -3.55704, 0.482087)
 
 [node name="Node" type="Node" parent="."]
 

@@ -4,6 +4,8 @@ extends State
 @export var Idle : State
 @export var KnockForce : float = 5
 @export var Decceleration : float = 10
+@export var AnimTree : AnimationTree
+
 
 func _ready() -> void:
 	GameManager.player_collided.connect(func(body : Node3D) -> void:
@@ -19,6 +21,8 @@ func stateEnter() -> void: ## Runs whenever the state is changed into.
 	if Parent is Player:
 		Parent.velocity.x = KnockForce * -Parent.FacingDirection.x
 		Parent.velocity.z = KnockForce * -Parent.FacingDirection.y
+		AnimTree["parameters/conditions/IsIdling"] = true
+		AnimTree["parameters/Idle/blend_position"] = Parent.FacingDirection.y
 
 
 func stateExit() -> void: ## Runs when the state is changed out of.

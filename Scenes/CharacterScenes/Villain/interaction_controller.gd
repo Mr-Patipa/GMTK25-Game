@@ -6,6 +6,7 @@ var CurrentItemCount : int = 0
 @export var EndTime : float = 3
 @export var ArialPrompt : ArialUI
 @export var EndTimer : Timer
+@export var AnimPlayer : AnimationPlayer
 
 var DialogueActive : bool = false
 var CurrentOrder : int = 0
@@ -53,6 +54,7 @@ func _ready() -> void:
 	EndTimer.timeout.connect(func() -> void:
 		GameManager.game_ended.emit()
 	)
+	AnimPlayer.play("Idle")
 
 
 func activate(player : Player) -> void:
@@ -112,4 +114,4 @@ func _unhandled_input(event: InputEvent) -> void:
 				if CurrentItemCount == ItemNeeded:
 					EndTimer.set_wait_time(EndTime)
 					EndTimer.start()
-					GameManager.GameWon == true
+					GameManager.GameWon = true

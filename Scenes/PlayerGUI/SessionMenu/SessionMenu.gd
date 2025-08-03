@@ -30,6 +30,10 @@ var InDialogue : bool = false
 
 @export var debugMode := false
 
+@export_category("End Game Stats")
+@export var TimeCounter : Timer
+var IsCounting : bool = false
+
 
 func _ready() -> void:
 	CurrentGameTimeLeft = InitialGameTime
@@ -87,6 +91,13 @@ func playerReadyed() -> void:
 	
 	GameTimer.set_wait_time(1)
 	GameTimer.start()
+	
+	if IsCounting == false:
+		IsCounting = true
+		TimeCounter.set_wait_time(1)
+		TimeCounter.start()
+		TimeCounter.timeout.connect(func() -> void: GameManager.CurrentTime += 1)
+
 
 func playerSaved() -> void:
 	GameTimer.stop()
@@ -130,10 +141,24 @@ func startEnding() -> void:
 	FadeTween.tween_property(Background, "modulate", Color8(00,00,00), FadeDuration)
 	FadeTween.finished.connect(func() -> void:
 		GameOver.get_node("Others").visible = true
+		if GameManager.GameWon == true:
+			GameStatus.text = "You Win!"
 	)
+	TimeCounter.stop()
+	if GameManager.BestTime == 0:
+		GameManager.BestTime = GameManager.CurrentTime
+	elif GameManager.CurrentTime < GameManager.BestTime:
+		GameManager.BestTime = GameManager.CurrentTime
+	if GameManager.MostTime == 0:
+		GameManager.MostTime = GameManager.CurrentTime
+	elif GameManager.CurrentTime > GameManager.MostTime:
+		GameManager.MostTime = GameManager.CurrentTime
 	
-	if GameManager.GameWon == true:
-		GameStatus.text = "You Win!"
+	
+	BestTimeLabel.text = str(GameManager.BestTime) + " s"
+	MostTimeLabel.text = str(GameManager.MostTime) + " s"
+	CurrentTimeLabel.text = str(GameManager.CurrentTime) + " s"
+
 
 #endregion
 

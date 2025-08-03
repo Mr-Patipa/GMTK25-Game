@@ -4,6 +4,7 @@ extends State
 @export var Decceleration : float = 20
 @export var Airborne : State
 @export var JumpSFX : AudioStreamPlayer
+@export var AnimTree : AnimationTree
 
 
 var Debounce : bool
@@ -22,6 +23,8 @@ func stateEnter() -> void: ## Runs whenever the state is changed into.
 
 		Parent.velocity.x = Parent.FacingDirection.x * DashForce
 		Parent.velocity.z = Parent.FacingDirection.y * DashForce
+		AnimTree["parameters/conditions/IsIdling"] = true
+		AnimTree["parameters/Idle/blend_position"] = Parent.FacingDirection.y
 
 
 func stateExit() -> void: ## Runs when the state is changed out of.

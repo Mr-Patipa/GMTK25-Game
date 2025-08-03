@@ -5,6 +5,8 @@ extends State
 @export var Dash : State
 @export var JumpSFX : AudioStreamPlayer
 @export var WalkSFX : AudioStreamPlayer
+@export var AnimTree : AnimationTree
+
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -13,10 +15,13 @@ func dependencyInjected() -> void: ## _ready() for states.
 
 func stateEnter() -> void: ## Runs whenever the state is changed into.
 	WalkSFX.play()
-
+	AnimTree["parameters/conditions/IsIdling"] = false
+	AnimTree["parameters/conditions/IsWalking"] = true
 
 func stateExit() -> void: ## Runs when the state is changed out of.
 	WalkSFX.stop()
+	AnimTree["parameters/conditions/IsIdling"] = true
+	AnimTree["parameters/conditions/IsWalking"] = false
 
 
 func stepped(_delta : float): ## process()
@@ -41,6 +46,8 @@ func renderStepped(_delta : float): ## physics_process()
 			return Idle
 		else:
 			Parent.FacingDirection = Parent.Direction
+		
+		AnimTree["parameters/Walk/blend_position"] = Parent.FacingDirection
 		
 		if not Parent.is_on_floor():
 			Parent.IsKayote = true

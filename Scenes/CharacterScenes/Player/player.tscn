@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddqkulaxxsn8j"]
+[gd_scene load_steps=33 format=3 uid="uid://ddqkulaxxsn8j"]
 
 [ext_resource type="Script" uid="uid://dep2qk8eqkorh" path="res://Scenes/CharacterScenes/Player/player.gd" id="1_46n4p"]
 [ext_resource type="Script" uid="uid://db1u55c24i38l" path="res://Classes/StateMachine/state_machine.gd" id="1_lg7rm"]
 [ext_resource type="Script" uid="uid://ccl1hetvxpdlh" path="res://Scenes/CharacterScenes/Player/States/idle_state.gd" id="2_qijfs"]
-[ext_resource type="Texture2D" uid="uid://8wdgjx6el6id" path="res://Resources/Graphics/Testing/Test Character.png" id="2_xm3sw"]
+[ext_resource type="PackedScene" uid="uid://mwpoae7ew4v3" path="res://Resources/Graphics/Sprites/BunnySheetScene.tscn" id="2_vnhwv"]
 [ext_resource type="Script" uid="uid://bt7rpu4f1fqm4" path="res://Scenes/CharacterScenes/Player/States/walk_state.gd" id="4_2o5yx"]
 [ext_resource type="Script" uid="uid://84h7rfwsdi4b" path="res://Scenes/CharacterScenes/Player/States/airborne_state.gd" id="5_8ht00"]
 [ext_resource type="Script" uid="uid://dfyle68jpytny" path="res://Scenes/CharacterScenes/Player/States/dash_state.gd" id="7_mfnoy"]
@@ -15,6 +15,189 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfnoy"]
 radius = 0.2
 height = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vnhwv"]
+animation = &"IdleUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjj05"]
+animation = &"IdleDown"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_o0say"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_vnhwv")
+blend_point_0/pos = -1.1
+blend_point_1/node = SubResource("AnimationNodeAnimation_pjj05")
+blend_point_1/pos = 1.0
+min_space = -1.1
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_amvc3"]
+animation = &"WalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ij865"]
+animation = &"WalkUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x4dks"]
+animation = &"WalkDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6icgb"]
+animation = &"WalkWalkRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_iuvxx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_amvc3")
+blend_point_0/pos = Vector2(-1.1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_ij865")
+blend_point_1/pos = Vector2(0, -1.1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_x4dks")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_6icgb")
+blend_point_3/pos = Vector2(1, 0)
+min_space = Vector2(-1.1, -1.1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5mao2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_87vbf"]
+advance_mode = 2
+advance_condition = &"IsWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_47uqi"]
+advance_mode = 2
+advance_condition = &"IsIdling"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vnhwv"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_o0say")
+states/Idle/position = Vector2(407, 100)
+states/Start/position = Vector2(233, 100)
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_iuvxx")
+states/Walk/position = Vector2(618, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5mao2"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_87vbf"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_47uqi")]
+
+[sub_resource type="Animation" id="Animation_x4dks"]
+resource_name = "IdleDown"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6icgb"]
+resource_name = "IdleUp"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o0say"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pjj05"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(0, 0), Vector2i(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_amvc3"]
+resource_name = "WalkLeft"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_vnhwv"]
+resource_name = "WalkUp"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_ij865"]
+resource_name = "WalkWalkRight"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteSheet3D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_amvc3"]
+_data = {
+&"IdleDown": SubResource("Animation_x4dks"),
+&"IdleUp": SubResource("Animation_6icgb"),
+&"RESET": SubResource("Animation_o0say"),
+&"WalkDown": SubResource("Animation_pjj05"),
+&"WalkLeft": SubResource("Animation_amvc3"),
+&"WalkUp": SubResource("Animation_vnhwv"),
+&"WalkWalkRight": SubResource("Animation_ij865")
+}
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Machine", "Death", "Modifiers", "KayoteTimer", "Camera", "CShakeOffsetTimer") groups=["Block", "Player"]]
 collision_layer = 2
@@ -29,11 +212,14 @@ KayoteTimer = NodePath("KayoteTimer")
 FacingDirection = Vector2(1, 0)
 CameraHeight = 8.0
 CameraOffset = 7.0
-InitialStrength = 0.0
-StrengthIncrease = 0.0
-FinalFOV = 75.0
+InitialStrength = 0.05
+StrengthIncrease = 0.05
+FinalFOV = 70.0
 Camera = NodePath("Camera3D")
 CShakeOffsetTimer = NodePath("Camera3D/ShakeOffsetTimer")
+
+[node name="SpriteSheet3D" parent="." instance=ExtResource("2_vnhwv")]
+transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 0, 0.535, 0)
 
 [node name="KayoteTimer" type="Timer" parent="."]
 one_shot = true
@@ -49,6 +235,7 @@ one_shot = true
 
 [node name="Shadow" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(1, 2.97886e-09, 2.26267e-08, -1.68261e-08, 0.766045, 0.642787, -1.54183e-08, -0.642787, 0.766045, -0.029, 3.66003, -6.8498)
+light_color = Color(0.879309, 0.716295, 0.481525, 1)
 light_energy = 0.2
 light_specular = 16.0
 spot_range = 18.3451
@@ -60,45 +247,45 @@ Active = true
 Parent = NodePath("..")
 InitialState = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne", "Dash", "JumpSFX")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Walk", "Airborne", "Dash", "JumpSFX", "AnimTree")]
 script = ExtResource("2_qijfs")
 Walk = NodePath("../Walk")
 Airborne = NodePath("../Airborne")
 Dash = NodePath("../Dash")
 JumpSFX = NodePath("../../JumpSFX")
+AnimTree = NodePath("../../AnimationTree")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne", "Dash", "JumpSFX", "WalkSFX")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Airborne", "Dash", "JumpSFX", "WalkSFX", "AnimTree")]
 script = ExtResource("4_2o5yx")
 Idle = NodePath("../Idle")
 Airborne = NodePath("../Airborne")
 Dash = NodePath("../Dash")
 JumpSFX = NodePath("../../JumpSFX")
 WalkSFX = NodePath("../../WalkSFX")
+AnimTree = NodePath("../../AnimationTree")
 
-[node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Dash")]
+[node name="Airborne" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "Dash", "AnimTree")]
 script = ExtResource("5_8ht00")
 Idle = NodePath("../Idle")
 Dash = NodePath("../Dash")
+AnimTree = NodePath("../../AnimationTree")
 
-[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne", "JumpSFX")]
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("Airborne", "JumpSFX", "AnimTree")]
 script = ExtResource("7_mfnoy")
 DashForce = 25.0
 Decceleration = 70.0
 Airborne = NodePath("../Airborne")
 JumpSFX = NodePath("../../JumpSFX")
+AnimTree = NodePath("../../AnimationTree")
 
-[node name="Death" type="Node" parent="StateMachine"]
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("AnimTree")]
 script = ExtResource("8_wdmk3")
+AnimTree = NodePath("../../AnimationTree")
 
-[node name="Knockback" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle")]
+[node name="Knockback" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle", "AnimTree")]
 script = ExtResource("8_vnhwv")
 Idle = NodePath("../Idle")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.414, 0, 0, 0, 1, 0, 0.449847, 0)
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("2_xm3sw")
+AnimTree = NodePath("../../AnimationTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -119,3 +306,18 @@ stream = ExtResource("9_bqxua")
 [node name="WalkSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_vnhwv")
 volume_db = 12.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_vnhwv")
+anim_player = NodePath("AnimationPlayer")
+parameters/conditions/IsIdling = false
+parameters/conditions/IsWalking = false
+parameters/Idle/blend_position = 1.0
+parameters/Walk/blend_position = Vector2(0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+libraries = {
+&"": SubResource("AnimationLibrary_amvc3")
+}

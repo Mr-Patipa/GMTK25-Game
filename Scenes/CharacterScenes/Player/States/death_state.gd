@@ -1,6 +1,6 @@
 extends State
 
-
+@export var AnimTree : AnimationTree
 
 #region Main Component of the State Class
 func dependencyInjected() -> void: ## _ready() for states.
@@ -8,7 +8,8 @@ func dependencyInjected() -> void: ## _ready() for states.
 
 
 func stateEnter() -> void: ## Runs whenever the state is changed into.
-	pass
+	AnimTree["parameters/conditions/IsIdling"] = true
+	AnimTree["parameters/Idle/blend_position"] = Parent.FacingDirection.y
 
 
 func stateExit() -> void: ## Runs when the state is changed out of.

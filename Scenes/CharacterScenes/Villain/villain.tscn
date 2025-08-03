@@ -1,27 +1,99 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi2jdyfqbg5bs"]
+[gd_scene load_steps=14 format=3 uid="uid://bi2jdyfqbg5bs"]
 
-[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="1_dr31a"]
 [ext_resource type="Script" uid="uid://befnwntklwahb" path="res://Scenes/CharacterScenes/Villain/interaction_controller.gd" id="1_npxie"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="2_6gjdc"]
+[ext_resource type="Texture2D" uid="uid://dl52yd23mei7h" path="res://Resources/Graphics/Sprites/Villain idle.png" id="3_npxie"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lp2y0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_npxie"]
 radius = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_npxie"]
+atlas = ExtResource("3_npxie")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tigje"]
+atlas = ExtResource("3_npxie")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfqfj"]
+atlas = ExtResource("3_npxie")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cao45"]
+atlas = ExtResource("3_npxie")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tigje"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npxie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tigje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfqfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cao45")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_npxie"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_tigje"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tigje"]
+_data = {
+&"Idle": SubResource("Animation_npxie"),
+&"RESET": SubResource("Animation_tigje")
+}
+
 [node name="Villain" type="CharacterBody3D"]
 
 [node name="EndTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="InteractionController" type="Node3D" parent="." node_paths=PackedStringArray("ArialPrompt", "EndTimer")]
+[node name="InteractionController" type="Node3D" parent="." node_paths=PackedStringArray("ArialPrompt", "EndTimer", "AnimPlayer")]
 script = ExtResource("1_npxie")
 ItemNeeded = 5
 ArialPrompt = NodePath("../ArialUI")
 EndTimer = NodePath("../EndTimer")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-texture = ExtResource("1_dr31a")
+AnimPlayer = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lp2y0")
@@ -37,3 +109,12 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArialUI/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("SphereShape3D_npxie")
+
+[node name="SpriteSheet3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(5.3, 0, 0, 0, 5.3, 0, 0, 0, 5.3, 0.351804, 0, 0)
+sprite_frames = SubResource("SpriteFrames_tigje")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tigje")
+}

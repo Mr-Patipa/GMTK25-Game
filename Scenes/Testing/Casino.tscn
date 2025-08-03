@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://tkbftlb38xp" path="res://Classes/Collectable/Collectable.tscn" id="8_afxkc"]
 [ext_resource type="PackedScene" uid="uid://kpittpdtrxen" path="res://Scenes/CharacterScenes/Enemies/Bartender/Bartender.tscn" id="8_bbas2"]
 [ext_resource type="Script" uid="uid://dxua7tjjm5fxe" path="res://Scenes/Testing/BarAreaController.gd" id="8_rbrrp"]
-[ext_resource type="Texture2D" uid="uid://sxxfbe4kp875" path="res://icon.svg" id="9_votmq"]
+[ext_resource type="Texture2D" uid="uid://ckbnwjubhiatm" path="res://Resources/Graphics/Sprites/Gold Coin.png" id="9_afxkc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6owt"]
 albedo_color = Color(1, 0.240886, 0.440402, 1)
@@ -357,9 +357,8 @@ monitoring = false
 Parent = NodePath("..")
 
 [node name="Sprite3D" type="Sprite3D" parent="Slot Machine Controller/Item"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-modulate = Color(0.515522, 0.350436, 0.399314, 1)
-texture = ExtResource("9_votmq")
+transform = Transform3D(3.44, 0, 0, 0, 3.44, 0, 0, 0, 3.44, 0, 0, -0.0442924)
+texture = ExtResource("9_afxkc")
 
 [node name="Bar Area Controller" type="Node" parent="."]
 script = ExtResource("8_rbrrp")

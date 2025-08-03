@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6fjd7v6h1fa6"]
+[gd_scene load_steps=2 format=3 uid="uid://dr8cf6fcnkmod"]
 
 [ext_resource type="Texture2D" uid="uid://b335cn44ecikr" path="res://Resources/Graphics/Sprites/Slot_Spin.png" id="1_ajp2d"]
 
 [node name="Slot Machine Sheet" type="Sprite3D"]
 texture = ExtResource("1_ajp2d")
 hframes = 6
+frame = 5
