@@ -31,9 +31,25 @@ func renderStepped(_delta : float): ## physics_process()
 	if Parent.DamageComponentNode.IsRangeAttack == false:
 		dealDamage(Parent.PlayerRef)
 	else:
+		
 		var ShootPosistion: Vector3 = Parent.global_position
-		var ShootDirection: Vector3 = Parent.global_position.direction_to(Parent.PlayerRef.global_position)
-	
+		var ShootDirection: Vector3 = Vector3.ZERO
+		
+		if Parent.IsOneDirection:
+			ShootDirection = Vector3(Parent.BulletDirectionX, ShootPosistion.y, Parent.BulletDirectionZ)
+		else:
+			ShootDirection = Parent.global_position.direction_to(Parent.PlayerRef.global_position)
+		
+		if Parent.HaveRandomAccuracy:
+			# Random spread angle in degrees
+			var RandomRotation = Vector3(
+				deg_to_rad(randf_range(-Parent.BulletAngleSpread, Parent.BulletAngleSpread)),
+				deg_to_rad(randf_range(-Parent.BulletAngleSpread, Parent.BulletAngleSpread)),
+				0
+			)
+			ShootDirection = ShootDirection.rotated(Vector3.UP, RandomRotation.y)
+			ShootDirection = ShootDirection.rotated(Vector3.RIGHT, RandomRotation.x)
+		
 		shoot(ShootPosistion, ShootDirection)
 		
 	return null

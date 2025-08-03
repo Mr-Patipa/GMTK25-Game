@@ -19,7 +19,7 @@ func setup(StartPosition: Vector3, Direction: Vector3, Speed: float, Damage: int
 	var AdjustedDirection = Direction.normalized()
 	
 	# Reduce vertical drop
-	AdjustedDirection.y *= 0.1 
+	AdjustedDirection.y *= 0.0 
 	
 	# Set local variables
 	_Direction = AdjustedDirection.normalized() * Speed

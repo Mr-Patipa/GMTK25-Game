@@ -5,6 +5,11 @@ class_name TurretEnemy
 @onready var PlayerDetection: RayCast3D = $PlayerDetection
 
 @export var IsOneDirection: bool = false
+@export var HaveRandomAccuracy: bool = true
+
+@export var BulletDirectionX: float = 0.0
+@export var BulletDirectionZ: float = 1.0
+@export var BulletAngleSpread:float = 15.0
 
 @export_group("Object References")
 @export var PlayerRef : Player
