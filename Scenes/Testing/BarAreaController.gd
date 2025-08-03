@@ -8,7 +8,7 @@ var leftSpawns: Path3D
 func _ready() -> void:
 	rightSpawns = $"Right Spawns"
 	leftSpawns = $"Left Spawns"
-	spawn_bartenders() # For testing
+	GameManager.difficulty_changed.connect(addDifficulty)
 	
 
 func _process(delta: float) -> void:
@@ -74,3 +74,7 @@ func spawn_bartenders():
 	await get_tree().create_timer(.33).timeout
 	for b in bartenders:
 		b.charge()
+
+func addDifficulty():
+	pass
+	#TO-DO: Make this not empty
