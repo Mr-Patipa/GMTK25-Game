@@ -5,7 +5,7 @@ var difficulty_additions = {"PATHS": CardTablePathsComponent}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	GameManager.difficulty_changed.connect(addDifficulty)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
