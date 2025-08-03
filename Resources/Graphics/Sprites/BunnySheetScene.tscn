@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnm26t0fd8bca"]
+
+[ext_resource type="Texture2D" uid="uid://dpvkctcvs2dwh" path="res://Resources/Graphics/Sprites/Bunny Sheet.png" id="1_mvogh"]
+
+[node name="Bunny Sheet Scene" type="Sprite3D"]
+texture = ExtResource("1_mvogh")
+hframes = 6
+vframes = 3
+region_enabled = true
+region_rect = Rect2(1.79704, 1.62903, 80.3336, 80.5267)
