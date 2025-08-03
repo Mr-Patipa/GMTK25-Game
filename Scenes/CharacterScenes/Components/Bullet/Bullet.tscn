@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqowfuy6rr84w" path="res://Scenes/CharacterScenes/Components/Bullet/Bullet.gd" id="1_04c13"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_psk0j"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_04c13"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_psk0j"]
 albedo_color = Color(0.262932, 0.262932, 0.262932, 1)
@@ -14,11 +14,11 @@ collision_mask = 6
 script = ExtResource("1_04c13")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.33, 0, 0, 0, -1.44248e-08, -0.33, 0, 0.33, -1.44248e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_psk0j")
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, -0.4, 0, 0.4, -1.74846e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_04c13")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.7, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_psk0j")
 mesh = SubResource("SphereMesh_04c13")
 
