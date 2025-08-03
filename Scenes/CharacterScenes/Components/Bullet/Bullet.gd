@@ -19,7 +19,7 @@ func setup(StartPosition: Vector3, Direction: Vector3, Speed: float, Damage: int
 	var AdjustedDirection = Direction.normalized()
 	
 	# Reduce vertical drop
-	AdjustedDirection.y *= 0.1 
+	AdjustedDirection.y *= 0.0 
 	
 	# Set local variables
 	_Direction = AdjustedDirection.normalized() * Speed
@@ -30,9 +30,9 @@ func setup(StartPosition: Vector3, Direction: Vector3, Speed: float, Damage: int
 
 func _on_body_entered(body: Node3D) -> void:
 	# Destroy bullet on collision
-	#if body is Player:
-		#queue_free()
-	pass
+	queue_free()
+		
+
 
 func _on_life_timer_timeout() -> void:
 	# Destroy bullet after period of time

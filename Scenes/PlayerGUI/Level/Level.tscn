@@ -1,8 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://ydqktbpv3jye"]
+[gd_scene load_steps=30 format=3 uid="uid://ydqktbpv3jye"]
 
 [ext_resource type="Script" uid="uid://bmv2kwqa2b5qu" path="res://Globals/global_signal_bus.gd" id="1_0i1l6"]
 [ext_resource type="PackedScene" uid="uid://cwdthf0ljkwut" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.tscn" id="1_inj1o"]
-[ext_resource type="PackedScene" uid="uid://ddqkulaxxsn8j" path="res://Scenes/CharacterScenes/Player/player.tscn" id="2_jrnlp"]
 [ext_resource type="PackedScene" uid="uid://lc3rj1jr8na3" path="res://Scenes/CharacterScenes/Enemies/GuardEnemy/GuardEnemy.tscn" id="3_0i1l6"]
 [ext_resource type="Script" uid="uid://q07i8xg1j363" path="res://Globals/GameStates/in_game_state.gd" id="3_72bl1"]
 [ext_resource type="PackedScene" uid="uid://gwm75adidk0x" path="res://Classes/ArialUI/arial_ui.tscn" id="3_d0ycl"]
@@ -122,9 +121,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360193, 0.82915, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4825, 0.983069, 8.38621)
 PlayerRef = NodePath("../Player")
 PatrolPoints = NodePath("../NavigationPlatform/PatrollingMonsterPath")
-DetectionRange = 30.0
+DetectionRange = 8.0
 
-[node name="AngryEnemy" parent="Casino" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("7_it0ms")]
+[node name="ChaserEnemy" parent="Casino" node_paths=PackedStringArray("PlayerRef") instance=ExtResource("7_it0ms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.9219, 0.983069, -19.1762)
 PlayerRef = NodePath("../Player")
 

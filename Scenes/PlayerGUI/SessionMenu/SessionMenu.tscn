@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwdthf0ljkwut"]
+[gd_scene load_steps=6 format=3 uid="uid://cwdthf0ljkwut"]
 
 [ext_resource type="Script" uid="uid://dtowoe4wqg5k1" path="res://Scenes/PlayerGUI/SessionMenu/SessionMenu.gd" id="1_62h2g"]
 [ext_resource type="PackedScene" uid="uid://bg56bjdidficu" path="res://Scenes/UI/GeneralButton/GeneralButton.tscn" id="1_ytcdc"]
+[ext_resource type="LabelSettings" uid="uid://cetg3jr1ybo71" path="res://Resources/Label/LableGeneral.tres" id="3_u64uq"]
+[ext_resource type="PackedScene" uid="uid://c6hiyklwj236i" path="res://Scenes/UI/VolumeSlider/VolumeSlider.tscn" id="4_or8wo"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pdmds"]
 
-[node name="GameMEnu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "TimerLabel", "GameTimer", "GameOver", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text")]
+[node name="GameMenu" type="CanvasLayer" node_paths=PackedStringArray("OptionsMenu", "VolumeController", "TimerLabel", "GameTimer", "GameOver", "Background", "BestTimeLabel", "MostTimeLabel", "CurrentTimeLabel", "PlayBtn", "MenuBtn", "DialogueMenu", "NameCard", "Text")]
 script = ExtResource("1_62h2g")
 OptionsMenu = NodePath("Options")
+VolumeController = NodePath("VolumeController")
 TimerLabel = NodePath("GameStatus/TimerLabel")
 GameTimer = NodePath("GameStatus/GameTimer")
 GameOver = NodePath("GameOver")
@@ -20,6 +23,62 @@ MenuBtn = NodePath("GameOver/Others/Menu")
 DialogueMenu = NodePath("DialogueMenu")
 NameCard = NodePath("DialogueMenu/Panel/NameCard")
 Text = NodePath("DialogueMenu/Panel/Text")
+
+[node name="VolumeController" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VolumeController"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 60
+
+[node name="VolumeSliderContainer" type="VBoxContainer" parent="VolumeController/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MasterLabel" type="Label" parent="VolumeController/MarginContainer/VolumeSliderContainer"]
+layout_mode = 2
+text = "Master Volume"
+label_settings = ExtResource("3_u64uq")
+
+[node name="Master" parent="VolumeController/MarginContainer/VolumeSliderContainer" instance=ExtResource("4_or8wo")]
+layout_mode = 2
+BusName = "Master"
+
+[node name="MusicLabel" type="Label" parent="VolumeController/MarginContainer/VolumeSliderContainer"]
+layout_mode = 2
+text = "Music Volume"
+label_settings = ExtResource("3_u64uq")
+
+[node name="Music" parent="VolumeController/MarginContainer/VolumeSliderContainer" instance=ExtResource("4_or8wo")]
+layout_mode = 2
+BusName = "Music"
+
+[node name="SfxLabel" type="Label" parent="VolumeController/MarginContainer/VolumeSliderContainer"]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = ExtResource("3_u64uq")
+
+[node name="Sfx" parent="VolumeController/MarginContainer/VolumeSliderContainer" instance=ExtResource("4_or8wo")]
+layout_mode = 2
+BusName = "Sfx"
 
 [node name="Options" type="Control" parent="."]
 visible = false
