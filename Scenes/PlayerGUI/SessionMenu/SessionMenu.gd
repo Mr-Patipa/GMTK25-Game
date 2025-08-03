@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @export var World : Node3D
 @export var OptionsMenu : Control
+@export var VolumeController : Control
 
 @export_category("Game Status UI")
 @export var InitialGameTime : int = 20
@@ -54,12 +55,14 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") == true:
 		OptionsMenu.visible = true
+		VolumeController.visible = true
 		World["process_mode"] = Node.PROCESS_MODE_DISABLED
 
 
 #region Game Options Menu Related
 func _on_return_button_pressed() -> void:
 	OptionsMenu.visible = false
+	VolumeController.visible = false
 	World["process_mode"] = Node.PROCESS_MODE_INHERIT
 
 func _on_quit_button_pressed() -> void:

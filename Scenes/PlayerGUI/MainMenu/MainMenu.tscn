@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1g5er1n1n01"]
+[gd_scene load_steps=6 format=3 uid="uid://c1g5er1n1n01"]
 
 [ext_resource type="Script" uid="uid://c8mgg4h5y8dty" path="res://Scenes/PlayerGUI/MainMenu/MainMenu.gd" id="1_n85i1"]
 [ext_resource type="LabelSettings" uid="uid://ynxxsd1i33c1" path="res://Resources/Label/LableTitle.tres" id="1_stcdf"]
 [ext_resource type="PackedScene" uid="uid://bg56bjdidficu" path="res://Scenes/UI/GeneralButton/GeneralButton.tscn" id="3_g3xlg"]
+[ext_resource type="LabelSettings" uid="uid://cetg3jr1ybo71" path="res://Resources/Label/LableGeneral.tres" id="4_0jhwk"]
+[ext_resource type="PackedScene" uid="uid://c6hiyklwj236i" path="res://Scenes/UI/VolumeSlider/VolumeSlider.tscn" id="4_88xgt"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -54,6 +56,38 @@ text = "Start"
 [node name="QuitButton" parent="MarginContainer/ButtonsContainer" instance=ExtResource("3_g3xlg")]
 layout_mode = 2
 text = "Quit"
+
+[node name="VolumeSliderContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MasterLabel" type="Label" parent="MarginContainer/VolumeSliderContainer"]
+layout_mode = 2
+text = "Master Volume"
+label_settings = ExtResource("4_0jhwk")
+
+[node name="Master" parent="MarginContainer/VolumeSliderContainer" instance=ExtResource("4_88xgt")]
+layout_mode = 2
+BusName = "Master"
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VolumeSliderContainer"]
+layout_mode = 2
+text = "Music Volume"
+label_settings = ExtResource("4_0jhwk")
+
+[node name="Music" parent="MarginContainer/VolumeSliderContainer" instance=ExtResource("4_88xgt")]
+layout_mode = 2
+BusName = "Music"
+
+[node name="SfxLabel" type="Label" parent="MarginContainer/VolumeSliderContainer"]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = ExtResource("4_0jhwk")
+
+[node name="Sfx" parent="MarginContainer/VolumeSliderContainer" instance=ExtResource("4_88xgt")]
+layout_mode = 2
+BusName = "Sfx"
 
 [connection signal="pressed" from="MarginContainer/ButtonsContainer/StartButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]

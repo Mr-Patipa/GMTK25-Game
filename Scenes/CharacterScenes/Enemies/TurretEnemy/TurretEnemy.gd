@@ -4,6 +4,8 @@ class_name TurretEnemy
 @onready var DamageComponentNode: DamageComponent = $DamageComponent
 @onready var PlayerDetection: RayCast3D = $PlayerDetection
 
+@export var IsOneDirection: bool = false
+
 @export_group("Object References")
 @export var PlayerRef : Player
 
@@ -29,11 +31,10 @@ func updateRaycast() -> void:
 	PlayerDetection.look_at(PlayerRef.global_position)
 	
 func playerIsVisible() -> bool:
-	print(PlayerDetection.get_collider() )
 	return PlayerDetection.get_collider() is Player
 	
 func canSeePlayer(ViewRange: float) -> bool:
-	var canSeePlayer: bool = false
+	var CanSeePlayer: bool = false
 	
 	var ParentPos: Vector3 = global_position
 	var PlayerPos: Vector3 = PlayerRef.global_position
@@ -41,6 +42,6 @@ func canSeePlayer(ViewRange: float) -> bool:
 	var Distance = ParentPos.distance_to(PlayerPos)
 	
 	if playerIsVisible() and (Distance <= ViewRange):
-		canSeePlayer = true
+		CanSeePlayer = true
 	
-	return canSeePlayer
+	return CanSeePlayer

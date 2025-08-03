@@ -10,6 +10,7 @@ albedo_color = Color(0.262932, 0.262932, 0.262932, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_04c13"]
 
 [node name="Bullet" type="Area3D"]
+collision_mask = 6
 script = ExtResource("1_04c13")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
