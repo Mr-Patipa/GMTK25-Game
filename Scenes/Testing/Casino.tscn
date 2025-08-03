@@ -338,6 +338,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 5, 40)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Slot Machine Controller/Area3D"]
 shape = SubResource("BoxShape3D_ir4eo")
+debug_color = Color(0, 0, 0, 0.42)
 
 [node name="Item" parent="Slot Machine Controller" instance=ExtResource("7_ir4eo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.998, 0.5, 50)

@@ -245,6 +245,8 @@ shadow_enabled = true
 
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("1_inj1o")]
 World = NodePath("../Casino")
+InitialGameTime = 60
+debugMode = true
 
 [editable path="Casino/WheelOfHope"]
 [editable path="Casino/Door2/MovableBlock"]

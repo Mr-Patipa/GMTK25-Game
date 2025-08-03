@@ -27,6 +27,8 @@ var IsEnding = false
 @export var Text : Label
 var InDialogue : bool = false
 
+@export var debugMode := false
+
 
 func _ready() -> void:
 	CurrentGameTimeLeft = InitialGameTime
@@ -78,6 +80,8 @@ func setUpTimer(TimeAdded : int) -> void:
 
 
 func playerReadyed() -> void:
+	if debugMode: return
+	
 	GameManager.time_change_notified.emit(CurrentGameTimeLeft)
 	
 	GameTimer.set_wait_time(1)
@@ -98,8 +102,9 @@ func changeTimeStatus() -> void:
 		GameManager.time_ran_out.emit()
 	
 	if CurrentGameTimeLeft < 11 and not IsEnding:
-		IsEnding = true
-		GameManager.not_much_time_left.emit()
+		if not debugMode:
+			IsEnding = true
+			GameManager.not_much_time_left.emit()
 		
 	
 	elif CurrentGameTimeLeft >= 11:

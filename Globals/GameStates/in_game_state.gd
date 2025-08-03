@@ -8,6 +8,8 @@ extends Node
 @export var SpawnPos : Marker3D
 @export var Detector : Area3D
 
+@export var debug := false
+
 @export_category("End Game Stats")
 @export var TimeCounter : Timer
 
