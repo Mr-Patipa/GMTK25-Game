@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 # Difficulty additions
 var difficulty_additions = {"PATHS": CardTablePathsComponent}

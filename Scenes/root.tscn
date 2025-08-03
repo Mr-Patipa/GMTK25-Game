@@ -97,10 +97,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.29667, 2.51346, 9.21587)
 [node name="M4" type="Marker3D" parent="World/EnemySpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3187, 2.72378, 8.20232)
 
-[node name="WheelOfHope" parent="World" node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("7_5th8o")]
+[node name="WheelOfHope" parent="World" node_paths=PackedStringArray("EnemySpawnPoints", "Lights", "AmbientLight") instance=ExtResource("7_5th8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216676, 0.0545971, -0.187712)
 EnemySpawnPoints = NodePath("../EnemySpawnPoints")
 Chaser = ExtResource("8_7dvjk")
+Lights = NodePath("../../Lighting/CasinoLights")
+AmbientLight = NodePath("../../Lighting/AmbientLight")
 
 [node name="ArialUI" parent="World/WheelOfHope" index="1"]
 transform = Transform3D(0.882309, 0, 0, 0, 0.882309, 0, 0, 0, 0.882309, 0, 1.39993, 0)
@@ -120,7 +122,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91357, 0, -12.9472)
 shape = SubResource("BoxShape3D_fnb83")
 
 [node name="Item1" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2158, 1.3902, -44.3312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2158, 0.836492, -44.3312)
 
 [node name="Collectable" parent="World/Item1" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
 collision_mask = 3
@@ -132,7 +134,7 @@ modulate = Color(1, 0.55373, 0.354052, 1)
 texture = ExtResource("13_lwnbm")
 
 [node name="Item2" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7769, 1.44405, -44.7095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9934, 0.780599, -44.3244)
 
 [node name="Collectable" parent="World/Item2" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
 Parent = NodePath("..")
@@ -143,7 +145,7 @@ modulate = Color(1, 0.55373, 0.354052, 1)
 texture = ExtResource("13_lwnbm")
 
 [node name="Item3" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.261, 1.44405, -44.1518)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2992, 0.878647, -44.1565)
 
 [node name="Collectable" parent="World/Item3" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
 Parent = NodePath("..")
@@ -154,7 +156,7 @@ modulate = Color(1, 0.55373, 0.354052, 1)
 texture = ExtResource("13_lwnbm")
 
 [node name="Item4" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4078, 12.4092, 57.9145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45129, 12.4092, 57.9145)
 
 [node name="Collectable" parent="World/Item4" node_paths=PackedStringArray("Parent") instance=ExtResource("12_fu36u")]
 Parent = NodePath("..")
@@ -170,9 +172,107 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = SubResource("Environment_y8u7o")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+[node name="AmbientLight" type="DirectionalLight3D" parent="Lighting"]
 transform = Transform3D(1, 6.86168e-08, -3.19966e-08, -3.78551e-08, 0.819152, 0.573576, 6.5567e-08, -0.573576, 0.819152, 0, 0, 0)
+light_energy = 0.25
 shadow_enabled = true
+
+[node name="CasinoLights" type="Node3D" parent="Lighting"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 0, 7.08294, -3.09605e-07)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 0, 7.08294, -43.4098)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D14" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 0, 7.08294, -21.0107)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D15" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 0, 7.08294, 22.4027)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D16" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, -2.8305, 7.08294, 36.2309)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D17" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, -22.6759, 7.08294, 37.3066)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D18" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, -40.6109, 10.1926, 36.6677)
+spot_range = 23.168
+spot_angle = 54.2718
+
+[node name="SpotLight3D19" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, -40.6109, 10.1926, 36.6677)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 34.6899, 7.08294, -53.0707)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 53.7921, 16.1786, -49.0683)
+spot_range = 39.2141
+spot_angle = 36.4401
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 54.1594, 20.2433, -32.1862)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D8" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 37.9347, 20.2433, -18.0195)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D9" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 52.3219, 20.2433, 0.489394)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D10" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 52.3219, 20.2433, 27.2272)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D11" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 36.5109, 20.2433, 15.5643)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D12" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 36.5109, 20.2433, 50.5834)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D13" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, 8.91977, 20.2433, 59.8427)
+spot_range = 15.6453
+spot_angle = 36.4401
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, -24.7299, 7.08294, -41.9355)
+spot_range = 11.5217
+spot_angle = 65.2945
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Lighting/CasinoLights"]
+transform = Transform3D(1, 0, 0, 0, 0.194594, 0.980884, 0, -0.980884, 0.194594, -38.5197, 7.08294, -41.9355)
+spot_range = 11.5217
+spot_angle = 65.2945
 
 [node name="SessionMenu" parent="." node_paths=PackedStringArray("World") instance=ExtResource("18_wgtvb")]
 World = NodePath("../World")

@@ -4,7 +4,7 @@ class_name TheWheel
 
 @export var SpinTimes : int = 16 # Amount of time it spins before it slows down
 @export var SpinDuration : float = 9 # Duration of each spins
-@export var SliceCount : int = 6 # How many options are on the wheel
+@export var SliceCount : int = 7 # How many options are on the wheel
 @export var CooldownTime : float = 2 # How long until you could spin the wheel again after it's finished
 @export var TimeAdded : int = 60 # Amount of time added for every spin
 @export var WheelBase : Marker3D
@@ -29,6 +29,11 @@ var Affected : bool = false
 @export_category("Dialogue Related")
 @export var DialogueTimer : Timer
 @export var DialogueTime : float = 3
+
+@export_category("Lights related")
+@export var Lights : Node3D
+@export var AmbientLight : DirectionalLight3D
+@export var LightsOutTime : float = 60
 
 
 var SpinTween : Tween
@@ -167,6 +172,19 @@ func checkStatus() -> void:
 			)
 			text = "+ " + str(TimeAdded + PlusTime) + " seconds" + "
 				Your controls are now reversed"
+			
+		7:
+			# Lights out and flickering
+			AmbientLight.visible = false
+			NewTimer = PlaceholderTimer.duplicate()
+			plr.Modifiers.add_child(NewTimer)
+			NewTimer.set_wait_time(LightsOutTime)
+			NewTimer.timeout.connect(func() -> void:
+				AmbientLight.visible = true
+			)
+			text = "+ " + str(TimeAdded) + " seconds" + "
+				Lights are out for " + str(LightsOutTime)
+	
 	
 	DialogueTimer.set_wait_time(DialogueTime)
 	DialogueTimer.start()

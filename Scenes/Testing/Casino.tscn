@@ -169,7 +169,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(-38, 9, -100)
 
-[node name="Poker Pit Controller" type="Node" parent="."]
+[node name="Poker Pit Controller" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42944, 0)
 script = ExtResource("3_8n5ol")
 
 [node name="Card Table A" parent="Poker Pit Controller" node_paths=PackedStringArray("path_follow") instance=ExtResource("3_fq3gs")]
